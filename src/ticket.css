@@ -1,0 +1,20 @@
+.ticket {
+    margin-bottom: 5px;
+    border: 1px #858585;
+}
+
+.ticket.desire{
+    background: #ABABAB;
+}
+
+.ticket.planned{
+    background: #ccccfc;
+}
+
+.ticket.current{
+    background: #ddffd3;
+}
+
+.ticket.finished{
+    background: #ffe6d1;
+}
