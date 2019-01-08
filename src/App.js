@@ -60,48 +60,57 @@ class App extends Component {
             }              
              return tiket;       
          });        
-         this.setState({           
-            ...this.state.tickets,           
-            tickets       
-         });    
+         this.setState({tickets, tickets });    
       }
     
     onDeleteTicket = (id) => {
         const tickets = this.state.tickets
-        var index = tickets.findIndex(x => x.id ===id)
+        let index = tickets.findIndex(x => x.id ===id)
         tickets.splice(index,1)
-        this.setState({tickets:tickets})
+        this.setState({tickets})
     }
 
     onSendTicket = (newTitle,newStatus,newDetail) => {
         const tickets = this.state.tickets
-        var lastID = this.state.lastID
+        let lastID = this.state.lastID
         tickets.push({
           id:lastID,
           title: newTitle,
           status: newStatus,
           detail:newDetail
         })
-        this.setState({tickets: tickets})
-        this.setState({lastID: lastID+1})
+        this.setState({tickets: tickets,lastID: lastID+1})
       }
+
+    orderingTable = (tables,tickets) => {
+        let currentTable = []
+        let currentTickets
+        tables.map((table) => {
+            currentTickets = []
+            tickets.map((ticket) => {
+                if(table === ticket.status)
+                {
+                    currentTickets.push(ticket)
+                }
+            })
+            currentTable.push({status:table,tickets:currentTickets})
+        })
+        return currentTable
+    }
       
     render() {
       const {tables,tickets} = this.state
-      var currentTickets
+      let orderingTable = this.orderingTable(tables,tickets)
+      console.log(orderingTable)
       return (
         <div>
             <nav className="navbar navbar-dark bg-dark">
                 <span className="navbar-brand mb-0 h1">Pounda</span>
             </nav>
             <div className='main-container container-fluid row'>
-                {tables.map((table) => (
-                    currentTickets = [],
-                    tickets.map((ticket) =>(
-                        table === ticket.status ? currentTickets.push(ticket) : 0
-                    )),
-                    <div  key={table} className={"table-container col-md-3 container-fluid row"}>
-                        <Table status={table} tickets={currentTickets} onDrop={this.onDrop} onDeleteTicket={this.onDeleteTicket}/>
+                {orderingTable.map((table) => (
+                    <div  key={table.status} className={"table-container col-md-3 container-fluid row"}>
+                        <Table status={table.status} tickets={table.tickets} onDrop={this.onDrop} onDeleteTicket={this.onDeleteTicket}/>
                     </div>
                 ))}
                 <div className={"form-container col-md-2 container-fluid row"}><NewTicket onSendTicket={this.onSendTicket} /></div>
