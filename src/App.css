@@ -1,39 +1,39 @@
-.main-container{
-    margin-top: 10px;
+.main-container {
+  margin-top: 10px;
 }
-.label{
-    display: inline;
-    padding: .2em .6em .3em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
+.label {
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
 }
 
 .label-default {
-    background-color: #777;
+  background-color: #777;
 }
 
 .label-primary {
-    background-color: #337ab7;
+  background-color: #337ab7;
 }
 
 .label-success {
-    background-color: #5cb85c;
+  background-color: #5cb85c;
 }
 
 .label-info {
-    background-color: #5bc0de;
+  background-color: #5bc0de;
 }
 
 .label-warning {
-    background-color: #f0ad4e;
+  background-color: #f0ad4e;
 }
 
 .label-danger {
-    background-color: #d9534f;
+  background-color: #d9534f;
 }

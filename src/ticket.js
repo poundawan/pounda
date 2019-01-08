@@ -1,34 +1,63 @@
-import React, { Component }  from 'react'
+import React, { Component } from "react";
 
-import './ticket.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./ticket.css";
 
 class Ticket extends Component {
-   
-    onDragStart = (ev,id) => {
-        ev.dataTransfer.setData("id",id);
-    }
+  onDragStart = (ev, id) => {
+    ev.dataTransfer.setData("id", id);
+  };
 
-    onDeleteTicket = (ev,id) => {
-        ev.preventDefault();
-        this.props.onDeleteTicket(id);
-    }
-    render(){
-        const {ticketID,title,date,detail,status} = this.props;
-
-        return(
-            <div 
-                onDragStart = {(e) => this.onDragStart(e,ticketID)}
-                draggable 
-                className={`ticket ${status} draggable badge col-md-12`} 
-                date={date} 
-            >
-                <button type="button" className="close" aria-label="Close" onClick={e => this.onDeleteTicket(e,ticketID)}>
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h3>{title}</h3>
-                <span>{detail}</span>
-            </div>
-        )
-    }
+  onDeleteTicket = (ev, id) => {
+    ev.preventDefault();
+    this.props.onDeleteTicket(id);
+  };
+  render() {
+    const { ticket, status } = this.props;
+    let classDate = "col-md-12";
+    if (ticket.to.length > 0) classDate = "col-md-6";
+    return (
+      <div
+        onDragStart={e => this.onDragStart(e, ticket.id)}
+        draggable
+        className={`ticket ${status} draggable badge col-md-12`}
+      >
+        <button
+          type="button"
+          className="close"
+          aria-label="Close"
+          onClick={e => this.onDeleteTicket(e, ticket.id)}
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3>{ticket.title}</h3>
+        <div className="container-fluid row">
+          {ticket.places.length > 0 ? (
+            <span className="col-md-12">Lieux: {ticket.places}</span>
+          ) : (
+            ""
+          )}
+          {ticket.from.length > 0 ? (
+            <span className={classDate}>Du: {ticket.from}</span>
+          ) : (
+            ""
+          )}
+          {ticket.to.length > 0 ? (
+            <span className="col-md-6">au: {ticket.to}</span>
+          ) : (
+            ""
+          )}
+          {ticket.places.length > 0 ? (
+            <span className="col-md-12">
+              <FontAwesomeIcon icon={ticket.transport} />
+            </span>
+          ) : (
+            ""
+          )}
+          <span className="col-md-12">{ticket.resume}</span>
+        </div>
+      </div>
+    );
+  }
 }
-export default Ticket
+export default Ticket;
