@@ -100,15 +100,14 @@ class App extends Component {
       
     render() {
       const {tables,tickets} = this.state
-      let orderingTable = this.orderingTable(tables,tickets)
-      console.log(orderingTable)
+      let orderedTable = this.orderingTable(tables,tickets)
       return (
         <div>
             <nav className="navbar navbar-dark bg-dark">
                 <span className="navbar-brand mb-0 h1">Pounda</span>
             </nav>
             <div className='main-container container-fluid row'>
-                {orderingTable.map((table) => (
+                {orderedTable.map((table) => (
                     <div  key={table.status} className={"table-container col-md-3 container-fluid row"}>
                         <Table status={table.status} tickets={table.tickets} onDrop={this.onDrop} onDeleteTicket={this.onDeleteTicket}/>
                     </div>
