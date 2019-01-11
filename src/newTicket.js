@@ -13,7 +13,7 @@ class NewTicket extends Component {
     places: "",
     from: today,
     to: today,
-    transport: "plane",
+    transport: "none",
     resume: "",
     showForm: "hide"
   };
@@ -25,6 +25,7 @@ class NewTicket extends Component {
   }
   onChangePlaces(e) {
     this.setState({ places: e.target.value });
+    if (this.state.title.length < 1) this.setState({ title: e.target.value });
   }
   onChangeFrom(date) {
     this.setState({ from: date });
@@ -53,8 +54,6 @@ class NewTicket extends Component {
       places: "",
       from: today,
       to: today,
-      transport: "plane",
-      status: "desire",
       resume: ""
     });
     this.props.onSendTicket(
@@ -178,6 +177,7 @@ class NewTicket extends Component {
                   className="form-control"
                   onChange={e => this.onChangeTransport(e)}
                 >
+                  <option value="none">Inconnu</option>
                   <option value="plane">Avion</option>
                   <option value="ship">Bateau</option>
                   <option value="bus">Bus</option>

@@ -48,7 +48,7 @@ class Ticket extends Component {
           ) : (
             ""
           )}
-          {ticket.places.length > 0 ? (
+          {ticket.transport.length > 0 && ticket.transport != "none" ? (
             <span className="col-md-12">
               <Icon name={ticket.transport} />
             </span>
