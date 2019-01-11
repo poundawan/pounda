@@ -1,29 +1,37 @@
 import React, { Component } from "react";
-
+import DatePicker from "react-datepicker";
+import { format, compareAsc } from "date-fns";
+import "react-datepicker/dist/react-datepicker.css";
 import "./newTicket.css";
+
+const today = new Date();
 
 class NewTicket extends Component {
   state = {
     status: "desire",
     title: "",
     places: "",
-    from: "",
-    to: "",
+    from: today,
+    to: today,
     transport: "plane",
     resume: "",
     showForm: "hide"
   };
+  onChangeFrom = this.onChangeFrom.bind(this);
+  onChangeTo = this.onChangeTo.bind(this);
+
   onChangeTitle(e) {
     this.setState({ title: e.target.value });
   }
   onChangePlaces(e) {
     this.setState({ places: e.target.value });
   }
-  onChangeFrom(e) {
-    this.setState({ from: e.target.value });
+  onChangeFrom(date) {
+    this.setState({ from: date });
+    if (compareAsc(date, this.state.to) > 0) this.setState({ to: date });
   }
-  onChangeTo(e) {
-    this.setState({ to: e.target.value });
+  onChangeTo(date) {
+    this.setState({ to: date });
   }
   onChangeTransport(e) {
     this.setState({ transport: e.target.value });
@@ -36,20 +44,24 @@ class NewTicket extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
+    let from = "";
+    let to = "";
+    if (this.state.from) from = format(this.state.from, "DD/MM/YYYY");
+    if (this.state.to) from = format(this.state.to, "DD/MM/YYYY");
     this.setState({
       title: "",
       places: "",
-      from: "",
-      to: "",
-      transport: "",
-      status: "",
+      from: today,
+      to: today,
+      transport: "plane",
+      status: "desire",
       resume: ""
     });
     this.props.onSendTicket(
       this.state.title,
       this.state.places,
-      this.state.from,
-      this.state.to,
+      from,
+      to,
       this.state.transport,
       this.state.status,
       this.state.resume
@@ -104,24 +116,44 @@ class NewTicket extends Component {
             <div className="form-group row">
               <label className="col-sm-2 col-form-label">Date du</label>
               <div className="col-sm-4 col-md-2">
-                <input
+                <DatePicker
                   className="form-control"
                   id="fromTicket"
-                  type="text"
+                  selectsStart
                   placeholder=""
-                  value={from}
-                  onChange={e => this.onChangeFrom(e)}
+                  isClearable={true}
+                  dateFormat="dd/MM/yyyy"
+                  selected={from}
+                  startDate={from}
+                  endDate={to}
+                  onChange={this.onChangeFrom}
+                  showYearDropdown
+                  showWeekNumbers
+                  dateFormatCalendar="MMMM"
+                  scrollableYearDropdown
+                  showMonthDropdown
+                  yearDropdownItemNumber={80}
                 />
               </div>
               <label className="col-sm-1 col-form-label">au</label>
               <div className="col-sm-4 col-md-2">
-                <input
+                <DatePicker
                   className="form-control"
                   id="toTicket"
-                  type="text"
+                  isClearable={true}
+                  dateFormat="dd/MM/yyyy"
                   placeholder=""
-                  value={to}
-                  onChange={e => this.onChangeTo(e)}
+                  selectsEnd
+                  selected={to}
+                  startDate={from}
+                  endDate={to}
+                  onChange={this.onChangeTo}
+                  showYearDropdown
+                  showWeekNumbers
+                  showMonthDropdown
+                  dateFormatCalendar="MMMM"
+                  scrollableYearDropdown
+                  yearDropdownItemNumber={30}
                 />
               </div>
             </div>

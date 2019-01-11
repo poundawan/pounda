@@ -25,8 +25,8 @@ class App extends Component {
         status: "finished",
         title: "Japan",
         places: "Japon",
-        from: "21-05-2016",
-        to: "10-06-2016",
+        from: "21/05/2016",
+        to: "10/06/2016",
         transport: "plane",
         resume: "ZEeeeeeen !!!"
       },
@@ -45,8 +45,8 @@ class App extends Component {
         status: "finished",
         title: "Norway",
         places: "Norvège",
-        from: "28-05-2017",
-        to: "7-06-2017",
+        from: "28/05/2017",
+        to: "07/06/2017",
         transport: "plane",
         resume: "Mouillé !!!"
       },
@@ -55,7 +55,7 @@ class App extends Component {
         status: "current",
         title: "Chez les parents",
         places: "Lyon",
-        from: "01-12-2018",
+        from: "01/12/2018",
         to: "",
         transport: "",
         resume: "Trop long !!!"
@@ -65,8 +65,8 @@ class App extends Component {
         status: "finished",
         title: "Asia 2k18",
         places: "Japon",
-        from: "23-01-2018",
-        to: "07-06-2018",
+        from: "23/01/2018",
+        to: "07/06/2018",
         transport: "plane",
         resume: "Enorme !!!"
       }
@@ -102,6 +102,7 @@ class App extends Component {
   ) => {
     const tickets = this.state.tickets;
     let lastID = this.state.lastID;
+    console.log(newFrom);
     tickets.push({
       id: lastID,
       title: newTitle,
