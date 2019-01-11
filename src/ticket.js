@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ticket.css";
+
+import Icon from "./Icon";
 
 class Ticket extends Component {
   onDragStart = (ev, id) => {
@@ -49,7 +50,7 @@ class Ticket extends Component {
           )}
           {ticket.places.length > 0 ? (
             <span className="col-md-12">
-              <FontAwesomeIcon icon={ticket.transport} />
+              <Icon name={ticket.transport} />
             </span>
           ) : (
             ""

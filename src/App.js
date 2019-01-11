@@ -1,42 +1,9 @@
 import React, { Component } from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGlobeAfrica,
-  faGlobeEurope,
-  faGlobeAmericas,
-  faGlobeAsia,
-  faBus,
-  faCar,
-  faMotorcycle,
-  faPlane,
-  faShip,
-  faShuttleVan,
-  faTrain,
-  faThumbsUp,
-  faBicycle
-} from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 import "./bootstrap.css";
 
 import Table from "./table.js";
 import NewTicket from "./newTicket";
-
-library.add(
-  faGlobeAfrica,
-  faGlobeEurope,
-  faGlobeAmericas,
-  faGlobeAsia,
-  faBus,
-  faCar,
-  faMotorcycle,
-  faPlane,
-  faShip,
-  faShuttleVan,
-  faTrain,
-  faThumbsUp,
-  faBicycle
-);
 
 class App extends Component {
   state = {
