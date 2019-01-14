@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 
 import Ticket from "./ticket.js";
+import TicketEdit from "./ticketEdit.js";
 import "./table.css";
 class Table extends Component {
+  state = {
+    editTicket: ""
+  };
+
+  showForm = id => {
+    this.state.editTicket === id
+      ? this.setState({ editTicket: "" })
+      : this.setState({ editTicket: id });
+  };
+
   onDragOver = ev => {
     ev.preventDefault();
   };
@@ -11,9 +22,13 @@ class Table extends Component {
     e.preventDefault();
     this.props.onDrop(e, status);
   }
+  onUpdateTicket = (id, title, places, from, to, transport, resume) => {
+    this.setState({ editTicket: "" });
+    this.props.onUpdateTicket(id, title, places, from, to, transport, resume);
+  };
 
   render() {
-    const { status, tickets, onDeleteTicket } = this.props;
+    const { status, tickets, onDeleteTicket, onUpdateTicket } = this.props;
     return (
       <div
         className={
@@ -30,14 +45,26 @@ class Table extends Component {
           <span className={"label label-default"}>{status}</span>
         </div>
         <div className="col-md-12">
-          {tickets.map(ticket => (
-            <Ticket
-              key={ticket.id}
-              ticket={ticket}
-              status={status}
-              onDeleteTicket={onDeleteTicket}
-            />
-          ))}
+          {tickets.map(ticket =>
+            this.state.editTicket === ticket.id ? (
+              <TicketEdit
+                key={ticket.id}
+                ticket={ticket}
+                status={status}
+                onDeleteTicket={onDeleteTicket}
+                showForm={this.showForm}
+                onUpdateTicket={this.onUpdateTicket}
+              />
+            ) : (
+              <Ticket
+                key={ticket.id}
+                ticket={ticket}
+                status={status}
+                onDeleteTicket={onDeleteTicket}
+                showForm={this.showForm}
+              />
+            )
+          )}
         </div>
       </div>
     );

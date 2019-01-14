@@ -32,7 +32,9 @@ class NewTicket extends Component {
     if (compareAsc(date, this.state.to) > 0) this.setState({ to: date });
   }
   onChangeTo(date) {
-    this.setState({ to: date });
+    (date && compareAsc(date, this.state.from)) < 0
+      ? alert("La date doit être supérieur à la date départ")
+      : this.setState({ to: date });
   }
   onChangeTransport(e) {
     this.setState({ transport: e.target.value });

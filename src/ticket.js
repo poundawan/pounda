@@ -9,6 +9,11 @@ class Ticket extends Component {
     ev.dataTransfer.setData("id", id);
   };
 
+  showForm = (e, id) => {
+    e.preventDefault();
+    this.props.showForm(id);
+  };
+
   onDeleteTicket = (ev, id) => {
     ev.preventDefault();
     this.props.onDeleteTicket(id);
@@ -48,7 +53,7 @@ class Ticket extends Component {
           ) : (
             ""
           )}
-          {ticket.transport.length > 0 && ticket.transport != "none" ? (
+          {ticket.transport.length > 0 && ticket.transport !== "none" ? (
             <span className="col-md-12">
               <Icon name={ticket.transport} />
             </span>
@@ -56,6 +61,9 @@ class Ticket extends Component {
             ""
           )}
           <span className="col-md-12">{ticket.resume}</span>
+          <span aria-hidden="true" onClick={e => this.showForm(e, ticket.id)}>
+            <Icon name="edit" />
+          </span>
         </div>
       </div>
     );
