@@ -26,7 +26,7 @@ span.action-icon:hover {
 
 .rating {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 25px;
   color: #9aa5b1;
 }
 
@@ -41,12 +41,12 @@ span.action-icon:hover {
 
 .fa-grin-alt.rating-selected,
 .rating i.fa-grin-alt:hover {
-  color: #147d64;
+  color: #199473;
 }
 
 .fa-smile.rating-selected,
 .rating i.fa-smile:hover {
-  color: #0b69a3;
+  color: #014d40;
 }
 
 .fa-meh.rating-selected,
