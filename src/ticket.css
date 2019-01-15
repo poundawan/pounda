@@ -1,20 +1,65 @@
 .ticket {
-    margin-bottom: 5px;
-    border: 1px #858585;
+  margin-bottom: 5px;
+  background: #e4e7eb;
 }
 
-.ticket.desire{
-    background: #ABABAB;
+.ticket.desire {
+  border: 2px #7b8794 solid;
 }
 
-.ticket.planned{
-    background: #ccccfc;
+.ticket.planned {
+  border: 2px #fce588 solid;
 }
 
-.ticket.current{
-    background: #ddffd3;
+.ticket.current {
+  border: 2px #0c6b58 solid;
 }
 
-.ticket.finished{
-    background: #ffe6d1;
+.ticket.finished {
+  border: 2px #40c3f7 solid;
+}
+
+span.action-icon:hover {
+  cursor: pointer;
+  color: #616e7c;
+}
+
+.rating {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #9aa5b1;
+}
+
+.rating i:hover {
+  cursor: pointer;
+}
+
+.fa-grin-stars.rating-selected,
+.rating i.fa-grin-stars:hover {
+  color: #65d6ad;
+}
+
+.fa-grin-alt.rating-selected,
+.rating i.fa-grin-alt:hover {
+  color: #147d64;
+}
+
+.fa-smile.rating-selected,
+.rating i.fa-smile:hover {
+  color: #0b69a3;
+}
+
+.fa-meh.rating-selected,
+.rating i.fa-meh:hover {
+  color: #1f2933;
+}
+
+.fa-frown.rating-selected,
+.rating i.fa-frown:hover {
+  color: #cb6e17;
+}
+
+.fa-angry.rating-selected,
+.rating i.fa-angry:hover {
+  color: #8a041a;
 }

@@ -209,7 +209,7 @@ class NewTicket extends Component {
             >
               Annuler
             </button>
-            <button type="submit" className="btn btn-success">
+            <button type="submit" className="btn btn-primary">
               Ajouter
             </button>
           </form>

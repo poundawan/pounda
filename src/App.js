@@ -28,7 +28,8 @@ class App extends Component {
         from: "21/05/2016",
         to: "10/06/2016",
         transport: "plane",
-        resume: "ZEeeeeeen !!!"
+        resume: "ZEeeeeeen !!!",
+        rating: "grin-stars"
       },
       {
         id: 3,
@@ -48,7 +49,8 @@ class App extends Component {
         from: "28/05/2017",
         to: "07/06/2017",
         transport: "plane",
-        resume: "Mouillé !!!"
+        resume: "Mouillé !!!",
+        rating: "grin-stars"
       },
       {
         id: 5,
@@ -68,7 +70,8 @@ class App extends Component {
         from: "23/01/2018",
         to: "07/06/2018",
         transport: "plane",
-        resume: "Enorme !!!"
+        resume: "Enorme !!!",
+        rating: "grin-stars"
       }
     ]
   };
@@ -76,7 +79,7 @@ class App extends Component {
   onDrop = (ev, cat) => {
     let id = ev.dataTransfer.getData("id");
     let tickets = this.state.tickets.filter(ticket => {
-      if (ticket.id === id) {
+      if (ticket.id == id) {
         ticket.status = cat;
       }
       return ticket;
@@ -100,6 +103,16 @@ class App extends Component {
         ticket.to = to;
         ticket.transport = transport;
         ticket.resume = resume;
+      }
+      return ticket;
+    });
+    this.setState({ tickets: tickets });
+  };
+
+  onUpdateTicketRating = (id, rating) => {
+    let tickets = this.state.tickets.filter(ticket => {
+      if (ticket.id === id) {
+        ticket.rating = rating;
       }
       return ticket;
     });
@@ -147,7 +160,10 @@ class App extends Component {
         <nav className="navbar navbar-dark bg-dark">
           <span className="navbar-brand mb-0 h1">Pounda</span>
         </nav>
-        <div className="main-container container-fluid row">
+        <div className="main-container container-fluid row ">
+          <div className="form-container col-md-12 container-fluid row margin-bottom ">
+            <NewTicket onSendTicket={this.onSendTicket} />
+          </div>
           {orderedTable.map(table => (
             <div
               key={table.status}
@@ -159,12 +175,10 @@ class App extends Component {
                 onDrop={this.onDrop}
                 onDeleteTicket={this.onDeleteTicket}
                 onUpdateTicket={this.onUpdateTicket}
+                onUpdateTicketRating={this.onUpdateTicketRating}
               />
             </div>
           ))}
-          <div className="form-container col-md-12 container-fluid row">
-            <NewTicket onSendTicket={this.onSendTicket} />
-          </div>
         </div>
       </div>
     );

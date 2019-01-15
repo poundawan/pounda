@@ -28,21 +28,26 @@ class Table extends Component {
   };
 
   render() {
-    const { status, tickets, onDeleteTicket, onUpdateTicket } = this.props;
+    const {
+      status,
+      tickets,
+      onDeleteTicket,
+      onUpdateTicketRating
+    } = this.props;
     return (
       <div
         className={
           "table-droppable col-md-12 table-" +
           status +
-          " droppable container-fluid row"
+          " droppable container-fluid"
         }
         onDragOver={e => this.onDragOver(e)}
         onDrop={e => {
           this.onDropTicket(e, status);
         }}
       >
-        <div className={"col-md-12"}>
-          <span className={"label label-default"}>{status}</span>
+        <div className={"col-md-12 container-fluid row margin-bottom"}>
+          <span className={"label label-default col-md-12"}>{status}</span>
         </div>
         <div className="col-md-12">
           {tickets.map(ticket =>
@@ -62,6 +67,7 @@ class Table extends Component {
                 status={status}
                 onDeleteTicket={onDeleteTicket}
                 showForm={this.showForm}
+                onUpdateTicketRating={onUpdateTicketRating}
               />
             )
           )}

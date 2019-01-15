@@ -15,7 +15,7 @@
 }
 
 .label-default {
-  background-color: #777;
+  background-color: #323f4b;
 }
 
 .label-primary {
@@ -36,4 +36,20 @@
 
 .label-danger {
   background-color: #d9534f;
+}
+
+.margin-bottom {
+  margin-bottom: 5px;
+}
+
+.btn-delete {
+  color: #fff;
+  background-color: #de911d;
+  border-color: #cb6e17;
+}
+
+.btn-delete:hover {
+  color: #fff;
+  background-color: #cb6e17;
+  border-color: #b44d12;
 }
