@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import "./bootstrap.css";
 
 import Table from "./table.js";
 import NewTicket from "./newTicket";
@@ -66,7 +65,8 @@ class App extends Component {
         id: 6,
         status: "finished",
         title: "Asia 2k18",
-        places: "Japon",
+        places:
+          "Cambodge, Vietnam, Laos, Thaïlande, Malaisie, Singapour, Bali, Hong Kong, Séoul ",
         from: "23/01/2018",
         to: "07/06/2018",
         transport: "plane",
@@ -160,25 +160,24 @@ class App extends Component {
         <nav className="navbar navbar-dark bg-dark">
           <span className="navbar-brand mb-0 h1">Pounda</span>
         </nav>
-        <div className="main-container container-fluid row ">
-          <div className="form-container col-md-12 container-fluid row margin-bottom ">
+        <div className="main-container container-fluid ">
+          <div className="form-container col-md-12  margin-bottom ">
             <NewTicket onSendTicket={this.onSendTicket} />
           </div>
-          {orderedTable.map(table => (
-            <div
-              key={table.status}
-              className="table-container col-md-3 container-fluid row"
-            >
-              <Table
-                status={table.status}
-                tickets={table.tickets}
-                onDrop={this.onDrop}
-                onDeleteTicket={this.onDeleteTicket}
-                onUpdateTicket={this.onUpdateTicket}
-                onUpdateTicketRating={this.onUpdateTicketRating}
-              />
-            </div>
-          ))}
+          <div className="tables-container col-md-12">
+            {orderedTable.map(table => (
+              <div key={table.status} className="table-container col-md-3 ">
+                <Table
+                  status={table.status}
+                  tickets={table.tickets}
+                  onDrop={this.onDrop}
+                  onDeleteTicket={this.onDeleteTicket}
+                  onUpdateTicket={this.onUpdateTicket}
+                  onUpdateTicketRating={this.onUpdateTicketRating}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );

@@ -1,6 +1,8 @@
 .ticket {
   margin-bottom: 5px;
   background: #e4e7eb;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .ticket.desire {

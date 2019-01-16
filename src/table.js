@@ -46,8 +46,8 @@ class Table extends Component {
           this.onDropTicket(e, status);
         }}
       >
-        <div className={"col-md-12 container-fluid row margin-bottom"}>
-          <span className={"label label-default col-md-12"}>{status}</span>
+        <div className={"col-md-12 margin-bottom"}>
+          <span className={"label label-ticket col-md-12"}>{status}</span>
         </div>
         <div className="col-md-12">
           {tickets.map(ticket =>

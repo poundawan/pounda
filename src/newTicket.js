@@ -77,18 +77,18 @@ class NewTicket extends Component {
   render() {
     const { title, places, from, to, resume, showForm } = this.state;
     return (
-      <div className="container-fluid row">
+      <div className="container-fluid">
         {showForm === "show" ? (
           <form
             className="form-newticket form-horizontal col-md-12"
             onSubmit={e => this.onSubmit(e)}
           >
-            <div className="container-fluid row">
-              <span className="col-md-12 label label-default label-form">
+            <div className="container-fluid">
+              <span className="col-md-12 label label-ticket label-form margin-bottom">
                 Nouveau ticket
               </span>
             </div>
-            <div className="form-group row">
+            <div className="form-group">
               <label className="col-sm-2 col-form-label">Titre</label>
               <div className="col-sm-10">
                 <input
@@ -101,7 +101,7 @@ class NewTicket extends Component {
                 />
               </div>
             </div>
-            <div className="form-group row">
+            <div className="form-group">
               <label className="col-sm-2 col-form-label">Lieu(x)</label>
               <div className="col-sm-10">
                 <input
@@ -114,7 +114,7 @@ class NewTicket extends Component {
                 />
               </div>
             </div>
-            <div className="form-group row">
+            <div className="form-group">
               <label className="col-sm-2 col-form-label">Date du</label>
               <div className="col-sm-4 col-md-2">
                 <DatePicker
@@ -134,6 +134,7 @@ class NewTicket extends Component {
                   scrollableYearDropdown
                   showMonthDropdown
                   yearDropdownItemNumber={80}
+                  autoComplete="off"
                 />
               </div>
               <label className="col-sm-1 col-form-label">au</label>
@@ -155,10 +156,11 @@ class NewTicket extends Component {
                   dateFormatCalendar="MMMM"
                   scrollableYearDropdown
                   yearDropdownItemNumber={30}
+                  autoComplete="off"
                 />
               </div>
             </div>
-            <div className="form-group row">
+            <div className="form-group">
               <label className="col-sm-2 col-form-label">Status</label>
               <div className="col-sm-4">
                 <select
@@ -192,8 +194,8 @@ class NewTicket extends Component {
                 </select>
               </div>
             </div>
-            <div className="form-group row">
-              <label className="col-sm-2 control-label">Résumé</label>
+            <div className="form-group ">
+              <label className="col-sm-2 col-form-label">Résumé</label>
               <div className="col-sm-10">
                 <textarea
                   className="form-control"

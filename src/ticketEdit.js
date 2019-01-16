@@ -5,8 +5,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import "./ticket.css";
 
-import Icon from "./Icon";
-
 class TicketEdit extends Component {
   getDate = date => {
     let dateParts = date.split("/");
@@ -99,12 +97,12 @@ class TicketEdit extends Component {
     } = this.state;
 
     return (
-      <div className={`ticket ${status}  badge col-md-12`}>
+      <div className={`ticket ${status} col-md-12`}>
         <form
           className="form-horizontal col-md-12"
           onSubmit={e => this.onSubmit(e)}
         >
-          <div className="form-group row">
+          <div className="form-group">
             <label className="col-sm-2 col-form-label">Titre</label>
             <div className="col-sm-12">
               <input
@@ -117,7 +115,7 @@ class TicketEdit extends Component {
               />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="form-group">
             <label className="col-sm-2 col-form-label">Lieu(x)</label>
             <div className="col-sm-12">
               <input
@@ -130,7 +128,7 @@ class TicketEdit extends Component {
               />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="form-group">
             <label className="col-sm-1 col-form-label">Du:</label>
             <div className="col-md-12">
               <DatePicker
@@ -150,11 +148,13 @@ class TicketEdit extends Component {
                 scrollableYearDropdown
                 showMonthDropdown
                 yearDropdownItemNumber={80}
+                autoComplete="off"
               />
             </div>
             <label className="col-sm-1 col-form-label">au: </label>
             <div className="col-md-12">
               <DatePicker
+                autoComplete="off"
                 className="form-control"
                 id="toTicket"
                 isClearable={true}
@@ -174,7 +174,7 @@ class TicketEdit extends Component {
               />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="form-group">
             <label className="col-sm-2 col-form-label">Transport</label>
             <div className="col-sm-12">
               <select
@@ -195,7 +195,7 @@ class TicketEdit extends Component {
               </select>
             </div>
           </div>
-          <div className="form-group row">
+          <div className="form-group">
             <label className="col-sm-3 col-form-label">Résumé</label>
             <div className="col-sm-12">
               <textarea
@@ -205,7 +205,7 @@ class TicketEdit extends Component {
               />
             </div>
           </div>
-          <div className="col-md-12 row">
+          <div className="col-md-12">
             <button
               type="button"
               className="btn btn-default col-md-12"
@@ -214,12 +214,12 @@ class TicketEdit extends Component {
               Annuler
             </button>
           </div>
-          <div className="col-md-12 row">
+          <div className="col-md-12">
             <button type="submit" className="btn btn-primary col-md-12">
               Modifier
             </button>
           </div>
-          <div className="col-md-12 row">
+          <div className="col-md-12">
             <button
               type="button"
               className="btn btn-delete col-md-12"

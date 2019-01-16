@@ -3,3 +3,8 @@
   border-radius: 5px;
   background-color: #cbd2d9;
 }
+
+.label-ticket {
+  background-color: #323f4b;
+  text-transform: uppercase;
+}

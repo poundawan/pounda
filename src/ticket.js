@@ -1,10 +1,24 @@
 import React, { Component } from "react";
 
+import { Modal } from "react-bootstrap";
+import TicketDetails from "./ticketDetails.js";
 import "./ticket.css";
 
 import Icon from "./Icon";
 
 class Ticket extends Component {
+  handleShow = this.handleShow.bind(this);
+  handleClose = this.handleClose.bind(this);
+  state = {
+    show: false
+  };
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
   onDragStart = (ev, id) => {
     ev.dataTransfer.setData("id", id);
   };
@@ -25,13 +39,17 @@ class Ticket extends Component {
   };
   render() {
     const { ticket, status } = this.props;
+    const maxLenght = 30;
     let classDate = "col-md-12";
     if (ticket.to.length > 0) classDate = "col-md-6";
+    let places = ticket.places;
+    if (places.length > maxLenght)
+      places = places.substring(0, maxLenght) + " ...";
     return (
       <div
         onDragStart={e => this.onDragStart(e, ticket.id)}
         draggable
-        className={`ticket ${status} draggable badge col-md-12`}
+        className={`ticket ${status} draggable col-md-12`}
       >
         <button
           type="button"
@@ -42,9 +60,11 @@ class Ticket extends Component {
           <span aria-hidden="true">&times;</span>
         </button>
         <h3>{ticket.title}</h3>
-        <div className="container-fluid row">
+        <div className="container-fluid">
           {ticket.places.length > 0 ? (
-            <span className="col-md-12">Lieux: {ticket.places}</span>
+            <span className="col-md-12" title={ticket.places}>
+              Lieux: {places}
+            </span>
           ) : (
             ""
           )}
@@ -116,10 +136,13 @@ class Ticket extends Component {
               <Icon name="edit" />
             </span>
             <span className="action-icon" title="See more informations">
-              <Icon name="info-circle" />
+              <Icon name="info-circle" onClick={this.handleShow} />
             </span>
           </div>
         </div>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <TicketDetails ticket={ticket} />
+        </Modal>
       </div>
     );
   }
