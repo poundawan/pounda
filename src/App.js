@@ -75,7 +75,6 @@ class App extends Component {
       }
     ]
   };
-
   onDrop = (ev, cat) => {
     let id = ev.dataTransfer.getData("id");
     let tickets = this.state.tickets.filter(ticket => {
@@ -84,7 +83,7 @@ class App extends Component {
       }
       return ticket;
     });
-    this.setState({ tickets, tickets });
+    this.setState({ tickets });
   };
 
   onDeleteTicket = id => {
@@ -94,30 +93,16 @@ class App extends Component {
     this.setState({ tickets });
   };
 
-  onUpdateTicket = (id, title, places, from, to, transport, resume) => {
-    let tickets = this.state.tickets.filter(ticket => {
-      if (ticket.id === id) {
-        ticket.title = title;
-        ticket.places = places;
-        ticket.from = from;
-        ticket.to = to;
-        ticket.transport = transport;
-        ticket.resume = resume;
+  onUpdateTicket = patch => {
+    let tickets = this.state.tickets.map(ticket => {
+      if (ticket.id === patch.id) {
+        return { ...ticket, ...patch };
       }
       return ticket;
     });
-    this.setState({ tickets: tickets });
+    this.setState({ tickets });
   };
 
-  onUpdateTicketRating = (id, rating) => {
-    let tickets = this.state.tickets.filter(ticket => {
-      if (ticket.id === id) {
-        ticket.rating = rating;
-      }
-      return ticket;
-    });
-    this.setState({ tickets: tickets });
-  };
   onSendTicket = (
     newTitle,
     newPlaces,
@@ -139,7 +124,7 @@ class App extends Component {
       status: newStatus,
       resume: newResume
     });
-    this.setState({ tickets: tickets, lastID: lastID + 1 });
+    this.setState({ tickets, lastID: lastID + 1 });
   };
 
   orderingTable = (tables, tickets) => {

@@ -36,32 +36,32 @@ span.action-icon:hover {
   cursor: pointer;
 }
 
-.fa-grin-stars.rating-selected,
-.rating i.fa-grin-stars:hover {
+.theme-grin-stars.active,
+.theme-grin-stars:hover {
   color: #65d6ad;
 }
 
-.fa-grin-alt.rating-selected,
-.rating i.fa-grin-alt:hover {
+.theme-grin-alt.active,
+.theme-grin-alt:hover {
   color: #199473;
 }
 
-.fa-smile.rating-selected,
-.rating i.fa-smile:hover {
+.theme-smile.active,
+.theme-smile:hover {
   color: #014d40;
 }
 
-.fa-meh.rating-selected,
-.rating i.fa-meh:hover {
+.theme-meh.active,
+.theme-meh:hover {
   color: #1f2933;
 }
 
-.fa-frown.rating-selected,
-.rating i.fa-frown:hover {
+.theme-frown.active,
+.theme-frown:hover {
   color: #cb6e17;
 }
 
-.fa-angry.rating-selected,
-.rating i.fa-angry:hover {
+.theme-angry.active,
+.theme-angry:hover {
   color: #8a041a;
 }

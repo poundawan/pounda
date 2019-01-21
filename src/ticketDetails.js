@@ -1,42 +1,78 @@
 import React, { Component } from "react";
-
 import Icon from "./Icon";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { FaceIcons } from "./faceIcons.js";
 
 class TicketDetails extends Component {
   state = {
-    display: "general"
+    active: "general"
   };
+  changeActive = (e, active) => {
+    e.preventDefault();
+    this.setState({ active });
+  };
+
   render() {
-    const { ticket } = this.props;
+    const { ticket, onUpdateTicketRating } = this.props;
+    const active = this.state.active;
     let classDate = "col-md-12";
     if (ticket.to.length > 0) classDate = "col-md-6";
     return (
       <div className="container-fluid row">
         <Navbar className="navbar navbar-dark bg-dark">
-          <Nav>
-            <NavItem eventKey={1} href={"#general" + ticket.id}>
+          <Nav className="bold">
+            <NavItem
+              eventKey={1}
+              href={"#general" + ticket.id}
+              className={active === "general" ? "active" : ""}
+              onClick={e => this.changeActive(e, "general")}
+            >
               Général
             </NavItem>
-            <NavItem eventKey={2} href={"#prevision" + ticket.id}>
+            <NavItem
+              eventKey={2}
+              href={"#previsions" + ticket.id}
+              className={active === "prevision" ? "active" : ""}
+              onClick={e => this.changeActive(e, "previsions")}
+            >
               Prévision
             </NavItem>
-            <NavItem eventKey={3} href="#">
+            <NavItem
+              eventKey={3}
+              href={"#carnet" + ticket.id}
+              className={active === "carnet" ? "active" : ""}
+              onClick={e => this.changeActive(e, "carnet")}
+            >
               Carnet de bord
             </NavItem>
-            <NavItem eventKey={4} href="#">
+            <NavItem
+              eventKey={4}
+              href={"#depenses" + ticket.id}
+              className={active === "depenses" ? "active" : ""}
+              onClick={e => this.changeActive(e, "depenses")}
+            >
               Dépenses
             </NavItem>
-            <NavItem eventKey={5} href="#">
+            <NavItem
+              eventKey={5}
+              href={"#agenda" + ticket.id}
+              className={active === "agenda" ? "active" : ""}
+              onClick={e => this.changeActive(e, "agenda")}
+            >
               Agenda
             </NavItem>
-            <NavItem eventKey={6} href="#">
+            <NavItem
+              eventKey={6}
+              href={"#photos" + ticket.id}
+              className={active === "photos" ? "active" : ""}
+              onClick={e => this.changeActive(e, "photos")}
+            >
               Photos
             </NavItem>
           </Nav>
         </Navbar>
         <div className="col-md-12">
-          <div id={"general" + ticket.id} show="true">
+          <div className={active === "general" ? "table" : "hidden"}>
             <h4>{ticket.title}</h4>
             <div className="container-fluid">
               {ticket.places.length > 0 ? (
@@ -66,51 +102,25 @@ class TicketDetails extends Component {
               <span className="col-md-12">{ticket.resume}</span>
               {ticket.status === "finished" ? (
                 <div className="col-md-12 rating">
-                  <Icon
-                    name="angry"
-                    className={
-                      ticket.rating === "angry" ? "rating-selected" : ""
-                    }
-                    onClick={e => this.updateRating(e, ticket.id, "angry")}
-                  />
-                  <Icon
-                    name="frown"
-                    className={
-                      ticket.rating === "frown" ? "rating-selected" : ""
-                    }
-                    onClick={e => this.updateRating(e, ticket.id, "frown")}
-                  />
-                  <Icon
-                    name="meh"
-                    className={ticket.rating === "meh" ? "rating-selected" : ""}
-                    onClick={e => this.updateRating(e, ticket.id, "meh")}
-                  />
-                  <Icon
-                    name="smile"
-                    className={
-                      ticket.rating === "smile" ? "rating-selected" : ""
-                    }
-                    onClick={e => this.updateRating(e, ticket.id, "smile")}
-                  />
-                  <Icon
-                    name="grin-alt"
-                    className={
-                      ticket.rating === "grin-alt" ? "rating-selected" : ""
-                    }
-                    onClick={e => this.updateRating(e, ticket.id, "grin-alt")}
-                  />
-                  <Icon
-                    name="grin-stars"
-                    className={
-                      ticket.rating === "grin-stars" ? "rating-selected" : ""
-                    }
-                    onClick={e => this.updateRating(e, ticket.id, "grin-stars")}
-                  />
+                  <FaceIcons ticket={ticket} onUpdate={onUpdateTicketRating} />
                 </div>
               ) : (
                 ""
               )}
             </div>
+          </div>
+          <div className={active === "previsions" ? "table" : "hidden"}>
+            Ajoutez vos prévisions
+          </div>
+          <div className={active === "depenses" ? "table" : "hidden"}>
+            Ajoutez vos dépenses
+          </div>
+          <div className={active === "carnet" ? "table" : "hidden"}>
+            Carnet de bord
+          </div>
+          <div className={active === "agenda" ? "table" : "hidden"} />
+          <div className={active === "photos" ? "table" : "hidden"}>
+            Ajoutez vos photos et vidéos
           </div>
         </div>
       </div>

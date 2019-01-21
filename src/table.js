@@ -67,7 +67,7 @@ class Table extends Component {
                 status={status}
                 onDeleteTicket={onDeleteTicket}
                 showForm={this.showForm}
-                onUpdateTicketRating={onUpdateTicketRating}
+                onUpdateTicketRating={this.onUpdateTicket}
               />
             )
           )}

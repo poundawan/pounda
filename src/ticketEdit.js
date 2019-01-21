@@ -73,15 +73,11 @@ class TicketEdit extends Component {
       to: null,
       resume: ""
     });
-    this.props.onUpdateTicket(
-      this.state.id,
-      this.state.title,
-      this.state.places,
+    this.props.onUpdateTicket({
+      ...this.state,
       from,
-      to,
-      this.state.transport,
-      this.state.resume
-    );
+      to
+    });
   }
 
   render() {

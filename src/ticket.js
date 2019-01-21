@@ -6,6 +6,8 @@ import "./ticket.css";
 
 import Icon from "./Icon";
 
+import { FaceIcons } from "./faceIcons.js";
+
 class Ticket extends Component {
   handleShow = this.handleShow.bind(this);
   handleClose = this.handleClose.bind(this);
@@ -23,9 +25,10 @@ class Ticket extends Component {
     ev.dataTransfer.setData("id", id);
   };
 
-  updateRating = (e, id, rating) => {
+  updateRating = (e, ticket, rating) => {
     e.preventDefault();
-    this.props.onUpdateTicketRating(id, rating);
+    ticket.rating = rating;
+    this.props.onUpdateTicketRating(ticket);
   };
 
   showForm = (e, id) => {
@@ -88,40 +91,7 @@ class Ticket extends Component {
           <span className="col-md-12">{ticket.resume}</span>
           {status === "finished" ? (
             <div className="col-md-12 rating">
-              <Icon
-                name="angry"
-                className={ticket.rating === "angry" ? "rating-selected" : ""}
-                onClick={e => this.updateRating(e, ticket.id, "angry")}
-              />
-              <Icon
-                name="frown"
-                className={ticket.rating === "frown" ? "rating-selected" : ""}
-                onClick={e => this.updateRating(e, ticket.id, "frown")}
-              />
-              <Icon
-                name="meh"
-                className={ticket.rating === "meh" ? "rating-selected" : ""}
-                onClick={e => this.updateRating(e, ticket.id, "meh")}
-              />
-              <Icon
-                name="smile"
-                className={ticket.rating === "smile" ? "rating-selected" : ""}
-                onClick={e => this.updateRating(e, ticket.id, "smile")}
-              />
-              <Icon
-                name="grin-alt"
-                className={
-                  ticket.rating === "grin-alt" ? "rating-selected" : ""
-                }
-                onClick={e => this.updateRating(e, ticket.id, "grin-alt")}
-              />
-              <Icon
-                name="grin-stars"
-                className={
-                  ticket.rating === "grin-stars" ? "rating-selected" : ""
-                }
-                onClick={e => this.updateRating(e, ticket.id, "grin-stars")}
-              />
+              <FaceIcons ticket={ticket} onUpdate={this.updateRating} />
             </div>
           ) : (
             ""
@@ -141,7 +111,10 @@ class Ticket extends Component {
           </div>
         </div>
         <Modal show={this.state.show} onHide={this.handleClose}>
-          <TicketDetails ticket={ticket} />
+          <TicketDetails
+            ticket={ticket}
+            onUpdateTicketRating={this.updateRating}
+          />
         </Modal>
       </div>
     );

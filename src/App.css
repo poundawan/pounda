@@ -2,6 +2,13 @@ body {
   color: #1f2933;
   background-color: #f7f7f7;
 }
+
+.hidden {
+  display: none;
+}
+.bold {
+  font-weight: bold;
+}
 .navbar-brand {
   height: auto !important;
   padding: 0px 15px;
@@ -11,12 +18,23 @@ body {
   border-radius: 0 !important;
 }
 .navbar-dark .navbar-brand {
-  color: #fff;
+  color: #f5f7fa;
+}
+
+.navbar-dark .navbar-nav > li > a {
+  color: #f5f7fa;
 }
 
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
-  color: #fff;
+  color: #f5f7fa;
+}
+
+navbar-dark .navbar-nav > li > a:focus,
+.navbar-dark .navbar-nav > li > a:hover,
+.navbar-dark .navbar-nav > li.active > a {
+  color: #9aa5b1;
+  background-color: transparent;
 }
 
 .navbar-dark .navbar-nav .nav-link {
