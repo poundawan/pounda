@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.ticket.forecasts {
+  text-align: left;
+}
+
 .ticket.desire {
   border: 2px #7b8794 solid;
 }

@@ -17,7 +17,13 @@ class App extends Component {
         from: "",
         to: "",
         transport: "",
-        resume: "un jour peut-être"
+        resume: "un jour peut-être",
+        forecasts: [
+          { id: 1, wording: "Pérou", status: "none" },
+          { id: 2, wording: "Colombie", status: "none" },
+          { id: 3, wording: "Brésil", status: "none" },
+          { id: 4, wording: "Argentine", status: "none" }
+        ]
       },
       {
         id: 2,
@@ -28,7 +34,13 @@ class App extends Component {
         to: "10/06/2016",
         transport: "plane",
         resume: "ZEeeeeeen !!!",
-        rating: "grin-stars"
+        rating: "grin-stars",
+        forecasts: [
+          { id: 1, wording: "tokyo", status: "done" },
+          { id: 2, wording: "kyoto", status: "done" },
+          { id: 3, wording: "Mont Fuji", status: "fail" },
+          { id: 4, wording: "Nara", status: "done" }
+        ]
       },
       {
         id: 3,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Icon from "./Icon";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
-import { FaceIcons } from "./faceIcons.js";
+import Ticket from "./ticket.js";
+import Forecasts from "./forecasts.js";
 
 class TicketDetails extends Component {
   state = {
@@ -13,10 +13,8 @@ class TicketDetails extends Component {
   };
 
   render() {
-    const { ticket, onUpdateTicketRating } = this.props;
+    const { ticket, onUpdateTicket, onHide } = this.props;
     const active = this.state.active;
-    let classDate = "col-md-12";
-    if (ticket.to.length > 0) classDate = "col-md-6";
     return (
       <div className="container-fluid row">
         <Navbar className="navbar navbar-dark bg-dark">
@@ -31,11 +29,11 @@ class TicketDetails extends Component {
             </NavItem>
             <NavItem
               eventKey={2}
-              href={"#previsions" + ticket.id}
-              className={active === "prevision" ? "active" : ""}
-              onClick={e => this.changeActive(e, "previsions")}
+              href={"#forecasts" + ticket.id}
+              className={active === "forecasts" ? "active" : ""}
+              onClick={e => this.changeActive(e, "forecasts")}
             >
-              Prévision
+              Prévisions
             </NavItem>
             <NavItem
               eventKey={3}
@@ -69,48 +67,36 @@ class TicketDetails extends Component {
             >
               Photos
             </NavItem>
+
+            <button
+              type="button"
+              className="close"
+              aria-label="Close"
+              onClick={onHide}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
           </Nav>
         </Navbar>
-        <div className="col-md-12">
+        <div className="col-md-12 details">
           <div className={active === "general" ? "table" : "hidden"}>
-            <h4>{ticket.title}</h4>
-            <div className="container-fluid">
-              {ticket.places.length > 0 ? (
-                <span className="col-md-12" title={ticket.places}>
-                  Lieux: {ticket.places}
-                </span>
-              ) : (
-                ""
-              )}
-              {ticket.from.length > 0 ? (
-                <span className={classDate}>Du: {ticket.from}</span>
-              ) : (
-                ""
-              )}
-              {ticket.to.length > 0 ? (
-                <span className="col-md-6">au: {ticket.to}</span>
-              ) : (
-                ""
-              )}
-              {ticket.transport.length > 0 && ticket.transport !== "none" ? (
-                <span className="col-md-12">
-                  <Icon name={ticket.transport} />
-                </span>
-              ) : (
-                ""
-              )}
-              <span className="col-md-12">{ticket.resume}</span>
-              {ticket.status === "finished" ? (
-                <div className="col-md-12 rating">
-                  <FaceIcons ticket={ticket} onUpdate={onUpdateTicketRating} />
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
+            <Ticket
+              key={ticket.id}
+              ticket={ticket}
+              status={ticket.status}
+              showForm={false}
+              onUpdateTicket={onUpdateTicket}
+              detail="open"
+              draggable={false}
+            />
           </div>
-          <div className={active === "previsions" ? "table" : "hidden"}>
+          <div className={active === "forecasts" ? "table" : "hidden"}>
             Ajoutez vos prévisions
+            {ticket.forecasts && ticket.forecasts.length > 0 ? (
+              <Forecasts ticket={ticket} onUpdateTicket={onUpdateTicket} />
+            ) : (
+              ""
+            )}
           </div>
           <div className={active === "depenses" ? "table" : "hidden"}>
             Ajoutez vos dépenses

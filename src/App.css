@@ -123,3 +123,27 @@ button.bg-dark:focus {
 .react-datepicker {
   font-size: 1.2rem !important;
 }
+
+.didOrNot {
+  float: right;
+  color: #9aa5b1;
+}
+.didOrNot i {
+  margin-right: 5px;
+}
+.didOrNot .onHover:hover {
+  background-color: #9aa5b1;
+}
+.theme-trash:hover {
+  color: #616e7c;
+}
+
+.theme-fail.active,
+.theme-fail:hover {
+  color: #8d2b0b;
+}
+
+.theme-done.active,
+.theme-done:hover {
+  color: #147d64;
+}

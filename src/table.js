@@ -28,12 +28,7 @@ class Table extends Component {
   };
 
   render() {
-    const {
-      status,
-      tickets,
-      onDeleteTicket,
-      onUpdateTicketRating
-    } = this.props;
+    const { status, tickets, onDeleteTicket } = this.props;
     return (
       <div
         className={
@@ -67,7 +62,8 @@ class Table extends Component {
                 status={status}
                 onDeleteTicket={onDeleteTicket}
                 showForm={this.showForm}
-                onUpdateTicketRating={this.onUpdateTicket}
+                onUpdateTicket={this.onUpdateTicket}
+                draggable={true}
               />
             )
           )}

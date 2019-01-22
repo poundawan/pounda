@@ -12,7 +12,8 @@ class Ticket extends Component {
   handleShow = this.handleShow.bind(this);
   handleClose = this.handleClose.bind(this);
   state = {
-    show: false
+    show: false,
+    detail: this.props.detail
   };
   handleClose() {
     this.setState({ show: false });
@@ -28,7 +29,7 @@ class Ticket extends Component {
   updateRating = (e, ticket, rating) => {
     e.preventDefault();
     ticket.rating = rating;
-    this.props.onUpdateTicketRating(ticket);
+    this.props.onUpdateTicket(ticket);
   };
 
   showForm = (e, id) => {
@@ -41,7 +42,7 @@ class Ticket extends Component {
     this.props.onDeleteTicket(id);
   };
   render() {
-    const { ticket, status } = this.props;
+    const { ticket, status, draggable } = this.props;
     const maxLenght = 30;
     let classDate = "col-md-12";
     if (ticket.to.length > 0) classDate = "col-md-6";
@@ -51,17 +52,22 @@ class Ticket extends Component {
     return (
       <div
         onDragStart={e => this.onDragStart(e, ticket.id)}
-        draggable
+        draggable={draggable}
         className={`ticket ${status} draggable col-md-12`}
       >
-        <button
-          type="button"
-          className="close"
-          aria-label="Close"
-          onClick={e => this.onDeleteTicket(e, ticket.id)}
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
+        {!this.state.detail ? (
+          <button
+            type="button"
+            className="close"
+            aria-label="Close"
+            onClick={e => this.onDeleteTicket(e, ticket.id)}
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        ) : (
+          ""
+        )}
+
         <h3>{ticket.title}</h3>
         <div className="container-fluid">
           {ticket.places.length > 0 ? (
@@ -96,26 +102,35 @@ class Ticket extends Component {
           ) : (
             ""
           )}
-          <div>
-            <span
-              aria-hidden="true"
-              title="edit"
-              className="action-icon"
-              onClick={e => this.showForm(e, ticket.id)}
-            >
-              <Icon name="edit" />
-            </span>
-            <span className="action-icon" title="See more informations">
-              <Icon name="info-circle" onClick={this.handleShow} />
-            </span>
-          </div>
+          {!this.state.detail ? (
+            <div>
+              <span
+                aria-hidden="true"
+                title="edit"
+                className="action-icon"
+                onClick={e => this.showForm(e, ticket.id)}
+              >
+                <Icon name="edit" />
+              </span>
+              <span className="action-icon" title="See more informations">
+                <Icon name="info-circle" onClick={this.handleShow} />
+              </span>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <TicketDetails
-            ticket={ticket}
-            onUpdateTicketRating={this.updateRating}
-          />
-        </Modal>
+        {!this.state.detail ? (
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <TicketDetails
+              ticket={ticket}
+              onUpdateTicket={this.props.onUpdateTicket}
+              onHide={this.handleClose}
+            />
+          </Modal>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
