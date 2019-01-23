@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "8ce66ac365431cbe5bf6",
-    "url": "/pounda/static/css/main.0af2893b.chunk.css"
+    "revision": "906dbf23ab193ed587c1",
+    "url": "/pounda/static/css/main.5b0f92b0.chunk.css"
   },
   {
-    "revision": "8ce66ac365431cbe5bf6",
-    "url": "/pounda/static/js/main.8ce66ac3.chunk.js"
+    "revision": "906dbf23ab193ed587c1",
+    "url": "/pounda/static/js/main.906dbf23.chunk.js"
   },
   {
     "revision": "a56a372cbbd697b69ae9",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/pounda/static/js/runtime~main.1ed8878d.js"
   },
   {
-    "revision": "fd719f82d58bcd36e4aa8e9d58b6c140",
+    "revision": "3aadcb8697eef64feefc8adaade32aa6",
     "url": "/pounda/index.html"
   }
 ];
