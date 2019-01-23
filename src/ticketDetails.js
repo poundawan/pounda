@@ -92,11 +92,7 @@ class TicketDetails extends Component {
           </div>
           <div className={active === "forecasts" ? "table" : "hidden"}>
             Ajoutez vos prévisions
-            {ticket.forecasts && ticket.forecasts.length > 0 ? (
-              <Forecasts ticket={ticket} onUpdateTicket={onUpdateTicket} />
-            ) : (
-              ""
-            )}
+            <Forecasts ticket={ticket} onUpdateTicket={onUpdateTicket} />
           </div>
           <div className={active === "depenses" ? "table" : "hidden"}>
             Ajoutez vos dépenses

@@ -19,10 +19,10 @@ class App extends Component {
         transport: "",
         resume: "un jour peut-être",
         forecasts: [
-          { id: 1, wording: "Pérou", status: "none" },
-          { id: 2, wording: "Colombie", status: "none" },
-          { id: 3, wording: "Brésil", status: "none" },
-          { id: 4, wording: "Argentine", status: "none" }
+          { id: 1, title: "Pérou", status: "none", priority: 3 },
+          { id: 2, title: "Colombie", status: "none", priority: 2 },
+          { id: 3, title: "Brésil", status: "none", priority: 0 },
+          { id: 4, title: "Argentine", status: "none", priority: 1 }
         ]
       },
       {
@@ -36,10 +36,10 @@ class App extends Component {
         resume: "ZEeeeeeen !!!",
         rating: "grin-stars",
         forecasts: [
-          { id: 1, wording: "tokyo", status: "done" },
-          { id: 2, wording: "kyoto", status: "done" },
-          { id: 3, wording: "Mont Fuji", status: "fail" },
-          { id: 4, wording: "Nara", status: "done" }
+          { id: 1, title: "tokyo", status: "done", priority: 3 },
+          { id: 2, title: "kyoto", status: "done", priority: 3 },
+          { id: 3, title: "Mont Fuji", status: "fail", priority: 3 },
+          { id: 4, title: "Nara", status: "done", priority: 1 }
         ]
       },
       {

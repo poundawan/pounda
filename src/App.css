@@ -135,7 +135,6 @@ button.bg-dark:focus {
   background-color: #9aa5b1;
 }
 .theme-trash:hover {
-  color: #616e7c;
 }
 
 .theme-fail.active,
@@ -146,4 +145,13 @@ button.bg-dark:focus {
 .theme-done.active,
 .theme-done:hover {
   color: #147d64;
+}
+
+.priority {
+  float: left;
+  margin-right: 5px;
+}
+
+.priority i {
+  color: #f0b429;
 }
