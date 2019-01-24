@@ -94,7 +94,10 @@ button.bg-dark:focus {
 }
 
 .margin-bottom {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+.margin-left {
+  margin-left: 15px;
 }
 
 .tables-container {
@@ -135,23 +138,39 @@ button.bg-dark:focus {
   background-color: #9aa5b1;
 }
 .theme-trash:hover {
+  color: #52606d;
+  cursor: pointer;
 }
 
 .theme-fail.active,
 .theme-fail:hover {
   color: #8d2b0b;
+  cursor: pointer;
 }
 
 .theme-done.active,
 .theme-done:hover {
   color: #147d64;
+  cursor: pointer;
 }
 
 .priority {
   float: left;
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .priority i {
   color: #f0b429;
+}
+
+.light {
+  color: #616e7c;
+}
+
+.small {
+  font-size: 13px;
+}
+.italic {
+  font-style: italic;
 }

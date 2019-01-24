@@ -1,8 +1,9 @@
 .ticket {
-  margin-bottom: 5px;
-  background: #e4e7eb;
-  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #f5f7fa;
   text-align: center;
+  border-top: 17px solid;
+  padding-bottom: 10px;
 }
 
 .ticket.forecasts {
@@ -10,19 +11,35 @@
 }
 
 .ticket.desire {
-  border: 2px #7b8794 solid;
+  border-color: #7b8794;
 }
 
 .ticket.planned {
-  border: 2px #fce588 solid;
+  border-color: #fce588;
 }
 
 .ticket.current {
-  border: 2px #0c6b58 solid;
+  border-color: #0c6b58;
 }
 
 .ticket.finished {
-  border: 2px #40c3f7 solid;
+  border-color: #40c3f7;
+}
+
+.ticket button.close {
+  margin-top: -21px;
+  margin-right: 5px;
+  color: #1f2933;
+  opacity: 0.4;
+}
+.ticket button.close:hover {
+  opacity: 0.7;
+}
+
+.title-ticket {
+  font-size: 20px;
+  font-weight: 400;
+  color: #1f2933;
 }
 
 span.action-icon:hover {
@@ -68,4 +85,8 @@ span.action-icon:hover {
 .theme-angry.active,
 .theme-angry:hover {
   color: #8a041a;
+}
+
+.actionIcon {
+  float: right;
 }

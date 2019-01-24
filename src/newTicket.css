@@ -3,12 +3,19 @@
 }
 
 .form-newticket {
-  border: 2px #7b8794 solid;
-  border-radius: 5px;
-  background-color: #cbd2d9;
-  padding-bottom: 5px;
+  box-shadow: 2px 2px 4px 2px #9aa5b1;
+  background-color: #e4e7eb;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .label-form {
-  padding: 5px;
+  background-color: #323f4b;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 10px;
+  height: 30px;
+  line-height: 30px;
+  font-weight: bold;
 }

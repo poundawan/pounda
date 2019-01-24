@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import "./ticket.css";
-
-import {
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  ButtonGroup,
-  Button
-} from "react-bootstrap";
 import Icon from "./Icon";
+import Priority from "./Priority";
 
 function DidOrNot({ status, ticket, id, onUpdate, onDelete }) {
   return (
@@ -34,31 +27,6 @@ function DidOrNot({ status, ticket, id, onUpdate, onDelete }) {
           />
         </div>
       )}
-    </div>
-  );
-}
-
-function Priority({ ticket, priority, id, onUpdate }) {
-  return (
-    <div className="priority" title="Priorité">
-      <Icon
-        name="star"
-        fa={priority > 0 ? "fas" : "far"}
-        className="prio"
-        onClick={e => onUpdate(e, ticket, id, 1)}
-      />
-      <Icon
-        name="star"
-        fa={priority > 1 ? "fas" : "far"}
-        className="prio"
-        onClick={e => onUpdate(e, ticket, id, 2)}
-      />
-      <Icon
-        name="star"
-        fa={priority > 2 ? "fas" : "far"}
-        className="prio"
-        onClick={e => onUpdate(e, ticket, id, 3)}
-      />
     </div>
   );
 }
@@ -108,7 +76,6 @@ class Forecasts extends Component {
 
   onUpdatePriority = (e, ticket, id, priority) => {
     e.preventDefault();
-    if (ticket.status === "finished") return;
     let forecasts = ticket.forecasts.filter(forecast => {
       if (forecast.id === id) {
         forecast.priority === priority
@@ -130,7 +97,6 @@ class Forecasts extends Component {
 
   onSubmit(e, ticket) {
     e.preventDefault();
-    console.log(this.state.title.length);
     if (this.state.title.length === 0) return alert("Titre vide");
     let id = 1;
     !ticket.forecasts

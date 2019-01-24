@@ -204,21 +204,17 @@ class TicketEdit extends Component {
           <div className="col-md-12">
             <button
               type="button"
-              className="btn btn-default col-md-12"
+              className="btn btn-default btn-block "
               onClick={e => this.showForm(e, id)}
             >
               Annuler
             </button>
-          </div>
-          <div className="col-md-12">
-            <button type="submit" className="btn btn-primary col-md-12">
+            <button type="submit" className="btn btn-primary btn-block">
               Modifier
             </button>
-          </div>
-          <div className="col-md-12">
             <button
               type="button"
-              className="btn btn-delete col-md-12"
+              className="btn btn-delete btn-block"
               onClick={e => this.onDeleteTicket(e, id)}
             >
               Supprimer

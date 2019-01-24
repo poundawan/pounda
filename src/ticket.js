@@ -53,7 +53,7 @@ class Ticket extends Component {
       <div
         onDragStart={e => this.onDragStart(e, ticket.id)}
         draggable={draggable}
-        className={`ticket ${status} draggable col-md-12`}
+        className={`ticket ${status} draggable `}
       >
         {!this.state.detail ? (
           <button
@@ -68,22 +68,26 @@ class Ticket extends Component {
           ""
         )}
 
-        <h3>{ticket.title}</h3>
+        <span className={`col-md-12 title-ticket ${status}`}>
+          {ticket.title}
+        </span>
         <div className="container-fluid">
           {ticket.places.length > 0 ? (
             <span className="col-md-12" title={ticket.places}>
-              Lieux: {places}
+              {places}
             </span>
           ) : (
             ""
           )}
           {ticket.from.length > 0 ? (
-            <span className={classDate}>Du: {ticket.from}</span>
+            <span className={`${classDate} small italic light`}>
+              Du: {ticket.from}
+            </span>
           ) : (
             ""
           )}
           {ticket.to.length > 0 ? (
-            <span className="col-md-6">au: {ticket.to}</span>
+            <span className="col-md-6 small italic light">au: {ticket.to}</span>
           ) : (
             ""
           )}
@@ -94,7 +98,7 @@ class Ticket extends Component {
           ) : (
             ""
           )}
-          <span className="col-md-12">{ticket.resume}</span>
+          <span className="col-md-12 italic light">{ticket.resume}</span>
           {status === "finished" ? (
             <div className="col-md-12 rating">
               <FaceIcons ticket={ticket} onUpdate={this.updateRating} />
@@ -103,7 +107,7 @@ class Ticket extends Component {
             ""
           )}
           {!this.state.detail ? (
-            <div>
+            <div className="actionIcon">
               <span
                 aria-hidden="true"
                 title="edit"

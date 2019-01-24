@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import Ticket from "./ticket.js";
 import Forecasts from "./forecasts.js";
+import "./ticketDetails.css";
 
 class TicketDetails extends Component {
   state = {
@@ -16,7 +17,7 @@ class TicketDetails extends Component {
     const { ticket, onUpdateTicket, onHide } = this.props;
     const active = this.state.active;
     return (
-      <div className="container-fluid row">
+      <div className="container-fluid detail">
         <Navbar className="navbar navbar-dark bg-dark">
           <Nav className="bold">
             <NavItem
@@ -79,7 +80,7 @@ class TicketDetails extends Component {
           </Nav>
         </Navbar>
         <div className="col-md-12 details">
-          <div className={active === "general" ? "table" : "hidden"}>
+          <div className={active === "general" ? "" : "hidden"}>
             <Ticket
               key={ticket.id}
               ticket={ticket}
@@ -90,18 +91,17 @@ class TicketDetails extends Component {
               draggable={false}
             />
           </div>
-          <div className={active === "forecasts" ? "table" : "hidden"}>
-            Ajoutez vos prévisions
+          <div className={active === "forecasts" ? "" : "hidden"}>
             <Forecasts ticket={ticket} onUpdateTicket={onUpdateTicket} />
           </div>
-          <div className={active === "depenses" ? "table" : "hidden"}>
+          <div className={active === "depenses" ? "" : "hidden"}>
             Ajoutez vos dépenses
           </div>
-          <div className={active === "carnet" ? "table" : "hidden"}>
+          <div className={active === "carnet" ? "" : "hidden"}>
             Carnet de bord
           </div>
-          <div className={active === "agenda" ? "table" : "hidden"} />
-          <div className={active === "photos" ? "table" : "hidden"}>
+          <div className={active === "agenda" ? "" : "hidden"} />
+          <div className={active === "photos" ? "" : "hidden"}>
             Ajoutez vos photos et vidéos
           </div>
         </div>

@@ -80,15 +80,13 @@ class NewTicket extends Component {
       <div className="container-fluid">
         {showForm === "show" ? (
           <form
-            className="form-newticket form-horizontal col-md-12"
+            className="form-newticket form-horizontal"
             onSubmit={e => this.onSubmit(e)}
           >
-            <div className="container-fluid">
-              <span className="col-md-12 label label-ticket label-form margin-bottom">
-                Nouveau ticket
-              </span>
+            <div>
+              <span className="col-md-12 label-form">Nouveau ticket</span>
             </div>
-            <div className="form-group">
+            <div className="form-group col-md-12">
               <label className="col-sm-2 col-form-label">Titre</label>
               <div className="col-sm-10">
                 <input
@@ -101,7 +99,7 @@ class NewTicket extends Component {
                 />
               </div>
             </div>
-            <div className="form-group">
+            <div className="form-group col-md-12">
               <label className="col-sm-2 col-form-label">Lieu(x)</label>
               <div className="col-sm-10">
                 <input
@@ -114,7 +112,7 @@ class NewTicket extends Component {
                 />
               </div>
             </div>
-            <div className="form-group">
+            <div className="form-group col-md-12">
               <label className="col-sm-2 col-form-label">Date du</label>
               <div className="col-sm-4 col-md-2">
                 <DatePicker
@@ -160,7 +158,7 @@ class NewTicket extends Component {
                 />
               </div>
             </div>
-            <div className="form-group">
+            <div className="form-group col-md-12">
               <label className="col-sm-2 col-form-label">Status</label>
               <div className="col-sm-4">
                 <select
@@ -194,7 +192,7 @@ class NewTicket extends Component {
                 </select>
               </div>
             </div>
-            <div className="form-group ">
+            <div className="form-group col-md-12">
               <label className="col-sm-2 col-form-label">Résumé</label>
               <div className="col-sm-10">
                 <textarea
@@ -204,16 +202,18 @@ class NewTicket extends Component {
                 />
               </div>
             </div>
-            <button
-              type="button"
-              className="btn btn-default"
-              onClick={e => this.displayForm(e, "hide")}
-            >
-              Annuler
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Ajouter
-            </button>
+            <div className="btn-group margin-left">
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={e => this.displayForm(e, "hide")}
+              >
+                Annuler
+              </button>
+              <button type="submit" className="btn btn-primary">
+                Ajouter
+              </button>
+            </div>
           </form>
         ) : (
           <button
