@@ -4,20 +4,25 @@ import Icon from "./Icon";
 
 function CategoryIcons({ categoryInput }) {
   const categories = [
-    { input: "transport", output: "taxi" },
-    { input: "fooddrink", output: "utensils" },
-    { input: "accommodation", output: "bed" },
-    { input: "gift", output: "gift" },
-    { input: "activity", output: "walking" },
-    { input: "unexpected", output: "exclamation-triangle" },
-    { input: "other", output: "question-circle" }
+    { input: "transport", output: "taxi", title: "Transport" },
+    { input: "fooddrink", output: "utensils", title: "Nourriture" },
+    { input: "accommodation", output: "bed", title: "Logement" },
+    { input: "gift", output: "gift", title: "Souvenir" },
+    { input: "activity", output: "walking", title: "Activité" },
+    {
+      input: "insurance",
+      output: "hospital-symbol",
+      title: "Assurance & Santé"
+    },
+    { input: "unexpected", output: "exclamation-triangle", title: "Imprévu" },
+    { input: "other", output: "question-circle", title: "Autre" }
   ];
 
   let categoryOutput = categories.filter(
     category => category.input === categoryInput
   );
   return (
-    <Icon name={categoryOutput[0].output} title={categoryOutput[0].input} />
+    <Icon name={categoryOutput[0].output} title={categoryOutput[0].title} />
   );
 }
 
