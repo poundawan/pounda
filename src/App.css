@@ -134,8 +134,8 @@ button.bg-dark:focus {
 .didOrNot i {
   margin-right: 5px;
 }
-.didOrNot .onHover:hover {
-  background-color: #9aa5b1;
+.onHover:hover {
+  background-color: #cbd2d9;
 }
 .theme-trash:hover {
   color: #52606d;
@@ -173,4 +173,8 @@ button.bg-dark:focus {
 }
 .italic {
   font-style: italic;
+}
+
+.right {
+  float: right;
 }

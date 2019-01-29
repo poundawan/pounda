@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import Ticket from "./ticket.js";
 import Forecasts from "./forecasts.js";
+import Expenses from "./expenses.js";
 import "./ticketDetails.css";
 
 class TicketDetails extends Component {
@@ -46,9 +47,9 @@ class TicketDetails extends Component {
             </NavItem>
             <NavItem
               eventKey={4}
-              href={"#depenses" + ticket.id}
-              className={active === "depenses" ? "active" : ""}
-              onClick={e => this.changeActive(e, "depenses")}
+              href={"#expenses" + ticket.id}
+              className={active === "expenses" ? "active" : ""}
+              onClick={e => this.changeActive(e, "expenses")}
             >
               Dépenses
             </NavItem>
@@ -94,8 +95,8 @@ class TicketDetails extends Component {
           <div className={active === "forecasts" ? "" : "hidden"}>
             <Forecasts ticket={ticket} onUpdateTicket={onUpdateTicket} />
           </div>
-          <div className={active === "depenses" ? "" : "hidden"}>
-            Ajoutez vos dépenses
+          <div className={active === "expenses" ? "" : "hidden"}>
+            <Expenses ticket={ticket} onUpdateTicket={onUpdateTicket} />
           </div>
           <div className={active === "carnet" ? "" : "hidden"}>
             Carnet de bord

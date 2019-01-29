@@ -3,6 +3,7 @@ import "./App.css";
 
 import Table from "./table.js";
 import NewTicket from "./newTicket";
+import Icon from "./Icon";
 
 class App extends Component {
   state = {
@@ -40,6 +41,29 @@ class App extends Component {
           { id: 2, title: "kyoto", status: "done", priority: 3 },
           { id: 3, title: "Mont Fuji", status: "fail", priority: 3 },
           { id: 4, title: "Nara", status: "done", priority: 1 }
+        ],
+        expenses: [
+          {
+            id: 1,
+            category: "transport",
+            title: "Avion",
+            amount: 600,
+            currency: "€"
+          },
+          {
+            id: 2,
+            category: "fooddrink",
+            title: "Sushi",
+            amount: 6000,
+            currency: "Yen"
+          },
+          {
+            id: 3,
+            category: "transport",
+            title: "Train",
+            amount: 250,
+            currency: "€"
+          }
         ]
       },
       {
@@ -155,7 +179,9 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <span className="navbar-brand mb-0 h1">Pounda</span>
+          <span className="navbar-brand mb-0 h1">
+            Pounda <Icon name="otter" />
+          </span>
         </nav>
         <div className="main-container container-fluid ">
           <div className="form-container col-md-12  margin-bottom ">

@@ -8,11 +8,10 @@ class Priority extends Component {
     hoverPriority: 0
   };
 
-  handleMouseHover = this.handleMouseHover.bind(this);
-  handleMouseHover(e, hoverPriority) {
+  handleMouseHover = (e, hoverPriority) => {
     e.preventDefault();
     this.setState({ hoverPriority });
-  }
+  };
 
   render() {
     const { ticket, id, priority, onUpdate } = this.props;
@@ -43,7 +42,9 @@ class Priority extends Component {
               name="star"
               fa={
                 (priority === 0 && hoverPriority < 1) ||
-                (priority >= hoverPriority && hoverPriority === 1)
+                (priority >= hoverPriority &&
+                  priority === 1 &&
+                  hoverPriority > 0)
                   ? "far"
                   : "fas"
               }
@@ -57,7 +58,7 @@ class Priority extends Component {
               fa={
                 (priority < 2 && hoverPriority < 2) ||
                 (priority >= hoverPriority &&
-                  hoverPriority <= 2 &&
+                  priority === 2 &&
                   hoverPriority > 0)
                   ? "far"
                   : "fas"
@@ -72,7 +73,7 @@ class Priority extends Component {
               fa={
                 (priority < 3 && hoverPriority < 3) ||
                 (priority >= hoverPriority &&
-                  hoverPriority <= 3 &&
+                  priority === 3 &&
                   hoverPriority > 0)
                   ? "far"
                   : "fas"

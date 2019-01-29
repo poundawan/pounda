@@ -105,13 +105,26 @@ class Forecasts extends Component {
     ticket.forecasts.push({
       id: id,
       title: this.state.title,
-      status: this.state.status
+      status: this.state.status,
+      priority: 0
     });
     this.props.onUpdateTicket(ticket);
   }
   render() {
     const { ticket } = this.props;
     const { showForm } = this.state;
+    let buttonAdd = "";
+    if (ticket.status !== "finished") {
+      buttonAdd = (
+        <span
+          className={`action-icon`}
+          title="Add new forecast"
+          onClick={e => this.showForm(e, "show")}
+        >
+          <Icon name="plus-circle" />
+        </span>
+      );
+    }
     return (
       <div className={`ticket forecasts ${ticket.status} col-md-12`}>
         {showForm === "show" ? (
@@ -152,13 +165,7 @@ class Forecasts extends Component {
             </div>
           </div>
         ) : (
-          <span
-            className={`action-icon`}
-            title="Add new forecast"
-            onClick={e => this.showForm(e, "show")}
-          >
-            <Icon name="plus-circle" />
-          </span>
+          buttonAdd
         )}
         <div className="col-md-12">
           {ticket.forecasts && ticket.forecasts.length > 0 ? (
