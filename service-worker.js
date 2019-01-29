@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/pounda/precache-manifest.c9b86caae8bea68a44c89591a9c5d469.js"
+  "/pounda/precache-manifest.7b3753baa8ed1550f168a092b50380bd.js"
 );
 
 workbox.clientsClaim();
