@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import "./ticket.css";
 import Icon from "./Icon";
 
-function CategoryIcons({ categoryInput }) {
-  const categories = [
-    { input: "transport", output: "taxi", title: "Transport" },
-    { input: "fooddrink", output: "utensils", title: "Nourriture" },
-    { input: "accommodation", output: "bed", title: "Logement" },
-    { input: "gift", output: "gift", title: "Souvenir" },
-    { input: "activity", output: "walking", title: "Activité" },
-    {
-      input: "insurance",
-      output: "hospital-symbol",
-      title: "Assurance & Santé"
-    },
-    { input: "unexpected", output: "exclamation-triangle", title: "Imprévu" },
-    { input: "other", output: "question-circle", title: "Autre" }
-  ];
+const categories = [
+  { input: "transport", output: "taxi", title: "Transport" },
+  { input: "fooddrink", output: "utensils", title: "Nourriture" },
+  { input: "accommodation", output: "bed", title: "Logement" },
+  { input: "gift", output: "gift", title: "Souvenir" },
+  { input: "activity", output: "walking", title: "Activité" },
+  {
+    input: "insurance",
+    output: "hospital-symbol",
+    title: "Assurance & Santé"
+  },
+  { input: "unexpected", output: "exclamation-triangle", title: "Imprévu" },
+  { input: "other", output: "question-circle", title: "Autre" }
+];
 
+function CategoryIcons({ categoryInput }) {
   let categoryOutput = categories.filter(
     category => category.input === categoryInput
   );
@@ -35,7 +35,6 @@ class Expenses extends Component {
     amount: 0,
     currency: "€"
   };
-
   getLastId = expenses => {
     let expense = "";
     let id = 1;
@@ -64,7 +63,7 @@ class Expenses extends Component {
   }
 
   onChangeCurrency(e) {
-    this.setState({ currency: e.target.value });
+    this.setState({ currency: e.target.value.toUpperCase() });
   }
 
   onDeleteExpense = (e, ticket, id) => {
@@ -72,6 +71,18 @@ class Expenses extends Component {
     let index = ticket.expenses.findIndex(x => x.id === id);
     ticket.expenses.splice(index, 1);
     this.props.onUpdateTicket(ticket);
+  };
+
+  getCurrencies = expenses => {
+    let currencies = [];
+    let index = 0;
+    expenses.map(expense => {
+      index = currencies.findIndex(x => x === expense.currency);
+      if (index < 0) {
+        currencies.push(expense.currency);
+      }
+    });
+    return currencies;
   };
 
   getTotal = expenses => {
@@ -86,6 +97,35 @@ class Expenses extends Component {
           parseInt(total[index].amount) + parseInt(expense.amount);
       }
     });
+    return total;
+  };
+
+  getTotalDetail = (expenses, currencies) => {
+    let total = [];
+    let index = 0;
+    categories.map(category => {
+      currencies.map(currency => {
+        total.push({
+          category: category.input,
+          currency: currency,
+          amount: 0
+        });
+        expenses.map(expense => {
+          if (
+            expense.currency === currency &&
+            category.input === expense.category
+          ) {
+            index = total.findIndex(
+              x => x.currency === currency && category.input === x.category
+            );
+
+            total[index].amount =
+              parseInt(total[index].amount) + parseInt(expense.amount);
+          }
+        });
+      });
+    });
+    console.log(total);
     return total;
   };
 
@@ -114,9 +154,13 @@ class Expenses extends Component {
   render() {
     const { ticket } = this.props;
     const { showForm } = this.state;
+    let currencies = [];
     let total = [];
+    let totalDetail = [];
     if (ticket.expenses && ticket.expenses.length > 0) {
+      currencies = this.getCurrencies(ticket.expenses);
       total = this.getTotal(ticket.expenses);
+      totalDetail = this.getTotalDetail(ticket.expenses, currencies);
     }
     return (
       <div className={`ticket expenses ${ticket.status} col-md-12`}>
@@ -235,15 +279,52 @@ class Expenses extends Component {
         </div>
         <div className="col-md-12 total">
           {ticket.expenses && ticket.expenses.length > 0 ? (
-            <ul className="right">
-              {total.map(expenses => (
-                <li key={expenses.currency}>
-                  {"Total : "}
-                  {expenses.amount}
-                  {expenses.currency}
-                </li>
-              ))}
-            </ul>
+            <div>
+              <ul className="right">
+                {total.map(expenses => (
+                  <li key={expenses.currency}>
+                    {"Total : "}
+                    {expenses.amount}
+                    {expenses.currency}
+                  </li>
+                ))}
+              </ul>
+              <div className="btn-group">
+                <button type="button" className="btn btn-primary">
+                  Afficher total détaillé
+                </button>
+              </div>
+              <table className="table table-striped table-hover table-total">
+                <thead>
+                  <tr>
+                    <th />
+                    {currencies.map(currency => (
+                      <th>{currency}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {categories.map(category => (
+                    <tr>
+                      <th>
+                        <CategoryIcons categoryInput={category.input} />
+                        {" " + category.title}
+                      </th>
+                      {currencies.map(currency =>
+                        totalDetail.map(curTotal =>
+                          curTotal.currency === currency &&
+                          curTotal.category === category.input ? (
+                            <td>{curTotal.amount}</td>
+                          ) : (
+                            ""
+                          )
+                        )
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           ) : (
             ""
           )}

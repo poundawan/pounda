@@ -55,7 +55,7 @@ class App extends Component {
             category: "fooddrink",
             title: "Sushi",
             amount: 6000,
-            currency: "Yen"
+            currency: "YEN"
           },
           {
             id: 3,
