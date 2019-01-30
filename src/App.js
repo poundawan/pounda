@@ -63,6 +63,27 @@ class App extends Component {
             title: "Train",
             amount: 250,
             currency: "€"
+          },
+          {
+            id: 4,
+            category: "accommodation",
+            title: "Airbnb",
+            amount: 500,
+            currency: "£"
+          },
+          {
+            id: 5,
+            category: "gift",
+            title: "Souvenirs",
+            amount: 100,
+            currency: "€"
+          },
+          {
+            id: 6,
+            category: "gift",
+            title: "Souvenirs",
+            amount: 1000,
+            currency: "YEN"
           }
         ]
       },
