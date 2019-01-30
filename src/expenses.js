@@ -3,17 +3,17 @@ import "./ticket.css";
 import Icon from "./Icon";
 
 const categories = [
-  { input: "transport", output: "taxi", title: "Transport" },
+  { input: "transport", output: "taxi", title: "Transport(s)" },
   { input: "fooddrink", output: "utensils", title: "Nourriture" },
-  { input: "accommodation", output: "bed", title: "Logement" },
-  { input: "gift", output: "gift", title: "Souvenir" },
-  { input: "activity", output: "walking", title: "Activité" },
+  { input: "accommodation", output: "bed", title: "Logement(s)" },
+  { input: "gift", output: "gift", title: "Souvenir(s)" },
+  { input: "activity", output: "walking", title: "Activité(s)" },
   {
     input: "insurance",
     output: "hospital-symbol",
     title: "Assurance & Santé"
   },
-  { input: "unexpected", output: "exclamation-triangle", title: "Imprévu" },
+  { input: "unexpected", output: "exclamation-triangle", title: "Imprévu(s)" },
   { input: "other", output: "question-circle", title: "Autre" }
 ];
 
@@ -22,13 +22,18 @@ function CategoryIcons({ categoryInput }) {
     category => category.input === categoryInput
   );
   return (
-    <Icon name={categoryOutput[0].output} title={categoryOutput[0].title} />
+    <Icon
+      name={categoryOutput[0].output}
+      title={categoryOutput[0].title}
+      className="category"
+    />
   );
 }
 
 class Expenses extends Component {
   state = {
     showForm: "false",
+    showTable: "false",
     id: 0,
     category: "transport",
     title: "",
@@ -48,6 +53,11 @@ class Expenses extends Component {
   showForm = (e, show) => {
     e.preventDefault();
     this.setState({ showForm: show });
+  };
+
+  showTable = (e, show) => {
+    e.preventDefault();
+    this.setState({ showTable: show });
   };
 
   onChangeTitle(e) {
@@ -85,17 +95,21 @@ class Expenses extends Component {
     return currencies;
   };
 
-  getTotal = expenses => {
+  getTotal = (currencies, expenses) => {
     let total = [];
     let index = 0;
-    expenses.map(expense => {
-      index = total.findIndex(x => x.currency === expense.currency);
-      if (index < 0) {
-        total.push({ currency: expense.currency, amount: expense.amount });
-      } else {
-        total[index].amount =
-          parseInt(total[index].amount) + parseInt(expense.amount);
-      }
+    currencies.map(currency => {
+      total.push({
+        currency: currency,
+        amount: 0
+      });
+      expenses.map(expense => {
+        if (currency === expense.currency) {
+          index = total.findIndex(x => x.currency === expense.currency);
+          total[index].amount =
+            parseInt(total[index].amount) + parseInt(expense.amount);
+        }
+      });
     });
     return total;
   };
@@ -125,7 +139,6 @@ class Expenses extends Component {
         });
       });
     });
-    console.log(total);
     return total;
   };
 
@@ -153,13 +166,13 @@ class Expenses extends Component {
   }
   render() {
     const { ticket } = this.props;
-    const { showForm } = this.state;
+    const { showForm, showTable } = this.state;
     let currencies = [];
     let total = [];
     let totalDetail = [];
     if (ticket.expenses && ticket.expenses.length > 0) {
       currencies = this.getCurrencies(ticket.expenses);
-      total = this.getTotal(ticket.expenses);
+      total = this.getTotal(currencies, ticket.expenses);
       totalDetail = this.getTotalDetail(ticket.expenses, currencies);
     }
     return (
@@ -267,7 +280,7 @@ class Expenses extends Component {
                       name="trash-alt"
                       title="Supprimer"
                       className="theme-trash"
-                      onClick={e => this.onDeleteExpense(e, ticket, ticket.id)}
+                      onClick={e => this.onDeleteExpense(e, ticket, expense.id)}
                     />
                   </div>
                 </li>
@@ -280,49 +293,58 @@ class Expenses extends Component {
         <div className="col-md-12 total">
           {ticket.expenses && ticket.expenses.length > 0 ? (
             <div>
-              <ul className="right">
-                {total.map(expenses => (
-                  <li key={expenses.currency}>
-                    {"Total : "}
-                    {expenses.amount}
-                    {expenses.currency}
-                  </li>
-                ))}
-              </ul>
-              <div className="btn-group">
-                <button type="button" className="btn btn-primary">
+              {showTable === "show" ? (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={e => this.showTable(e, "false")}
+                >
+                  Cacher total détaillé
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={e => this.showTable(e, "show")}
+                >
                   Afficher total détaillé
                 </button>
-              </div>
+              )}
               <table className="table table-striped table-hover table-total">
                 <thead>
                   <tr>
-                    <th />
-                    {currencies.map(currency => (
-                      <th>{currency}</th>
+                    <th>
+                      <span className="right">Total</span>
+                    </th>
+                    {total.map(curTotal => (
+                      <th>{curTotal.amount + " " + curTotal.currency}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody>
-                  {categories.map(category => (
-                    <tr>
-                      <th>
-                        <CategoryIcons categoryInput={category.input} />
-                        {" " + category.title}
-                      </th>
-                      {currencies.map(currency =>
-                        totalDetail.map(curTotal =>
-                          curTotal.currency === currency &&
-                          curTotal.category === category.input ? (
-                            <td>{curTotal.amount}</td>
-                          ) : (
-                            ""
+                {showTable === "show" ? (
+                  <tbody>
+                    {categories.map(category => (
+                      <tr>
+                        <th>
+                          <CategoryIcons categoryInput={category.input} />
+                          {" " + category.title}
+                        </th>
+                        {currencies.map(currency =>
+                          totalDetail.map(curTotal =>
+                            curTotal.currency === currency &&
+                            curTotal.category === category.input ? (
+                              <td>{curTotal.amount}</td>
+                            ) : (
+                              ""
+                            )
                           )
-                        )
-                      )}
-                    </tr>
-                  ))}
-                </tbody>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                ) : (
+                  ""
+                )}
               </table>
             </div>
           ) : (

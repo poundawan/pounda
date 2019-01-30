@@ -4,6 +4,11 @@
   padding-left: 0px;
 }
 
+.expensesListe {
+  max-width: 300px;
+  overflow-x: scroll;
+}
+
 .detail .ticket ul {
   padding: 0;
   list-style: none;
@@ -17,4 +22,12 @@
 
 .detail .ticket .total {
   font-weight: 500;
+}
+
+.table-total {
+  margin-top: 10px;
+}
+
+i.category {
+  width: 20px;
 }
