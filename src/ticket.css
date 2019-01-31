@@ -1,9 +1,9 @@
 .ticket {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   background: #f5f7fa;
-  text-align: center;
   border-top: 17px solid;
   padding-bottom: 10px;
+  box-shadow: 2px 2px 4px 2px #9aa5b1;
 }
 
 .ticket.forecasts,
@@ -43,6 +43,31 @@
   color: #1f2933;
 }
 
+.title-ticket-small {
+  margin-top: -18px;
+  text-align: left;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: capitalize;
+  display: block;
+}
+.title-ticket-small button {
+  background: transparent;
+  border: none;
+  width: 50%;
+  text-align: left;
+}
+.button-show {
+  background: transparent;
+  border: none;
+  font-size: 17px;
+  float: left;
+  color: #fff;
+  margin-top: -23px;
+  width: 100%;
+  text-align: left;
+}
 span.action-icon:hover {
   cursor: pointer;
   color: #616e7c;
@@ -90,4 +115,46 @@ span.action-icon:hover {
 
 .actionIcon {
   float: right;
+}
+
+.transportIcon {
+  float: right;
+  position: absolute;
+  bottom: -15px;
+  right: -13px;
+  color: #7b8794;
+}
+
+.transportIcon .iconOutside {
+  text-shadow: 4px 5px 4px #9aa5b1;
+}
+
+.ratingIcon {
+  float: right;
+  position: absolute;
+  top: -20px;
+  left: -17px;
+  color: #f5f7fa;
+}
+.ratingIcon .iconInside {
+  font-size: 25px;
+  line-height: 35px;
+}
+.ratingIcon .iconOutside {
+  font-size: 35px;
+}
+.colorfinished {
+  color: #40c3f7;
+}
+
+.colorplanned {
+  color: #fce588;
+}
+
+.colorcurrent {
+  color: #0c6b58;
+}
+
+.colordesire {
+  color: #7b8794;
 }

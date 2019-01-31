@@ -115,7 +115,7 @@ class App extends Component {
         places: "Lyon",
         from: "01/12/2018",
         to: "",
-        transport: "",
+        transport: "hiking",
         resume: "Trop long !!!"
       },
       {
@@ -129,6 +129,16 @@ class App extends Component {
         transport: "plane",
         resume: "Enorme !!!",
         rating: "grin-stars"
+      },
+      {
+        id: 7,
+        status: "planned",
+        title: "Europe",
+        places: "France, Espagne, Portugal ",
+        from: "",
+        to: "",
+        transport: "shuttle-van",
+        resume: "Avec LAULAU"
       }
     ]
   };
@@ -201,7 +211,7 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-dark bg-dark">
           <span className="navbar-brand mb-0 h1">
-            Pounda <Icon name="otter" />
+            Pounda <Icon name="compass" className="fa-spin" />
           </span>
         </nav>
         <div className="main-container container-fluid ">
@@ -210,7 +220,10 @@ class App extends Component {
           </div>
           <div className="tables-container col-md-12">
             {orderedTable.map(table => (
-              <div key={table.status} className="table-container col-md-3 ">
+              <div
+                key={table.status}
+                className="table-container col-md-3 col-sm-6 col-xs-12 "
+              >
                 <Table
                   status={table.status}
                   tickets={table.tickets}

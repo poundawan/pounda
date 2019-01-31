@@ -180,6 +180,7 @@ class NewTicket extends Component {
                   onChange={e => this.onChangeTransport(e)}
                 >
                   <option value="none">Inconnu</option>
+                  <option value="hiking">A pied</option>
                   <option value="plane">Avion</option>
                   <option value="ship">Bateau</option>
                   <option value="bus">Bus</option>
