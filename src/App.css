@@ -92,7 +92,9 @@ button.bg-dark:focus {
 .main-container {
   margin-top: 10px;
 }
-
+.margin-top {
+  margin-top: 10px;
+}
 .margin-bottom {
   margin-bottom: 10px;
 }
@@ -168,6 +170,10 @@ button.bg-dark:focus {
 
 .light {
   color: #616e7c;
+}
+
+.very-light {
+  color: #cbd2d9;
 }
 
 .small {

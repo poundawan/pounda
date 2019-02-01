@@ -43,7 +43,7 @@ class NewTicket extends Component {
     this.setState({ status: e.target.value });
   }
   onChangeResume(e) {
-    this.setState({ resume: e.target.value });
+    this.setState({ resume: e.target.value.substring(0, 150) });
   }
   onSubmit(e) {
     e.preventDefault();
@@ -198,7 +198,7 @@ class NewTicket extends Component {
               <div className="col-sm-10">
                 <textarea
                   className="form-control"
-                  defaultValue={resume}
+                  value={resume}
                   onChange={e => this.onChangeResume(e)}
                 />
               </div>

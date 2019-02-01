@@ -48,9 +48,7 @@ class Ticket extends Component {
   render() {
     const { ticket, status, draggable } = this.props;
     const { showTicket } = this.state;
-    const maxLenght = 30;
-    let classDate = "12";
-    if (ticket.to.length > 0) classDate = "6";
+    const maxLenght = 1000;
     let places = ticket.places;
     if (places.length > maxLenght)
       places = places.substring(0, maxLenght) + " ...";
@@ -125,16 +123,14 @@ class Ticket extends Component {
             ) : (
               ""
             )}
-            <div className="container-fluid">
-              {ticket.places.length > 0 ? (
-                <span className="" title={ticket.places}>
-                  {places}
-                </span>
+            <div className="">
+              {this.state.detail && ticket.places.length > 0 ? (
+                <span className="margin-top">{ticket.places}</span>
               ) : (
                 ""
               )}
               {ticket.from.length > 0 ? (
-                <span className={`small italic light`}>
+                <span className="small italic light">
                   {" " + ticket.from + " "}
                 </span>
               ) : (
@@ -149,11 +145,14 @@ class Ticket extends Component {
                 ""
               )}
 
-              <div classDate="col-md-12">
-                <Icon name="quote-left" className="fa-2x fa-pull-left light" />
+              <div className="margin-top">
+                <Icon
+                  name="quote-left"
+                  className="fa-2x fa-pull-left very-light"
+                />
                 <span className=" italic light">{ticket.resume}</span>
               </div>
-              {status === "finished" ? (
+              {status === "finished" && this.state.detail ? (
                 <div className="col-md-12 rating">
                   <FaceIcons ticket={ticket} onUpdate={this.updateRating} />
                 </div>

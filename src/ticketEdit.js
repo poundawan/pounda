@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import { format, compareAsc } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { FaceIcons } from "./faceIcons.js";
 import "./ticket.css";
 
 class TicketEdit extends Component {
@@ -23,7 +24,8 @@ class TicketEdit extends Component {
     from: this.getDate(this.props.ticket.from),
     to: this.getDate(this.props.ticket.to),
     transport: this.props.ticket.transport,
-    resume: this.props.ticket.resume
+    resume: this.props.ticket.resume,
+    rating: this.props.ticket.rating
   };
   onChangeFrom = this.onChangeFrom.bind(this);
   onChangeTo = this.onChangeTo.bind(this);
@@ -49,11 +51,16 @@ class TicketEdit extends Component {
       : this.setState({ to: date });
   }
 
+  onChangeRating = (e, ticket, rating) => {
+    e.preventDefault();
+    this.setState({ rating });
+  };
+
   onChangeTransport(e) {
     this.setState({ transport: e.target.value });
   }
   onChangeResume(e) {
-    this.setState({ resume: e.target.value });
+    this.setState({ resume: e.target.value.substring(0, 150) });
   }
   showForm = (e, id) => {
     e.preventDefault();
@@ -89,9 +96,20 @@ class TicketEdit extends Component {
       from,
       to,
       transport,
-      resume
+      resume,
+      rating
     } = this.state;
-
+    const ticket = {
+      id: id,
+      status: status,
+      title: title,
+      places: places,
+      from: from,
+      to: to,
+      transport: transport,
+      resume: resume,
+      rating: rating
+    };
     return (
       <div className={`ticket ${status} col-md-12`}>
         <form
@@ -196,10 +214,19 @@ class TicketEdit extends Component {
             <div className="col-sm-12">
               <textarea
                 className="form-control"
-                defaultValue={resume}
+                value={resume}
                 onChange={e => this.onChangeResume(e)}
               />
             </div>
+          </div>
+          <div className="form-group">
+            {status === "finished" ? (
+              <div className="col-md-12 rating">
+                <FaceIcons ticket={ticket} onUpdate={this.onChangeRating} />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="col-md-12">
             <button

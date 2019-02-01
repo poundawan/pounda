@@ -1,5 +1,5 @@
 .ticket {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   background: #f5f7fa;
   border-top: 17px solid;
   padding-bottom: 10px;
@@ -29,7 +29,7 @@
 
 .ticket button.close {
   margin-top: -21px;
-  margin-right: 5px;
+  margin-right: -10px;
   color: #1f2933;
   opacity: 0.4;
 }
