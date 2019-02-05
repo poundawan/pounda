@@ -1,24 +1,22 @@
 import React, { Component } from "react";
 import "./ticket.css";
 import Icon from "./Icon";
-import Priority from "./Priority";
 import DidOrNot from "./didOrNot.js";
 
-class Forecasts extends Component {
+class ToDoListBL extends Component {
   state = {
     showForm: "false",
     id: 0,
     title: "",
-    status: "none",
-    priority: 0
+    status: "none"
   };
 
-  getLastId = forecasts => {
-    let forecast = "";
+  getLastId = toDoListBL => {
+    let todo = "";
     let id = 1;
-    if (forecasts && forecasts.length > 0) {
-      forecast = forecasts[forecasts.length - 1];
-      id = forecast.id + 1;
+    if (toDoListBL && toDoListBL.length > 0) {
+      todo = toDoListBL[toDoListBL.length - 1];
+      id = toDoListBL.id + 1;
     }
 
     return id;
@@ -34,35 +32,23 @@ class Forecasts extends Component {
 
   onUpdateStatut = (e, ticket, id, status) => {
     e.preventDefault();
-    let forecasts = ticket.forecasts.filter(forecast => {
-      if (forecast.id === id) {
-        forecast.status === status &&
+    let toDoListBL = ticket.toDoListBL.filter(todo => {
+      if (todo.id === id) {
+        todo.status === status &&
         (ticket.status === "desire" || ticket.status === "planned")
-          ? (forecast.status = "none")
-          : (forecast.status = status);
+          ? (todo.status = "none")
+          : (todo.status = status);
       }
-      return forecast;
+      return todo;
     });
-    ticket.forecasts = forecasts;
+    ticket.toDoListBL = toDoListBL;
     this.props.onUpdateTicket(ticket);
   };
 
-  onUpdatePriority = (e, ticket, id, priority) => {
+  onDeleteToDo = (e, ticket, id) => {
     e.preventDefault();
-    let forecasts = ticket.forecasts.filter(forecast => {
-      if (forecast.id === id) {
-        forecast.priority = priority;
-      }
-      return forecast;
-    });
-    ticket.forecasts = forecasts;
-    this.props.onUpdateTicket(ticket);
-  };
-
-  onDeleteForecast = (e, ticket, id) => {
-    e.preventDefault();
-    let index = ticket.forecasts.findIndex(x => x.id === id);
-    ticket.forecasts.splice(index, 1);
+    let index = ticket.toDoListBL.findIndex(x => x.id === id);
+    ticket.toDoListBL.splice(index, 1);
     this.props.onUpdateTicket(ticket);
   };
 
@@ -70,14 +56,13 @@ class Forecasts extends Component {
     e.preventDefault();
     if (this.state.title.length === 0) return alert("Titre vide");
     let id = 1;
-    !ticket.forecasts
-      ? (ticket.forecasts = [])
-      : (id = this.getLastId(ticket.forecasts));
-    ticket.forecasts.push({
+    !ticket.toDoListBL
+      ? (ticket.toDoListBL = [])
+      : (id = this.getLastId(ticket.toDoListBL));
+    ticket.toDoListBL.push({
       id: id,
       title: this.state.title,
-      status: this.state.status,
-      priority: 0
+      status: this.state.status
     });
     this.props.onUpdateTicket(ticket);
   }
@@ -85,11 +70,11 @@ class Forecasts extends Component {
     const { ticket } = this.props;
     const { showForm } = this.state;
     let buttonAdd = "";
-    //if (ticket.status !== "finished") {
+    //  if (ticket.status !== "finished" && ticket.status !== "current") {
     buttonAdd = (
       <button
         className="btn btn-dark btn-sm btn-block"
-        title="Add new forecast"
+        title="Add new ToDo"
         onClick={e => this.showForm(e, "show")}
       >
         Ajouter <Icon name="plus-circle" />
@@ -97,7 +82,7 @@ class Forecasts extends Component {
     );
     // }
     return (
-      <div className={`forecasts`}>
+      <div className={`toDoListBL`}>
         {showForm === "show" ? (
           <div className="col-md-12 detailForm">
             <button
@@ -107,7 +92,7 @@ class Forecasts extends Component {
             >
               Fermer <Icon name="minus-circle" />
             </button>
-            <div id="formForecast ">
+            <div id="formToDoListBL">
               <form onSubmit={e => this.onSubmit(e, ticket)}>
                 <div className="form-group">
                   <label className="col-sm-2 col-form-label">Titre</label>
@@ -139,37 +124,27 @@ class Forecasts extends Component {
           buttonAdd
         )}
         <div className="col-md-12">
-          {ticket.forecasts && ticket.forecasts.length > 0 ? (
+          {ticket.toDoListBL && ticket.toDoListBL.length > 0 ? (
             <ul>
               <li>
-                <span>Priorité</span>
-                {ticket.status === "finished" || ticket.status === "current" ? (
-                  <span className="right margin-right-20">Fait</span>
-                ) : (
-                  <span className="right">Supprimer</span>
-                )}
+                <span>ToDo</span>
+                <span className="right margin-right-20">Fait</span>
               </li>
-              {ticket.forecasts.map(forecast => (
-                <li key={forecast.id} className="onHover">
-                  {forecast.title}{" "}
-                  <Priority
-                    priority={forecast.priority}
-                    id={forecast.id}
-                    ticket={ticket}
-                    onUpdate={this.onUpdatePriority}
-                  />
+              {ticket.toDoListBL.map(todo => (
+                <li key={todo.id} className="onHover">
+                  {todo.title}{" "}
                   <DidOrNot
-                    status={forecast.status}
+                    status={todo.status}
                     ticket={ticket}
-                    id={forecast.id}
+                    id={todo.id}
                     onUpdate={this.onUpdateStatut}
-                    onDelete={this.onDeleteForecast}
+                    onDelete={this.onDeleteToDo}
                   />
                 </li>
               ))}
             </ul>
           ) : (
-            <span>Pas d'envies particulières ? Pensez en ajouter.</span>
+            <span>Pas de ToDo avant de partir ? Pensez en ajouter.</span>
           )}
         </div>
       </div>
@@ -177,4 +152,4 @@ class Forecasts extends Component {
   }
 }
 
-export default Forecasts;
+export default ToDoListBL;

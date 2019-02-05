@@ -56,6 +56,9 @@ class TicketEdit extends Component {
     this.setState({ rating });
   };
 
+  onChangeStatus(e) {
+    this.setState({ status: e.target.value });
+  }
   onChangeTransport(e) {
     this.setState({ transport: e.target.value });
   }
@@ -189,6 +192,21 @@ class TicketEdit extends Component {
             </div>
           </div>
           <div className="form-group">
+            <label className="col-sm-2 col-form-label">Status</label>
+            <div className="col-sm-12">
+              <select
+                className="form-control"
+                onChange={e => this.onChangeStatus(e)}
+                value={status}
+              >
+                <option value="desire">Envie</option>
+                <option value="planned">Prévu</option>
+                <option value="current">En cours</option>
+                <option value="finished">Déjà fait</option>
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
             <label className="col-sm-2 col-form-label">Transport</label>
             <div className="col-sm-12">
               <select
@@ -241,7 +259,7 @@ class TicketEdit extends Component {
             </button>
             <button
               type="button"
-              className="btn btn-delete btn-block"
+              className="btn btn-outline-primary btn-block"
               onClick={e => this.onDeleteTicket(e, id)}
             >
               Supprimer

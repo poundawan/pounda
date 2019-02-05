@@ -40,14 +40,7 @@ class Priority extends Component {
           <div>
             <Icon
               name="star"
-              fa={
-                (priority === 0 && hoverPriority < 1) ||
-                (priority >= hoverPriority &&
-                  priority === 1 &&
-                  hoverPriority > 0)
-                  ? "far"
-                  : "fas"
-              }
+              fa={priority > 0 || hoverPriority >= 1 ? "fas" : "far"}
               className="prio"
               onClick={e => onUpdate(e, ticket, id, 1)}
               onMouseEnter={e => this.handleMouseHover(e, 1)}
@@ -56,12 +49,9 @@ class Priority extends Component {
             <Icon
               name="star"
               fa={
-                (priority < 2 && hoverPriority < 2) ||
-                (priority >= hoverPriority &&
-                  priority === 2 &&
-                  hoverPriority > 0)
-                  ? "far"
-                  : "fas"
+                (priority > 1 && hoverPriority === 0) || hoverPriority >= 2
+                  ? "fas"
+                  : "far"
               }
               className="prio"
               onClick={e => onUpdate(e, ticket, id, 2)}
@@ -71,12 +61,9 @@ class Priority extends Component {
             <Icon
               name="star"
               fa={
-                (priority < 3 && hoverPriority < 3) ||
-                (priority >= hoverPriority &&
-                  priority === 3 &&
-                  hoverPriority > 0)
-                  ? "far"
-                  : "fas"
+                (priority > 2 && hoverPriority === 0) || hoverPriority === 3
+                  ? "fas"
+                  : "far"
               }
               className="prio"
               onClick={e => onUpdate(e, ticket, id, 3)}

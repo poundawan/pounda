@@ -31,3 +31,32 @@
 i.category {
   width: 20px;
 }
+
+.detailForm {
+  background: #e4e7eb;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  box-shadow: 2px 2px 4px 2px #9aa5b1;
+}
+
+.nav-stacked > li.tab-detail + li.tab-detail {
+  margin-top: 0px;
+  margin-left: 0;
+}
+
+.nav-pills > li.tab-detail > a {
+  border-radius: 0px;
+  border-top: 1px solid #9aa5b1;
+  border-bottom: 1px solid #9aa5b1;
+  color: #323f4b;
+}
+
+.nav-pills > li.active.tab-detail > a,
+.nav-pills > li.active.tab-detail > a:focus,
+.nav-pills > li.active.tab-detail > a:hover,
+.nav > li.tab-detail > a:focus,
+.nav > li.tab-detail > a:hover {
+  border-radius: 0px;
+  color: #fff;
+  background-color: #323f4b;
+}

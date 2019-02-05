@@ -178,14 +178,14 @@ class Expenses extends Component {
     return (
       <div className={`ticket expenses ${ticket.status} col-md-12`}>
         {showForm === "show" ? (
-          <div className="col-md-12">
-            <span
-              className={`action-icon`}
-              title="Add new expense"
+          <div className="col-md-12 detailForm">
+            <button
+              className="btn btn-dark btn-sm btn-block"
+              title="Add new ToDo"
               onClick={e => this.showForm(e, "hidden")}
             >
-              <Icon name="minus-circle" />
-            </span>
+              Fermer <Icon name="minus-circle" />
+            </button>
             <div id="formExpense">
               <form onSubmit={e => this.onSubmit(e, ticket)}>
                 <div className="form-group">
@@ -257,13 +257,13 @@ class Expenses extends Component {
             </div>
           </div>
         ) : (
-          <span
-            className={`action-icon`}
-            title="Add new expense"
+          <button
+            className="btn btn-dark btn-sm btn-block"
+            title="Add new Expense"
             onClick={e => this.showForm(e, "show")}
           >
-            <Icon name="plus-circle" />
-          </span>
+            Ajouter <Icon name="plus-circle" />
+          </button>
         )}
         <div className="col-md-12">
           {ticket.expenses && ticket.expenses.length > 0 ? (
@@ -290,13 +290,13 @@ class Expenses extends Component {
             ""
           )}
         </div>
-        <div className="col-md-12 total">
+        <div className=" total">
           {ticket.expenses && ticket.expenses.length > 0 ? (
             <div>
               {showTable === "show" ? (
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-dark btn-sm btn-block"
                   onClick={e => this.showTable(e, "false")}
                 >
                   Cacher total détaillé
@@ -304,7 +304,7 @@ class Expenses extends Component {
               ) : (
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-dark btn-sm btn-block"
                   onClick={e => this.showTable(e, "show")}
                 >
                   Afficher total détaillé
