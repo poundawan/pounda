@@ -86,7 +86,7 @@ class ToDoListBL extends Component {
           {ticket.toDoListBL && ticket.toDoListBL.length > 0 ? (
             <ul>
               <li>
-                <span>ToDo</span>
+                <span className="bold">ToDo</span>
               </li>
               {ticket.toDoListBL.map(todo => (
                 <li

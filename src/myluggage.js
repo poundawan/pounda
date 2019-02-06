@@ -87,8 +87,8 @@ class MyLuggage extends Component {
           {ticket.myLuggage && ticket.myLuggage.length > 0 ? (
             <ul>
               <li>
-                <span>Items</span>
-                <span className="right margin-right-20">Dedans</span>
+                <span className="bold">Items</span>
+                <span className="right margin-right-20 bold">Dedans</span>
               </li>
               {ticket.myLuggage.map(item => (
                 <li

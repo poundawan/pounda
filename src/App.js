@@ -48,7 +48,7 @@ class App extends Component {
             category: "transport",
             title: "Avion",
             amount: 600,
-            currency: "€"
+            currency: "EUR"
           },
           {
             id: 2,
@@ -62,21 +62,21 @@ class App extends Component {
             category: "transport",
             title: "Train",
             amount: 250,
-            currency: "€"
+            currency: "EUR"
           },
           {
             id: 4,
             category: "accommodation",
             title: "Airbnb",
             amount: 500,
-            currency: "£"
+            currency: "GBP"
           },
           {
             id: 5,
             category: "gift",
             title: "Souvenirs",
             amount: 100,
-            currency: "€"
+            currency: "EUR"
           },
           {
             id: 6,
