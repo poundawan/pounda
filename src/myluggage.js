@@ -16,7 +16,7 @@ class MyLuggage extends Component {
     let id = 1;
     if (myLuggage && myLuggage.length > 0) {
       item = myLuggage[myLuggage.length - 1];
-      id = myLuggage.id + 1;
+      id = parseInt(item.id) + 1;
     }
 
     return id;
@@ -34,8 +34,7 @@ class MyLuggage extends Component {
     e.preventDefault();
     let myLuggage = ticket.myLuggage.filter(item => {
       if (item.id === id) {
-        item.status === status &&
-        (ticket.status === "desire" || ticket.status === "planned")
+        item.status === status
           ? (item.status = "none")
           : (item.status = status);
       }
@@ -64,6 +63,7 @@ class MyLuggage extends Component {
       title: this.state.title,
       status: this.state.status
     });
+    this.setState({ title: "" });
     this.props.onUpdateTicket(ticket);
   }
   render() {
@@ -82,47 +82,7 @@ class MyLuggage extends Component {
     );
     // }
     return (
-      <div className={`myLuggage`}>
-        {showForm === "show" ? (
-          <div className="col-md-12 detailForm">
-            <button
-              className="btn btn-dark btn-sm btn-block"
-              title="Add new ToDo"
-              onClick={e => this.showForm(e, "hidden")}
-            >
-              Fermer <Icon name="minus-circle" />
-            </button>
-            <div id="formMyLuggage">
-              <form onSubmit={e => this.onSubmit(e, ticket)}>
-                <div className="form-group">
-                  <label className="col-sm-2 col-form-label">Titre</label>
-                  <div className="col-sm-12">
-                    <input
-                      className="form-control"
-                      value={this.state.title}
-                      type="text"
-                      placeholder=""
-                      onChange={e => this.onChangeTitle(e)}
-                    />
-                  </div>
-                </div>
-                <div className="btn-group col-md-12">
-                  <button
-                    className="btn btn-default"
-                    onClick={e => this.showForm(e, "hidden")}
-                  >
-                    Annuler
-                  </button>
-                  <button className="btn btn-primary" type="submite">
-                    Ajouter
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        ) : (
-          buttonAdd
-        )}
+      <div className="myLuggage">
         <div className="col-md-12">
           {ticket.myLuggage && ticket.myLuggage.length > 0 ? (
             <ul>
@@ -131,7 +91,11 @@ class MyLuggage extends Component {
                 <span className="right margin-right-20">Dedans</span>
               </li>
               {ticket.myLuggage.map(item => (
-                <li key={item.id} className="onHover">
+                <li
+                  key={item.id}
+                  className={"onHover " + item.status}
+                  onClick={e => this.onUpdateStatut(e, ticket, item.id, "done")}
+                >
                   {item.title}{" "}
                   <DidOrNot
                     status={item.status}
@@ -146,6 +110,26 @@ class MyLuggage extends Component {
           ) : (
             <span>Toujours rien dans votre valise ? Pensez à la remplir.</span>
           )}
+        </div>
+        <div className="col-md-12 detailForm">
+          <div id="formMyLuggage">
+            <form className="" onSubmit={e => this.onSubmit(e, ticket)}>
+              <div className="col-md-9 no-padding">
+                <input
+                  className="form-control"
+                  value={this.state.title}
+                  type="text"
+                  placeholder="Remplissez votre valise."
+                  onChange={e => this.onChangeTitle(e)}
+                />
+              </div>
+              <div className="col-md-3 no-padding">
+                <button className="btn btn-primary" type="submite">
+                  Ajouter
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

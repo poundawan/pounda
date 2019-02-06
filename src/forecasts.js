@@ -36,8 +36,7 @@ class Forecasts extends Component {
     e.preventDefault();
     let forecasts = ticket.forecasts.filter(forecast => {
       if (forecast.id === id) {
-        forecast.status === status &&
-        (ticket.status === "desire" || ticket.status === "planned")
+        forecast.status === status
           ? (forecast.status = "none")
           : (forecast.status = status);
       }
@@ -79,6 +78,7 @@ class Forecasts extends Component {
       status: this.state.status,
       priority: 0
     });
+    this.setState({ title: "" });
     this.props.onUpdateTicket(ticket);
   }
   render() {
@@ -97,47 +97,7 @@ class Forecasts extends Component {
     );
     // }
     return (
-      <div className={`forecasts`}>
-        {showForm === "show" ? (
-          <div className="col-md-12 detailForm">
-            <button
-              className="btn btn-dark btn-sm btn-block"
-              title="Add new ToDo"
-              onClick={e => this.showForm(e, "hidden")}
-            >
-              Fermer <Icon name="minus-circle" />
-            </button>
-            <div id="formForecast ">
-              <form onSubmit={e => this.onSubmit(e, ticket)}>
-                <div className="form-group">
-                  <label className="col-sm-2 col-form-label">Titre</label>
-                  <div className="col-sm-12">
-                    <input
-                      className="form-control"
-                      value={this.state.title}
-                      type="text"
-                      placeholder=""
-                      onChange={e => this.onChangeTitle(e)}
-                    />
-                  </div>
-                </div>
-                <div className="btn-group col-md-12">
-                  <button
-                    className="btn btn-default"
-                    onClick={e => this.showForm(e, "hidden")}
-                  >
-                    Annuler
-                  </button>
-                  <button className="btn btn-primary" type="submite">
-                    Ajouter
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        ) : (
-          buttonAdd
-        )}
+      <div className="forecasts">
         <div className="col-md-12">
           {ticket.forecasts && ticket.forecasts.length > 0 ? (
             <ul>
@@ -150,7 +110,13 @@ class Forecasts extends Component {
                 )}
               </li>
               {ticket.forecasts.map(forecast => (
-                <li key={forecast.id} className="onHover">
+                <li
+                  key={forecast.id}
+                  className={"onHover " + forecast.status}
+                  onClick={e =>
+                    this.onUpdateStatut(e, ticket, forecast.id, "done")
+                  }
+                >
                   {forecast.title}{" "}
                   <Priority
                     priority={forecast.priority}
@@ -169,8 +135,31 @@ class Forecasts extends Component {
               ))}
             </ul>
           ) : (
-            <span>Pas d'envies particulières ? Pensez en ajouter.</span>
+            <span>
+              Un ville? Un monument? Un lac? Un restaurant? Ajoutez les
+              incontournables ici.
+            </span>
           )}
+        </div>
+        <div className="col-md-12 detailForm">
+          <div id="formForecast ">
+            <form className="" onSubmit={e => this.onSubmit(e, ticket)}>
+              <div className="col-md-9 no-padding">
+                <input
+                  className="form-control"
+                  value={this.state.title}
+                  type="text"
+                  placeholder="Un ville? Un monument? Un lac? ..."
+                  onChange={e => this.onChangeTitle(e)}
+                />
+              </div>
+              <div className="col-md-3 no-padding">
+                <button className="btn btn-primary" type="submite">
+                  Ajouter
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

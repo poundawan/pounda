@@ -33,10 +33,9 @@ i.category {
 }
 
 .detailForm {
-  background: #e4e7eb;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  box-shadow: 2px 2px 4px 2px #9aa5b1;
+  border-top: 1px solid #e4e7eb;
+  margin-top: 15px;
+  padding-top: 15px;
 }
 
 .nav-stacked > li.tab-detail + li.tab-detail {
@@ -44,19 +43,38 @@ i.category {
   margin-left: 0;
 }
 
-.nav-pills > li.tab-detail > a {
+.nav-pills > li.tab-detail.active > a,
+.nav-pills > li.tab-detail > a:hover,
+.nav-pills > li.active.tab-detail > a:hover,
+.nav-pills > li.active.tab-detail > a:focus {
   border-radius: 0px;
-  border-top: 1px solid #9aa5b1;
-  border-bottom: 1px solid #9aa5b1;
+  border-left: 3px solid #323f4b;
   color: #323f4b;
+  background-color: transparent;
 }
 
-.nav-pills > li.active.tab-detail > a,
-.nav-pills > li.active.tab-detail > a:focus,
-.nav-pills > li.active.tab-detail > a:hover,
 .nav > li.tab-detail > a:focus,
-.nav > li.tab-detail > a:hover {
+.nav-pills > li.tab-detail > a {
   border-radius: 0px;
-  color: #fff;
-  background-color: #323f4b;
+  color: #323f4b;
+  background-color: transparent;
+  border-left: 3px solid transparent;
+}
+
+.toDoListBL,
+.myLuggage,
+.forecasts {
+  padding-top: 15px;
+}
+
+.toDoListBL li,
+.myLuggage li,
+.forecasts li {
+  cursor: pointer;
+}
+.toDoListBL li.done,
+.myLuggage li.done,
+.forecasts li.done {
+  text-decoration: line-through;
+  color: #9aa5b1;
 }

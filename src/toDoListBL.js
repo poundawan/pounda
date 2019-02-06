@@ -16,9 +16,8 @@ class ToDoListBL extends Component {
     let id = 1;
     if (toDoListBL && toDoListBL.length > 0) {
       todo = toDoListBL[toDoListBL.length - 1];
-      id = toDoListBL.id + 1;
+      id = parseInt(todo.id) + 1;
     }
-
     return id;
   };
   showForm = (e, show) => {
@@ -34,8 +33,7 @@ class ToDoListBL extends Component {
     e.preventDefault();
     let toDoListBL = ticket.toDoListBL.filter(todo => {
       if (todo.id === id) {
-        todo.status === status &&
-        (ticket.status === "desire" || ticket.status === "planned")
+        todo.status === status
           ? (todo.status = "none")
           : (todo.status = status);
       }
@@ -64,6 +62,7 @@ class ToDoListBL extends Component {
       title: this.state.title,
       status: this.state.status
     });
+    this.setState({ title: "" });
     this.props.onUpdateTicket(ticket);
   }
   render() {
@@ -82,70 +81,57 @@ class ToDoListBL extends Component {
     );
     // }
     return (
-      <div className={`toDoListBL`}>
-        {showForm === "show" ? (
-          <div className="col-md-12 detailForm">
-            <button
-              className="btn btn-dark btn-sm btn-block"
-              title="Add new ToDo"
-              onClick={e => this.showForm(e, "hidden")}
-            >
-              Fermer <Icon name="minus-circle" />
-            </button>
-            <div id="formToDoListBL">
-              <form onSubmit={e => this.onSubmit(e, ticket)}>
-                <div className="form-group">
-                  <label className="col-sm-2 col-form-label">Titre</label>
-                  <div className="col-sm-12">
-                    <input
-                      className="form-control"
-                      value={this.state.title}
-                      type="text"
-                      placeholder=""
-                      onChange={e => this.onChangeTitle(e)}
-                    />
-                  </div>
-                </div>
-                <div className="btn-group col-md-12">
-                  <button
-                    className="btn btn-default"
-                    onClick={e => this.showForm(e, "hidden")}
-                  >
-                    Annuler
-                  </button>
-                  <button className="btn btn-primary" type="submite">
-                    Ajouter
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        ) : (
-          buttonAdd
-        )}
+      <div className="toDoListBL">
         <div className="col-md-12">
           {ticket.toDoListBL && ticket.toDoListBL.length > 0 ? (
             <ul>
               <li>
                 <span>ToDo</span>
-                <span className="right margin-right-20">Fait</span>
               </li>
               {ticket.toDoListBL.map(todo => (
-                <li key={todo.id} className="onHover">
-                  {todo.title}{" "}
-                  <DidOrNot
-                    status={todo.status}
-                    ticket={ticket}
-                    id={todo.id}
-                    onUpdate={this.onUpdateStatut}
-                    onDelete={this.onDeleteToDo}
-                  />
+                <li
+                  key={todo.id}
+                  className={"onHover " + todo.status}
+                  onClick={e => this.onUpdateStatut(e, ticket, todo.id, "done")}
+                >
+                  <span>{todo.title}</span>
+                  <span className="right">
+                    <Icon
+                      name="trash-alt"
+                      title="Supprimer"
+                      className="theme-trash"
+                      onClick={e => this.onDeleteToDo(e, ticket, todo.id)}
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
           ) : (
-            <span>Pas de ToDo avant de partir ? Pensez en ajouter.</span>
+            <span>
+              Ne laissez rien au hazard! Pensez à toutes vos démarches avant de
+              partir (visa, vaccin, devise , ...).
+            </span>
           )}
+        </div>
+        <div className="col-md-12 detailForm">
+          <div id="formToDoListBL">
+            <form className="" onSubmit={e => this.onSubmit(e, ticket)}>
+              <div className="col-md-9 no-padding">
+                <input
+                  className="form-control"
+                  value={this.state.title}
+                  type="text"
+                  placeholder="Que devez-vous faire avant de partir ?"
+                  onChange={e => this.onChangeTitle(e)}
+                />
+              </div>
+              <div className="col-md-3 no-padding">
+                <button className="btn btn-primary" type="submite">
+                  Ajouter
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

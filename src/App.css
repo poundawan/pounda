@@ -104,6 +104,10 @@ button.bg-dark:focus {
   margin-right: 20px;
 }
 
+.no-padding {
+  padding: 0px;
+}
+
 .tables-container {
   display: flex;
   align-items: stretch;
