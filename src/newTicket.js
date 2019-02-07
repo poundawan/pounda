@@ -3,6 +3,9 @@ import DatePicker from "react-datepicker";
 import { format, compareAsc } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import "./newTicket.css";
+import { COUNTRIES } from "./countries.js";
+import { MultiSelect } from "react-sm-select";
+import "react-sm-select/dist/styles.css";
 
 const today = new Date();
 
@@ -10,7 +13,7 @@ class NewTicket extends Component {
   state = {
     status: "desire",
     title: "",
-    places: "",
+    places: [],
     from: today,
     to: today,
     transport: "none",
@@ -23,10 +26,7 @@ class NewTicket extends Component {
   onChangeTitle(e) {
     this.setState({ title: e.target.value });
   }
-  onChangePlaces(e) {
-    this.setState({ places: e.target.value });
-    if (this.state.title.length < 1) this.setState({ title: e.target.value });
-  }
+
   onChangeFrom(date) {
     this.setState({ from: date });
     if (compareAsc(date, this.state.to) > 0) this.setState({ to: date });
@@ -49,18 +49,28 @@ class NewTicket extends Component {
     e.preventDefault();
     let from = "";
     let to = "";
+    let places = [];
     if (this.state.from) from = format(this.state.from, "DD/MM/YYYY");
     if (this.state.to) from = format(this.state.to, "DD/MM/YYYY");
+    if (this.state.places.length > 0) {
+      this.state.places.map(place => {
+        COUNTRIES.filter(country => {
+          if (country.value === place) {
+            places.push({ id: place, country: country.label });
+          }
+        });
+      });
+    }
     this.setState({
       title: "",
-      places: "",
+      places: [],
       from: today,
       to: today,
       resume: ""
     });
     this.props.onSendTicket(
       this.state.title,
-      this.state.places,
+      places,
       from,
       to,
       this.state.transport,
@@ -74,6 +84,12 @@ class NewTicket extends Component {
     this.setState({ showForm: event });
   }
 
+  optionClicked(optionsList) {
+    this.setState({ multiSelect: optionsList });
+  }
+  selectedBadgeClicked(optionsList) {
+    this.setState({ multiSelect: optionsList });
+  }
   render() {
     const { title, places, from, to, resume, showForm } = this.state;
     return (
@@ -100,15 +116,15 @@ class NewTicket extends Component {
               </div>
             </div>
             <div className="form-group col-md-12">
-              <label className="col-sm-2 col-form-label">Lieu(x)</label>
+              <label className="col-sm-2 col-form-label">Pays</label>
               <div className="col-sm-10">
-                <input
-                  className="form-control"
-                  id="placesTicket"
-                  type="text"
+                <MultiSelect
+                  options={COUNTRIES}
+                  mode="tags"
+                  enableSearch={true}
+                  resetable={true}
                   value={places}
-                  placeholder=""
-                  onChange={e => this.onChangePlaces(e)}
+                  onChange={value => this.setState({ places: value })}
                 />
               </div>
             </div>

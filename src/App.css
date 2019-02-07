@@ -274,3 +274,7 @@ button.bg-dark:focus {
     padding: 0px;
   }
 }
+
+.MultiSelect .OptionList {
+  background-color: #fff;
+}

@@ -14,7 +14,10 @@ class App extends Component {
         id: 1,
         status: "desire",
         title: "Amerique du Sud",
-        places: "Colombie - Pérou",
+        places: [
+          { id: 41, country: "Colombie" },
+          { id: 143, country: "Pérou" }
+        ],
         from: "",
         to: "",
         transport: "",
@@ -30,7 +33,7 @@ class App extends Component {
         id: 2,
         status: "finished",
         title: "Japan",
-        places: "Japon",
+        places: [{ id: 90, country: "Japon" }],
         from: "21/05/2016",
         to: "10/06/2016",
         transport: "plane",
@@ -91,7 +94,7 @@ class App extends Component {
         id: 3,
         status: "planned",
         title: "Sri Lanka",
-        places: "Sri lanka",
+        places: [{ id: 170, country: "Sri Lanka" }],
         from: "",
         to: "",
         transport: "plane",
@@ -101,7 +104,7 @@ class App extends Component {
         id: 4,
         status: "finished",
         title: "Norway",
-        places: "Norvège",
+        places: [{ id: 131, country: "Norvège" }],
         from: "28/05/2017",
         to: "07/06/2017",
         transport: "plane",
@@ -112,7 +115,7 @@ class App extends Component {
         id: 5,
         status: "current",
         title: "Chez les parents",
-        places: "Lyon",
+        places: [{ id: 66, country: "France" }],
         from: "01/12/2018",
         to: "",
         transport: "hiking",
@@ -122,8 +125,17 @@ class App extends Component {
         id: 6,
         status: "finished",
         title: "Asia 2k18",
-        places:
-          "Cambodge, Vietnam, Laos, Thaïlande, Malaisie, Singapour, Bali, Hong Kong, Séoul ",
+        places: [
+          { id: 33, country: "Cambodge" },
+          { id: 194, country: " Viêt Nam" },
+          { id: 97, country: "Laos" },
+          { id: 180, country: "Thaïlande" },
+          { id: 108, country: "Malaisie" },
+          { id: 164, country: "Singapour" },
+          { id: 82, country: "Indonésie" },
+          { id: 200, country: "Hong Kong" },
+          { id: 47, country: "Corée du Sud" }
+        ],
         from: "23/01/2018",
         to: "07/06/2018",
         transport: "plane",
@@ -134,7 +146,11 @@ class App extends Component {
         id: 7,
         status: "planned",
         title: "Europe",
-        places: "France, Espagne, Portugal ",
+        places: [
+          { id: 66, country: "France" },
+          { id: 60, country: "Espagne" },
+          { id: 146, country: "Portugal" }
+        ],
         from: "",
         to: "",
         transport: "shuttle-van",
@@ -170,26 +186,18 @@ class App extends Component {
     this.setState({ tickets });
   };
 
-  onSendTicket = (
-    newTitle,
-    newPlaces,
-    newFrom,
-    newTo,
-    newTransport,
-    newStatus,
-    newResume
-  ) => {
+  onSendTicket = (title, places, from, to, transport, status, resume) => {
     const tickets = this.state.tickets;
     let lastID = this.state.lastID;
     tickets.push({
       id: lastID,
-      title: newTitle,
-      places: newPlaces,
-      from: newFrom,
-      to: newTo,
-      transport: newTransport,
-      status: newStatus,
-      resume: newResume
+      title,
+      places,
+      from,
+      to,
+      transport,
+      status,
+      resume
     });
     this.setState({ tickets, lastID: lastID + 1 });
   };

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import "./ticket.css";
-import Icon from "./Icon";
 import Priority from "./Priority";
 import DidOrNot from "./didOrNot.js";
 
 class Forecasts extends Component {
   state = {
-    showForm: "false",
     id: 0,
     title: "",
     status: "none",
@@ -22,10 +20,6 @@ class Forecasts extends Component {
     }
 
     return id;
-  };
-  showForm = (e, show) => {
-    e.preventDefault();
-    this.setState({ showForm: show });
   };
 
   onChangeTitle(e) {
@@ -83,19 +77,6 @@ class Forecasts extends Component {
   }
   render() {
     const { ticket } = this.props;
-    const { showForm } = this.state;
-    let buttonAdd = "";
-    //if (ticket.status !== "finished") {
-    buttonAdd = (
-      <button
-        className="btn btn-dark btn-sm btn-block"
-        title="Add new forecast"
-        onClick={e => this.showForm(e, "show")}
-      >
-        Ajouter <Icon name="plus-circle" />
-      </button>
-    );
-    // }
     return (
       <div className="forecasts">
         <div className="col-md-12">

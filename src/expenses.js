@@ -198,7 +198,6 @@ function CategoryIcons({ categoryInput }) {
 
 class Expenses extends Component {
   state = {
-    showForm: "false",
     showTable: "false",
     id: 0,
     category: "transport",
@@ -215,10 +214,6 @@ class Expenses extends Component {
     }
 
     return id;
-  };
-  showForm = (e, show) => {
-    e.preventDefault();
-    this.setState({ showForm: show });
   };
 
   showTable = (e, show) => {
@@ -332,7 +327,7 @@ class Expenses extends Component {
   }
   render() {
     const { ticket } = this.props;
-    const { showForm, showTable } = this.state;
+    const { showTable } = this.state;
     let currencies = [];
     let total = [];
     let totalDetail = [];

@@ -48,10 +48,14 @@ class Ticket extends Component {
   render() {
     const { ticket, status, draggable } = this.props;
     const { showTicket } = this.state;
-    const maxLenght = 1000;
-    let places = ticket.places;
-    if (places.length > maxLenght)
-      places = places.substring(0, maxLenght) + " ...";
+    let placesArray = [];
+    let places = "";
+    if (this.state.detail && ticket.places.length > 0) {
+      places = ticket.places.map(place => {
+        placesArray.push(place.country);
+      });
+      places = placesArray.join(" • ");
+    }
     return (
       <div
         onDragStart={e => this.onDragStart(e, ticket.id)}
@@ -125,7 +129,7 @@ class Ticket extends Component {
             )}
             <div className="">
               {this.state.detail && ticket.places.length > 0 ? (
-                <span className="margin-top">{ticket.places}</span>
+                <span className="margin-top">{places.toString()}</span>
               ) : (
                 ""
               )}

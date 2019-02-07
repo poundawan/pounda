@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./ticket.css";
-import Icon from "./Icon";
 import DidOrNot from "./didOrNot.js";
 
 class MyLuggage extends Component {
   state = {
-    showForm: "false",
     id: 0,
     title: "",
     status: "none"
@@ -20,10 +18,6 @@ class MyLuggage extends Component {
     }
 
     return id;
-  };
-  showForm = (e, show) => {
-    e.preventDefault();
-    this.setState({ showForm: show });
   };
 
   onChangeTitle(e) {
@@ -68,19 +62,6 @@ class MyLuggage extends Component {
   }
   render() {
     const { ticket } = this.props;
-    const { showForm } = this.state;
-    let buttonAdd = "";
-    // if (ticket.status !== "finished" && ticket.status !== "current") {
-    buttonAdd = (
-      <button
-        className="btn btn-dark btn-sm btn-block"
-        title="Add new item"
-        onClick={e => this.showForm(e, "show")}
-      >
-        Ajouter <Icon name="plus-circle" />
-      </button>
-    );
-    // }
     return (
       <div className="myLuggage">
         <div className="col-md-12">

@@ -5,6 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { FaceIcons } from "./faceIcons.js";
 import "./ticket.css";
+import { COUNTRIES } from "./countries.js";
+import { MultiSelect } from "react-sm-select";
+import "react-sm-select/dist/styles.css";
 
 class TicketEdit extends Component {
   getDate = date => {
@@ -16,11 +19,20 @@ class TicketEdit extends Component {
 
     return correctDate;
   };
+  getPlaces = placesObj => {
+    let places = [];
+    if (placesObj.length > 0) {
+      placesObj.map(place => {
+        places.push(place.id);
+      });
+    }
+    return places;
+  };
   state = {
     id: this.props.ticket.id,
     status: this.props.ticket.status,
     title: this.props.ticket.title,
-    places: this.props.ticket.places,
+    places: this.getPlaces(this.props.ticket.places),
     from: this.getDate(this.props.ticket.from),
     to: this.getDate(this.props.ticket.to),
     transport: this.props.ticket.transport,
@@ -29,16 +41,13 @@ class TicketEdit extends Component {
   };
   onChangeFrom = this.onChangeFrom.bind(this);
   onChangeTo = this.onChangeTo.bind(this);
+
   onDeleteTicket = (ev, id) => {
     ev.preventDefault();
     this.props.onDeleteTicket(id);
   };
   onChangeTitle(e) {
     this.setState({ title: e.target.value });
-  }
-  onChangePlaces(e) {
-    this.setState({ places: e.target.value });
-    if (this.state.title.length < 1) this.setState({ title: e.target.value });
   }
   onChangeFrom(date) {
     this.setState({ from: date });
@@ -73,18 +82,29 @@ class TicketEdit extends Component {
     e.preventDefault();
     let from = "";
     let to = "";
+    let places = [];
     if (this.state.from) from = format(this.state.from, "DD/MM/YYYY");
     if (this.state.to) to = format(this.state.to, "DD/MM/YYYY");
+    if (this.state.places.length > 0) {
+      this.state.places.map(place => {
+        COUNTRIES.filter(country => {
+          if (country.value === place) {
+            places.push({ id: place, country: country.label });
+          }
+        });
+      });
+    }
     this.setState({
       id: "",
       title: "",
-      places: "",
+      places: [],
       from: null,
       to: null,
       resume: ""
     });
     this.props.onUpdateTicket({
       ...this.state,
+      places,
       from,
       to
     });
@@ -106,13 +126,14 @@ class TicketEdit extends Component {
       id: id,
       status: status,
       title: title,
-      places: places,
+      places: this.props.ticket.places,
       from: from,
       to: to,
       transport: transport,
       resume: resume,
       rating: rating
     };
+
     return (
       <div className={`ticket ${status} col-md-12`}>
         <form
@@ -133,15 +154,15 @@ class TicketEdit extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-2 col-form-label">Lieu(x)</label>
+            <label className="col-sm-2 col-form-label">Pays</label>
             <div className="col-sm-12">
-              <input
-                className="form-control"
-                id="placesTicket"
-                type="text"
+              <MultiSelect
+                options={COUNTRIES}
+                mode="tags"
+                enableSearch={true}
+                resetable={true}
                 value={places}
-                placeholder=""
-                onChange={e => this.onChangePlaces(e)}
+                onChange={value => this.setState({ places: value })}
               />
             </div>
           </div>
