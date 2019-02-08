@@ -74,14 +74,11 @@ class TicketDetails extends Component {
                 Photos
               </NavItem>
 
-              <button
-                type="button"
-                className="close"
-                aria-label="Close"
-                onClick={onHide}
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <li>
+                <a className="close" aria-label="Close" onClick={onHide}>
+                  <span aria-hidden="true">&times;</span>
+                </a>
+              </li>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

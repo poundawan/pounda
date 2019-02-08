@@ -222,7 +222,7 @@ class App extends Component {
             Pounda <Icon name="compass" className="fa-spin" />
           </span>
         </nav>
-        <div className="main-container container-fluid ">
+        <div className="pounda main-container container-fluid ">
           <div className="form-container col-md-12  margin-bottom ">
             <NewTicket onSendTicket={this.onSendTicket} />
           </div>

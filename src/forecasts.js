@@ -91,20 +91,22 @@ class Forecasts extends Component {
                 )}
               </li>
               {ticket.forecasts.map(forecast => (
-                <li
-                  key={forecast.id}
-                  className={"onHover " + forecast.status}
-                  onClick={e =>
-                    this.onUpdateStatut(e, ticket, forecast.id, "done")
-                  }
-                >
-                  {forecast.title}{" "}
+                <li key={forecast.id} className={"onHover " + forecast.status}>
                   <Priority
                     priority={forecast.priority}
                     id={forecast.id}
                     ticket={ticket}
                     onUpdate={this.onUpdatePriority}
                   />
+                  <div
+                    className="forecast-title"
+                    onClick={e =>
+                      this.onUpdateStatut(e, ticket, forecast.id, "done")
+                    }
+                  >
+                    {forecast.title}
+                  </div>
+
                   <DidOrNot
                     status={forecast.status}
                     ticket={ticket}

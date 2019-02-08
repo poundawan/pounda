@@ -50,6 +50,9 @@ class NewTicket extends Component {
     let from = "";
     let to = "";
     let places = [];
+    if (this.state.title.length === 0) {
+      return alert("Le titre est vide");
+    }
     if (this.state.from) from = format(this.state.from, "DD/MM/YYYY");
     if (this.state.to) from = format(this.state.to, "DD/MM/YYYY");
     if (this.state.places.length > 0) {

@@ -6,6 +6,11 @@
   height: 30px;
   line-height: 30px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.label-ticket:hover {
+  color: #cbd2d9;
 }
 
 .table {

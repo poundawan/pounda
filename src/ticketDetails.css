@@ -4,6 +4,10 @@
   padding-left: 0px;
 }
 
+.details {
+  padding: 15px;
+}
+
 .expensesListe {
   max-width: 300px;
   overflow-x: scroll;
@@ -18,6 +22,8 @@
 
 .detail .ticket ul li {
   padding: 4px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .detail .ticket .total {
@@ -77,4 +83,18 @@ i.category {
 .forecasts li.done {
   text-decoration: line-through;
   color: #9aa5b1;
+}
+
+.detail a.close {
+  opacity: 1;
+  font-size: 18px;
+  text-shadow: none;
+}
+
+.detail .container {
+  padding-left: 0;
+}
+
+.forecast-title {
+  width: 80%;
 }

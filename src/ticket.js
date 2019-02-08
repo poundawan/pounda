@@ -63,14 +63,13 @@ class Ticket extends Component {
         className={`ticket ${status} draggable col-md-12`}
       >
         {!this.state.detail ? (
-          <button
-            type="button"
+          <a
             className="close"
             aria-label="Close"
             onClick={e => this.onDeleteTicket(e, ticket.id)}
           >
             <span aria-hidden="true">&times;</span>
-          </button>
+          </a>
         ) : (
           ""
         )}

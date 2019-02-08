@@ -6,6 +6,10 @@
   box-shadow: 2px 2px 4px 2px #9aa5b1;
 }
 
+.ticket > div {
+  padding: 10px 5px;
+}
+
 .ticket.forecasts,
 .ticket.expenses {
   text-align: left;
@@ -27,14 +31,16 @@
   border-color: #40c3f7;
 }
 
-.ticket button.close {
-  margin-top: -21px;
+.ticket a.close {
+  margin-top: -18px;
   margin-right: -10px;
-  color: #1f2933;
-  opacity: 0.4;
+  color: #f5f7fa;
+  opacity: 1;
+  font-size: 18px;
+  text-shadow: none;
 }
-.ticket button.close:hover {
-  opacity: 0.7;
+.ticket a.close:hover {
+  color: #cbd2d9;
 }
 
 .title-ticket {
@@ -51,7 +57,12 @@
   font-size: 12px;
   text-transform: capitalize;
   display: block;
+  cursor: pointer;
 }
+.title-ticket-small:hover {
+  color: #cbd2d9;
+}
+
 .title-ticket-small button {
   background: transparent;
   border: none;
@@ -61,12 +72,16 @@
 .button-show {
   background: transparent;
   border: none;
-  font-size: 17px;
+  font-size: 14px;
   float: left;
-  color: #fff;
-  margin-top: -23px;
+  color: #f5f7fa;
+  margin-top: -30px;
   width: 100%;
   text-align: left;
+}
+
+.ticket button.button-show:hover {
+  opacity: 0.7;
 }
 
 .rating {
