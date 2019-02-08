@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/pounda/static/js/runtime~main.1ed8878d.js"
   },
   {
-    "revision": "a61f0478795cb7515554f631f77a9d46",
+    "revision": "bbee1928144db2b637c3eb958f56cce6",
     "url": "/pounda/index.html"
   }
 ];
