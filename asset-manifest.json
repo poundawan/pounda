@@ -1,15 +1,15 @@
 {
-  "main.css": "/pounda/static/css/main.f73c162f.chunk.css",
-  "main.js": "/pounda/static/js/main.cd2d87de.chunk.js",
-  "main.js.map": "/pounda/static/js/main.cd2d87de.chunk.js.map",
+  "main.css": "/pounda/static/css/main.f1a5fb88.chunk.css",
+  "main.js": "/pounda/static/js/main.12383ed2.chunk.js",
+  "main.js.map": "/pounda/static/js/main.12383ed2.chunk.js.map",
   "static/css/1.d17e080f.chunk.css": "/pounda/static/css/1.d17e080f.chunk.css",
   "static/js/1.f58b5ff0.chunk.js": "/pounda/static/js/1.f58b5ff0.chunk.js",
   "static/js/1.f58b5ff0.chunk.js.map": "/pounda/static/js/1.f58b5ff0.chunk.js.map",
   "runtime~main.js": "/pounda/static/js/runtime~main.1ed8878d.js",
   "runtime~main.js.map": "/pounda/static/js/runtime~main.1ed8878d.js.map",
-  "static/css/main.f73c162f.chunk.css.map": "/pounda/static/css/main.f73c162f.chunk.css.map",
+  "static/css/main.f1a5fb88.chunk.css.map": "/pounda/static/css/main.f1a5fb88.chunk.css.map",
   "static/css/1.d17e080f.chunk.css.map": "/pounda/static/css/1.d17e080f.chunk.css.map",
   "index.html": "/pounda/index.html",
-  "precache-manifest.a8aeae3865da37a1d55b67e95f5518c4.js": "/pounda/precache-manifest.a8aeae3865da37a1d55b67e95f5518c4.js",
+  "precache-manifest.4aa451af9a3d3897661f78d99924746d.js": "/pounda/precache-manifest.4aa451af9a3d3897661f78d99924746d.js",
   "service-worker.js": "/pounda/service-worker.js"
 }
