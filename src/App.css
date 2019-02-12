@@ -124,6 +124,18 @@ button.bg-dark:focus {
   padding: 0px;
 }
 
+.padding-top-5 {
+  padding-top: 5px;
+}
+
+.padding-top-10 {
+  padding-top: 10px;
+}
+
+.padding-left-5 {
+  padding-left: 5px;
+}
+
 .tables-container {
   display: flex;
   align-items: stretch;
@@ -139,7 +151,6 @@ button.bg-dark:focus {
 
 .btn-outline-primary {
   color: #337ab7;
-  border-color: #337ab7ff;
   background-color: transparent;
 }
 
@@ -151,7 +162,6 @@ button.bg-dark:focus {
 
 .btn-outline-dark {
   color: #1f2933;
-  border-color: #1f2933;
   background-color: transparent;
 }
 

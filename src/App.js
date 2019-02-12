@@ -88,6 +88,16 @@ class App extends Component {
             amount: 1000,
             currency: "YEN"
           }
+        ],
+        travelogue: [
+          {
+            id: 1,
+            title: "Jour 1",
+            resume:
+              "Arrivée aéroport, train jusqu'à Tokyo direction Shibuya, airbnb",
+            from: "21/05/2016",
+            to: null
+          }
         ]
       },
       {
@@ -114,12 +124,12 @@ class App extends Component {
       {
         id: 5,
         status: "current",
-        title: "Chez les parents",
+        title: "Tour de France",
         places: [{ id: 66, country: "France" }],
         from: "01/12/2018",
         to: "",
         transport: "hiking",
-        resume: "Trop long !!!"
+        resume: ""
       },
       {
         id: 6,
@@ -154,7 +164,7 @@ class App extends Component {
         from: "",
         to: "",
         transport: "shuttle-van",
-        resume: "Avec LAULAU"
+        resume: "Tour d'Europe en van."
       }
     ]
   };

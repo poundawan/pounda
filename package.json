@@ -2,7 +2,7 @@
   "name": "pounda",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://poundawan.github.io/pounda",
+  "homepage": "https://poundawan.github.io/pounda/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/free-brands-svg-icons": "^5.6.3",
@@ -15,7 +15,8 @@
     "react-datepicker": "^2.0.0",
     "react-dom": "^16.7.0",
     "react-native-calendars": "^1.21.0",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "react-sm-select": "^1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",

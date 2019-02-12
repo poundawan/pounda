@@ -3,6 +3,7 @@ import { Navbar, Nav, NavItem } from "react-bootstrap";
 import Ticket from "./ticket.js";
 import BeforeLeaving from "./beforeLeaving.js";
 import Expenses from "./expenses.js";
+import Travelogue from "./travelogue.js";
 import "./ticketDetails.css";
 
 class TicketDetails extends Component {
@@ -101,7 +102,7 @@ class TicketDetails extends Component {
             <Expenses ticket={ticket} onUpdateTicket={onUpdateTicket} />
           </div>
           <div className={active === "carnet" ? "" : "hidden"}>
-            Carnet de bord
+            <Travelogue ticket={ticket} onUpdateTicket={onUpdateTicket} />
           </div>
           <div className={active === "agenda" ? "" : "hidden"} />
           <div className={active === "photos" ? "" : "hidden"}>

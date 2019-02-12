@@ -20,22 +20,20 @@ class NewTicket extends Component {
     resume: "",
     showForm: "hide"
   };
-  onChangeFrom = this.onChangeFrom.bind(this);
-  onChangeTo = this.onChangeTo.bind(this);
 
   onChangeTitle(e) {
     this.setState({ title: e.target.value });
   }
 
-  onChangeFrom(date) {
+  onChangeFrom = date => {
     this.setState({ from: date });
     if (compareAsc(date, this.state.to) > 0) this.setState({ to: date });
-  }
-  onChangeTo(date) {
+  };
+  onChangeTo = date => {
     (date && compareAsc(date, this.state.from)) < 0
       ? alert("La date doit être supérieur à la date départ")
       : this.setState({ to: date });
-  }
+  };
   onChangeTransport(e) {
     this.setState({ transport: e.target.value });
   }
@@ -54,7 +52,7 @@ class NewTicket extends Component {
       return alert("Le titre est vide");
     }
     if (this.state.from) from = format(this.state.from, "DD/MM/YYYY");
-    if (this.state.to) from = format(this.state.to, "DD/MM/YYYY");
+    if (this.state.to) to = format(this.state.to, "DD/MM/YYYY");
     if (this.state.places.length > 0) {
       this.state.places.map(place => {
         COUNTRIES.filter(country => {
