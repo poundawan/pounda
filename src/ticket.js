@@ -147,14 +147,17 @@ class Ticket extends Component {
               ) : (
                 ""
               )}
-
-              <div className="margin-top">
-                <Icon
-                  name="quote-left"
-                  className="fa-2x fa-pull-left very-light"
-                />
-                <span className=" italic light">{ticket.resume}</span>
-              </div>
+              {ticket.resume.length > 0 ? (
+                <div className="margin-top">
+                  <Icon
+                    name="quote-left"
+                    className="fa-2x fa-pull-left very-light"
+                  />
+                  <span className=" italic light">{ticket.resume}</span>
+                </div>
+              ) : (
+                ""
+              )}
               {status === "finished" && this.state.detail ? (
                 <div className="col-md-12 rating">
                   <FaceIcons ticket={ticket} onUpdate={this.updateRating} />

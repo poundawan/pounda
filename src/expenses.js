@@ -188,11 +188,13 @@ function CategoryIcons({ categoryInput }) {
     category => category.input === categoryInput
   );
   return (
-    <Icon
-      name={categoryOutput[0].output}
-      title={categoryOutput[0].title}
-      className="category"
-    />
+    <span>
+      <Icon
+        name={categoryOutput[0].output}
+        title={categoryOutput[0].title}
+        className="category"
+      />
+    </span>
   );
 }
 
@@ -346,10 +348,12 @@ class Expenses extends Component {
               {ticket.expenses.map(expense => (
                 <li key={expense.id} className="onHover">
                   <CategoryIcons categoryInput={expense.category} />
-                  {" " + expense.title}
-                  {" : "}
-                  {expense.amount}
-                  {expense.currency}
+                  <span className="col-md-12">
+                    {" " + expense.title}
+                    {" : "}
+                    {expense.amount}
+                    {expense.currency}
+                  </span>
                   <div className="right">
                     <Icon
                       name="trash-alt"

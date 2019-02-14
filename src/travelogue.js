@@ -20,7 +20,7 @@ class Travelogue extends Component {
     id: 0,
     title: "",
     resume: "",
-    from: this.getDate(this.props.ticket.from),
+    from: null,
     to: null,
     edit: null
   };
@@ -37,6 +37,18 @@ class Travelogue extends Component {
       resume: step.resume,
       from: step.from,
       to: step.to
+    });
+  };
+
+  closeForm = e => {
+    e.preventDefault();
+    this.setState({
+      edit: null,
+      id: 0,
+      title: "",
+      resume: "",
+      from: null,
+      to: null
     });
   };
 
@@ -79,10 +91,10 @@ class Travelogue extends Component {
   onSubmit(e, ticket) {
     e.preventDefault();
     if (this.state.title.length === 0) return alert("Titre vide");
-    let from = "";
-    let to = "";
-    if (this.state.from) from = format(this.state.from, "DD/MM/YYYY");
-    if (this.state.to) to = format(this.state.to, "DD/MM/YYYY");
+    let from = null;
+    let to = null;
+    if (this.state.from !== null) from = format(this.state.from, "DD/MM/YYYY");
+    if (this.state.to !== null) to = format(this.state.to, "DD/MM/YYYY");
     let id = this.state.id;
     if (!ticket.travelogue) ticket.travelogue = [];
     if (id === 0) {
@@ -116,7 +128,7 @@ class Travelogue extends Component {
     this.props.onUpdateTicket(ticket);
   }
 
-  getForm = (title, resume, from, to) => (
+  getForm = (title, resume, from, to, id = 0) => (
     <div id="formTravelogue">
       <form className="" onSubmit={e => this.onSubmit(e, this.props.ticket)}>
         <div className="col-md-12 no-padding padding-top-10">
@@ -182,11 +194,26 @@ class Travelogue extends Component {
             onChange={e => this.onChangeResume(e)}
           />
         </div>
-        <div className="col-md-3 no-padding">
-          <button className="btn btn-primary" type="submite">
-            Sauvegarder
-          </button>
-        </div>
+        {id === 0 ? (
+          <div className="col-md-12 no-padding padding-top-10">
+            <button className="btn btn-primary" type="submite">
+              Ajouter
+            </button>
+          </div>
+        ) : (
+          <div className="col-md-12 no-padding padding-top-10 btn-group">
+            <button className="btn btn-primary" type="submite">
+              Modifier
+            </button>
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={e => this.closeForm(e)}
+            >
+              Annuler
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
@@ -207,8 +234,9 @@ class Travelogue extends Component {
             {curStep.title}
           </NavItem>
         );
+        stepDate = "";
         if (curStep.from !== null) stepDate = <span>{curStep.from} </span>;
-        if (curStep.to != null)
+        if (curStep.to !== null)
           stepDate = (
             <span>
               {curStep.from + " "}
@@ -239,33 +267,45 @@ class Travelogue extends Component {
 
     return (
       <div className="travelogue">
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container defaultActiveKey="first">
           <Row className="clearfix">
             <Col sm={3}>
               <Nav bsStyle="pills" stacked>
-                <NavItem className="tab-detail" eventKey="first">
+                <NavItem
+                  className="tab-detail"
+                  eventKey="first"
+                  onClick={e => this.closeForm(e)}
+                >
                   Mon carnet
                 </NavItem>
                 {stepsTitle.map(step => {
                   return step;
                 })}
-                <NavItem className="tab-detail" eventKey="second">
+                <NavItem
+                  className="tab-detail"
+                  eventKey="second"
+                  onClick={e => this.closeForm(e)}
+                >
                   <Icon name="plus-circle" />
                 </NavItem>
               </Nav>
             </Col>
-            <Col sm={8} className={`ticket ${ticket.status}`}>
+            <Col sm={8} className={`ticket ${ticket.status} padding-right-0 `}>
               <Tab.Content animation>
                 <Tab.Pane eventKey="first">
-                  {stepResume.map(step => {
-                    return (
-                      <div className="travel-step">
-                        <h4>{step.title}</h4>
-                        <span className="small italic light">{step.date}</span>
-                        <div className="step-resume">{step.resume}</div>
-                      </div>
-                    );
-                  })}
+                  <div class="steps">
+                    {stepResume.map(step => {
+                      return (
+                        <div className="travel-step">
+                          <h4>{step.title}</h4>
+                          <span className="small italic light">
+                            {step.date}
+                          </span>
+                          <div className="step-resume">{step.resume}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
                   {this.getForm(title, resume, from, to)}
                 </Tab.Pane>
                 {stepResume.map(step => {
@@ -295,7 +335,7 @@ class Travelogue extends Component {
                           </div>
                         </div>
                       ) : (
-                        this.getForm(title, resume, from, to)
+                        this.getForm(title, resume, from, to, step.id)
                       )}
                     </Tab.Pane>
                   );

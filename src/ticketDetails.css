@@ -103,9 +103,15 @@ i.category {
   border-bottom: 1px inset #cbd2d9;
   padding: 10px 0px;
 }
+.travel-step:last-of-type {
+  border-bottom: none;
+  padding: 10px 0px;
+}
 
 #formTravelogue {
   margin-top: 10px;
+  border-top: 1px solid #cbd2d9;
+  padding-right: 15px;
 }
 
 .travel-step:last-child {
@@ -114,4 +120,9 @@ i.category {
 
 .step-resume {
   white-space: pre-line;
+}
+
+.steps {
+  max-height: 450px;
+  overflow-y: scroll;
 }
