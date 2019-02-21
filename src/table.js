@@ -5,6 +5,13 @@ import TicketEdit from "./ticketEdit.js";
 import "./table.css";
 import Icon from "./Icon.js";
 
+const STATUS = [
+  { value: "desire", label: "Envie" },
+  { value: "planned", label: "Prévu" },
+  { value: "current", label: "En cours" },
+  { value: "finished", label: "Terminé" }
+];
+
 class Table extends Component {
   state = {
     editTicket: "",
@@ -41,6 +48,11 @@ class Table extends Component {
   render() {
     const { status, tickets, onDeleteTicket } = this.props;
     const { showTable } = this.state;
+    const labelStatus = STATUS.map(curStatus => {
+      if (curStatus.value === status) {
+        return curStatus.label;
+      }
+    });
     return (
       <div
         className={"table table-droppable table-" + status + " droppable"}
@@ -50,10 +62,10 @@ class Table extends Component {
         }}
       >
         <div
-          className={"label-ticket col-md-12"}
+          className={"label-ticket " + status + " col-md-12"}
           onClick={e => this.showTable(e)}
         >
-          <span className="uppercase">{status} </span>
+          <span className="uppercase">{labelStatus} </span>
           <span className="small italic">{tickets.length + " voyage(s) "}</span>
           {showTable === "show" ? (
             <Icon name="caret-up" />

@@ -85,9 +85,9 @@ class Forecasts extends Component {
               <li>
                 <span className="bold">Priorité</span>
                 {ticket.status === "finished" || ticket.status === "current" ? (
-                  <span className="right margin-right-20 bold">Fait</span>
+                  <span className="margin-right-10 bold">Fait</span>
                 ) : (
-                  <span className="right bold">Supprimer</span>
+                  <span className="bold">Supprimer</span>
                 )}
               </li>
               {ticket.forecasts.map(forecast => (

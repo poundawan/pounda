@@ -354,7 +354,7 @@ class Expenses extends Component {
                     {expense.amount}
                     {expense.currency}
                   </span>
-                  <div className="right">
+                  <div className="action-icon">
                     <Icon
                       name="trash-alt"
                       title="Supprimer"
@@ -375,7 +375,7 @@ class Expenses extends Component {
               className="form-inline"
               onSubmit={e => this.onSubmit(e, ticket)}
             >
-              <div className="form-group">
+              <div className="flex">
                 <select
                   className="form-control exp-cat"
                   onChange={e => this.onChangeCategory(e)}
@@ -417,6 +417,8 @@ class Expenses extends Component {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div>
                 <button className="btn btn-primary right" type="submite">
                   Ajouter
                 </button>

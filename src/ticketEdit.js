@@ -283,7 +283,7 @@ class TicketEdit extends Component {
             </button>
             <button
               type="button"
-              className="btn btn-outline-primary btn-block"
+              className="btn btn-outline-dark btn-block"
               onClick={e => this.onDeleteTicket(e, id)}
             >
               Supprimer

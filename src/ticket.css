@@ -2,6 +2,7 @@
   margin-bottom: 15px;
   background: #f5f7fa;
   border-top: 17px solid;
+  border-color: #7b8794;
   padding-bottom: 10px;
   box-shadow: 2px 2px 4px 2px #9aa5b1;
 }
@@ -15,6 +16,7 @@
   text-align: left;
 }
 
+/*
 .ticket.desire {
   border-color: #7b8794;
 }
@@ -29,7 +31,7 @@
 
 .ticket.finished {
   border-color: #40c3f7;
-}
+}*/
 
 .ticket a.close {
   margin-top: -16px;
@@ -87,7 +89,7 @@
 .rating {
   margin-top: 10px;
   font-size: 25px;
-  color: #9aa5b1;
+  color: #cbd2d9;
 }
 
 .rating i:hover {
@@ -133,7 +135,7 @@
   position: absolute;
   bottom: -15px;
   right: -13px;
-  color: #7b8794;
+  color: #9aa5b1;
 }
 
 .transportIcon .iconOutside {
@@ -153,7 +155,9 @@
 }
 .ratingIcon .iconOutside {
   font-size: 35px;
+  color: #7b8794;
 }
+/*
 .colorfinished {
   color: #40c3f7;
 }
@@ -168,4 +172,4 @@
 
 .colordesire {
   color: #7b8794;
-}
+}*/

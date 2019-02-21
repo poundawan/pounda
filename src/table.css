@@ -17,3 +17,16 @@
   box-shadow: 2px 2px 4px 2px #9aa5b1;
   background-color: #e4e7eb;
 }
+
+.label-ticket.desire {
+  background-color: #3e4c59;
+}
+.label-ticket.planned {
+  background-color: #f7c948;
+}
+.label-ticket.current {
+  background-color: #0c6b58;
+}
+.label-ticket.finished {
+  background-color: #2bb0ed;
+}

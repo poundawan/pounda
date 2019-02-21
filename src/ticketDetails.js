@@ -20,7 +20,7 @@ class TicketDetails extends Component {
     const active = this.state.active;
     return (
       <div className="container-fluid detail">
-        <Navbar className="navbar navbar-dark bg-dark">
+        <Navbar className={"navbar navbar-dark bg-" + ticket.status}>
           <Navbar.Header>
             <Navbar.Toggle />
           </Navbar.Header>

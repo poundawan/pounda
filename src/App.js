@@ -227,7 +227,7 @@ class App extends Component {
     let orderedTable = this.orderingTable(tables, tickets);
     return (
       <div>
-        <nav className="navbar navbar-dark bg-dark">
+        <nav className="navbar navbar-light">
           <span className="navbar-brand mb-0 h1">
             Pounda <Icon name="compass" className="fa-spin" />
           </span>

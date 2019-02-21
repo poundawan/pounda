@@ -69,7 +69,7 @@ class MyLuggage extends Component {
             <ul>
               <li>
                 <span className="bold">Items</span>
-                <span className="right margin-right-20 bold">Dedans</span>
+                <span className="bold">Dedans</span>
               </li>
               {ticket.myLuggage.map(item => (
                 <li

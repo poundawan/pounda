@@ -77,7 +77,7 @@ class ToDoListBL extends Component {
                   onClick={e => this.onUpdateStatut(e, ticket, todo.id, "done")}
                 >
                   <span>{todo.title}</span>
-                  <span className="right">
+                  <span className="action-icon">
                     <Icon
                       name="trash-alt"
                       title="Supprimer"

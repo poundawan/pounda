@@ -1,8 +1,19 @@
 body {
   color: #1f2933;
+  background-image: url("./bg-2.png");
   background-color: #f7f7f7;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
+  background-size: cover;
+  background-position-y: 40px;
+  background-repeat: no-repeat;
+}
+
+.navbar-light {
+  background-color: #f5f7fa !important;
+  border-top: 10px solid #3ebd93;
+  border-bottom: 2px solid #cbd2d9;
+  color: #323f4b;
 }
 
 .pounda.main-container {
@@ -20,6 +31,7 @@ body {
   height: auto !important;
   padding: 0px 15px;
   line-height: 8px;
+  margin-top: 15px;
 }
 .navbar {
   border-radius: 0 !important;
@@ -98,6 +110,22 @@ body {
   background-color: #323f4b !important;
 }
 
+.bg-desire {
+  background-color: #3e4c59 !important;
+}
+
+.bg-planned {
+  background-color: #f7c948 !important;
+}
+
+.bg-current {
+  background-color: #0c6b58 !important;
+}
+
+.bg-finished {
+  background-color: #2bb0ed !important;
+}
+
 a.bg-dark:hover,
 a.bg-dark:focus,
 button.bg-dark:hover,
@@ -115,6 +143,9 @@ button.bg-dark:focus {
 }
 .margin-left {
   margin-left: 15px;
+}
+.margin-right-10 {
+  margin-right: 10px;
 }
 .margin-right-20 {
   margin-right: 20px;
@@ -140,6 +171,11 @@ button.bg-dark:focus {
   padding-right: 0px;
 }
 
+textarea {
+  max-width: 100%;
+  min-width: 100%;
+}
+
 .tables-container {
   display: flex;
   align-items: stretch;
@@ -149,8 +185,7 @@ button.bg-dark:focus {
 
 .table-container {
   display: flex;
-  align-items: stretch;
-  flex-grow: 1;
+  align-items: flex-start;
 }
 
 .btn-outline-primary {
@@ -234,7 +269,7 @@ button.bg-dark:focus {
 }
 
 .priority {
-  float: left;
+  width: 15%;
   margin-right: 5px;
   cursor: pointer;
 }
@@ -264,6 +299,11 @@ button.bg-dark:focus {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .stack {

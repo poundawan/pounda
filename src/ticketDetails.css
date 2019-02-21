@@ -5,7 +5,7 @@
 }
 
 .details {
-  padding: 15px;
+  padding: 15px 20px;
 }
 
 .expensesListe {
@@ -96,7 +96,7 @@ i.category {
 }
 
 .forecast-title {
-  width: 80%;
+  width: 70%;
 }
 
 .travel-step {

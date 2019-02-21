@@ -1,7 +1,3 @@
-.exp-cat {
-  font-size: 13px;
-}
-
 input.exp-amount {
   max-width: 128px;
 }
@@ -22,10 +18,15 @@ select.exp-currencies {
   width: auto;
   display: inline;
   padding: 6px;
+  font-size: 13px;
 }
 
 .expenses .detailForm button {
   margin-top: 10px;
+}
+
+.category {
+  color: #9aa5b1;
 }
 
 @media (max-width: 768px) {
