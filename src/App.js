@@ -38,7 +38,7 @@ class App extends Component {
         to: "10/06/2016",
         transport: "plane",
         resume: "ZEeeeeeen !!!",
-        rating: "grin-stars",
+        rating: "grin-alt",
         forecasts: [
           { id: 1, title: "tokyo", status: "done", priority: 3 },
           { id: 2, title: "kyoto", status: "done", priority: 3 },
@@ -119,7 +119,7 @@ class App extends Component {
         to: "07/06/2017",
         transport: "plane",
         resume: "Mouillé !!!",
-        rating: "grin-stars"
+        rating: "smile"
       },
       {
         id: 5,

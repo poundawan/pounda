@@ -25,7 +25,7 @@ class BeforeLeaving extends Component {
                 </NavItem>
               </Nav>
             </Col>
-            <Col sm={8} className={`ticket ${ticket.status}`}>
+            <Col sm={8} className={ticket.status}>
               <Tab.Content animation>
                 <Tab.Pane eventKey="first">
                   <ToDoListBL ticket={ticket} onUpdateTicket={onUpdateTicket} />

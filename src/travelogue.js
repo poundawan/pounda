@@ -290,7 +290,7 @@ class Travelogue extends Component {
                 </NavItem>
               </Nav>
             </Col>
-            <Col sm={8} className={`ticket ${ticket.status} padding-right-0 `}>
+            <Col sm={8} className={`${ticket.status} padding-right-0 `}>
               <Tab.Content animation>
                 <Tab.Pane eventKey="first">
                   <div class="steps">

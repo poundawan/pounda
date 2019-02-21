@@ -1,5 +1,5 @@
 .detail {
-  background-color: #e4e7eb;
+  background-color: #f5f7fa;
   padding-right: 0px;
   padding-left: 0px;
 }
@@ -13,20 +13,20 @@
   overflow-x: scroll;
 }
 
-.detail .ticket ul {
+.detail .details ul {
   padding: 0;
   list-style: none;
   margin-left: -15px;
   margin-right: -15px;
 }
 
-.detail .ticket ul li {
+.detail .details ul li {
   padding: 4px;
   display: flex;
   justify-content: space-between;
 }
 
-.detail .ticket .total {
+.detail .details .total {
   font-weight: 500;
 }
 

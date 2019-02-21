@@ -19,14 +19,22 @@
 }
 
 .label-ticket.desire {
-  background-color: #3e4c59;
+  background-color: #cbd2d9;
+  border-top: 3px solid #7b8794;
+  color: #323f4b;
 }
 .label-ticket.planned {
-  background-color: #f7c948;
+  background-color: #fff3c4;
+  border-top: 3px solid #f0b429;
+  color: #de911d;
 }
 .label-ticket.current {
-  background-color: #0c6b58;
+  background-color: #effcf6;
+  border-top: 3px solid #199473;
+  color: #0c6b58;
 }
 .label-ticket.finished {
-  background-color: #2bb0ed;
+  background-color: #e3f8ff;
+  border-top: 3px solid #40c3f7;
+  color: #127fbf;
 }

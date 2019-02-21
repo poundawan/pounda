@@ -140,7 +140,7 @@ class TicketEdit extends Component {
     return (
       <div className={`ticket ${status} col-md-12`}>
         <form
-          className="form-horizontal col-md-12"
+          className="form-horizontal col-md-12 editTicketForm"
           onSubmit={e => this.onSubmit(e)}
         >
           <div className="form-group">

@@ -1,14 +1,13 @@
 .ticket {
   margin-bottom: 15px;
   background: #f5f7fa;
-  border-top: 17px solid;
   border-color: #7b8794;
   padding-bottom: 10px;
   box-shadow: 2px 2px 4px 2px #9aa5b1;
 }
 
 .ticket > div {
-  padding: 10px 5px;
+  padding: 15px 5px 10px 5px;
 }
 
 .ticket.forecasts,
@@ -16,22 +15,21 @@
   text-align: left;
 }
 
-/*
 .ticket.desire {
   border-color: #7b8794;
 }
 
 .ticket.planned {
-  border-color: #fce588;
+  border-color: #f0b429;
 }
 
 .ticket.current {
-  border-color: #0c6b58;
+  border-color: #199473;
 }
 
 .ticket.finished {
   border-color: #40c3f7;
-}*/
+}
 
 .ticket a.close {
   margin-top: -16px;
@@ -43,6 +41,22 @@
 }
 .ticket a.close:hover {
   color: #cbd2d9;
+}
+
+.title-ticket.desire {
+  color: #323f4b;
+}
+
+.title-ticket.planned {
+  color: #de911d;
+}
+
+.title-ticket.current {
+  color: #0c6b58;
+}
+
+.title-ticket.finished {
+  color: #127fbf;
 }
 
 .title-ticket {
@@ -126,8 +140,64 @@
   color: #8a041a;
 }
 
+.desire .actionIcon {
+  background-color: #cbd2d9;
+  color: #323f4b;
+}
+.desire .actionIcon span.action-icon {
+  color: #323f4b;
+  margin-left: 0px;
+}
+.desire .actionIcon span.action-icon:hover {
+  color: #1f2933;
+}
+
+.planned .actionIcon {
+  background-color: #fff3c4;
+  color: #de911d;
+}
+.planned .actionIcon span.action-icon {
+  color: #de911d;
+  margin-left: 0px;
+}
+.planned .actionIcon span.action-icon:hover {
+  color: #b44d12;
+}
+
+.current .actionIcon {
+  background-color: #effcf6;
+  color: #0c6b58;
+}
+.current .actionIcon span.action-icon {
+  color: #0c6b58;
+  margin-left: 0px;
+}
+.current .actionIcon span.action-icon:hover {
+  color: #014d40;
+}
+
+.finished .actionIcon {
+  background-color: #e3f8ff;
+}
+.finished .actionIcon span.action-icon {
+  color: #127fbf;
+  margin-left: 0px;
+}
+.finished .actionIcon span.action-icon:hover {
+  color: #0b69a3;
+}
+
 .actionIcon {
-  float: right;
+  position: absolute;
+  width: 30px;
+  right: 0px;
+  top: 0;
+  height: 100%;
+  padding-right: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .transportIcon {
@@ -145,18 +215,47 @@
 .ratingIcon {
   float: right;
   position: absolute;
-  top: -20px;
-  left: -17px;
+  top: -5px;
+  left: -13px;
   color: #f5f7fa;
 }
 .ratingIcon .iconInside {
-  font-size: 25px;
-  line-height: 35px;
+  font-size: 23px;
+  line-height: 30px;
 }
 .ratingIcon .iconOutside {
-  font-size: 35px;
+  font-size: 30px;
+  color: #40c3f7;
+}
+
+.iconTransport {
+  font-size: 15px;
+  float: right;
+  margin-right: 25px;
+  line-height: inherit;
+  color: #9aa5b1;
+}
+
+.editTicketForm {
+  padding-top: 15px;
+}
+/*
+.desire .iconTransport {
   color: #7b8794;
 }
+
+.planned .iconTransport {
+  color: #f0b429;
+}
+
+.current .iconTransport {
+  color: #199473;
+}
+
+.finished .iconTransport {
+  color: #40c3f7;
+}*/
+
 /*
 .colorfinished {
   color: #40c3f7;

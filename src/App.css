@@ -53,11 +53,15 @@ body {
 .navbar-dark .navbar-brand:focus {
   color: #f5f7fa;
 }
+.navbar-default {
+  background-color: #f8f8f8;
+  border-color: #f5f7fa;
+}
 
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .active > a:hover {
-  background-color: #e4e7eb;
+  background-color: #f5f7fa;
 }
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.5);
@@ -111,19 +115,55 @@ body {
 }
 
 .bg-desire {
-  background-color: #3e4c59 !important;
+  background-color: #cbd2d9;
+  border-top: 3px solid #7b8794;
+  color: #323f4b;
+}
+.bg-desire .navbar-nav > li > a {
+  color: #323f4b;
+  padding: 14px 12px;
+}
+.bg-desire .navbar-nav > li > a:hover {
+  color: #1f2933;
 }
 
 .bg-planned {
-  background-color: #f7c948 !important;
+  background-color: #fff3c4;
+  border-top: 3px solid #f0b429;
+  color: #de911d;
+}
+.bg-planned .navbar-nav > li > a {
+  color: #de911d;
+  padding: 14px 12px;
+}
+.bg-planned .navbar-nav > li > a:hover {
+  color: #b44d12;
 }
 
 .bg-current {
-  background-color: #0c6b58 !important;
+  background-color: #effcf6;
+  border-top: 3px solid #199473;
+  color: #0c6b58;
+}
+.bg-current .navbar-nav > li > a {
+  color: #0c6b58;
+  padding: 14px 12px;
+}
+.bg-current .navbar-nav > li > a:hover {
+  color: #014d40;
 }
 
 .bg-finished {
-  background-color: #2bb0ed !important;
+  background-color: #e3f8ff;
+  border-top: 3px solid #40c3f7;
+  color: #127fbf;
+}
+.bg-finished .navbar-nav > li > a {
+  color: #127fbf;
+  padding: 14px 12px;
+}
+.bg-finished .navbar-nav > li > a:hover {
+  color: #035388;
 }
 
 a.bg-dark:hover,
@@ -329,6 +369,7 @@ textarea {
   width: 100%;
   color: #f5f7fa;
 }
+
 .action-icon:hover {
   cursor: pointer;
   color: #616e7c;

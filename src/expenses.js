@@ -341,7 +341,7 @@ class Expenses extends Component {
       colspan = currencies.length + 1;
     }
     return (
-      <div className={`ticket expenses ${ticket.status} col-md-12`}>
+      <div className={`expenses ${ticket.status} col-md-12`}>
         <div className="col-md-12">
           {ticket.expenses && ticket.expenses.length > 0 ? (
             <ul>
