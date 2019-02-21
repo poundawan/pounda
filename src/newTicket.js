@@ -239,7 +239,7 @@ class NewTicket extends Component {
             className="btn btn-primary"
             onClick={e => this.displayForm(e, "show")}
           >
-            Nouveau Ticket
+            Nouveau Voyage
           </button>
         )}
       </div>

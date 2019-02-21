@@ -100,7 +100,7 @@ class Ticket extends Component {
               </span>
               <span className="action-icon" title="See more informations">
                 <Icon
-                  name="times"
+                  name="trash"
                   onClick={e => this.onDeleteTicket(e, ticket.id)}
                 />
               </span>
