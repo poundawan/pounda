@@ -160,7 +160,7 @@ body {
 }
 .bg-finished .navbar-nav > li > a {
   color: #127fbf;
-  padding: 14px 12px;
+  padding: 14px 11px;
 }
 .bg-finished .navbar-nav > li > a:hover {
   color: #035388;
@@ -333,6 +333,11 @@ textarea {
 .small {
   font-size: 13px;
 }
+
+.very-small {
+  font-size: 10px;
+}
+
 .italic {
   font-style: italic;
 }
@@ -394,6 +399,19 @@ textarea {
 @media (min-width: 768px) {
   .navbar-collapse.collapse {
     padding: 0px;
+  }
+
+  .form-inline .form-control.input-50 {
+    width: 50%;
+  }
+  .form-inline .form-control.input-33 {
+    width: 33.33333333%;
+  }
+  .form-inline .form-control.input-75 {
+    width: 75%;
+  }
+  .form-inline .form-control.input-25 {
+    width: 25%;
   }
 }
 

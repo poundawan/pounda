@@ -90,7 +90,7 @@ class ToDoListBL extends Component {
             </ul>
           ) : (
             <span>
-              Ne laissez rien au hazard! Pensez à toutes vos démarches avant de
+              Ne laissez rien au hasard! Pensez à toutes vos démarches avant de
               partir (visa, vaccin, devise , ...).
             </span>
           )}

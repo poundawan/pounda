@@ -5,6 +5,8 @@ import BeforeLeaving from "./beforeLeaving.js";
 import Expenses from "./expenses.js";
 import Travelogue from "./travelogue.js";
 import "./ticketDetails.css";
+import Icon from "./Icon.js";
+import Organized from "./organized.js";
 
 class TicketDetails extends Component {
   state = {
@@ -32,7 +34,7 @@ class TicketDetails extends Component {
                 className={active === "general" ? "active" : ""}
                 onClick={e => this.changeActive(e, "general")}
               >
-                Général
+                <Icon name="home" />
               </NavItem>
               <NavItem
                 eventKey={2}
@@ -44,14 +46,22 @@ class TicketDetails extends Component {
               </NavItem>
               <NavItem
                 eventKey={3}
+                href={"#organized" + ticket.id}
+                className={active === "organized" ? "active" : ""}
+                onClick={e => this.changeActive(e, "organized")}
+              >
+                S'organiser
+              </NavItem>
+              <NavItem
+                eventKey={4}
                 href={"#carnet" + ticket.id}
                 className={active === "carnet" ? "active" : ""}
                 onClick={e => this.changeActive(e, "carnet")}
               >
-                Carnet de bord
+                Carnet
               </NavItem>
               <NavItem
-                eventKey={4}
+                eventKey={5}
                 href={"#expenses" + ticket.id}
                 className={active === "expenses" ? "active" : ""}
                 onClick={e => this.changeActive(e, "expenses")}
@@ -59,7 +69,7 @@ class TicketDetails extends Component {
                 Dépenses
               </NavItem>
               <NavItem
-                eventKey={5}
+                eventKey={6}
                 href={"#agenda" + ticket.id}
                 className={active === "agenda" ? "active" : ""}
                 onClick={e => this.changeActive(e, "agenda")}
@@ -67,7 +77,7 @@ class TicketDetails extends Component {
                 Agenda
               </NavItem>
               <NavItem
-                eventKey={6}
+                eventKey={7}
                 href={"#photos" + ticket.id}
                 className={active === "photos" ? "active" : ""}
                 onClick={e => this.changeActive(e, "photos")}
@@ -97,6 +107,9 @@ class TicketDetails extends Component {
           </div>
           <div className={active === "forecasts" ? "" : "hidden"}>
             <BeforeLeaving ticket={ticket} onUpdateTicket={onUpdateTicket} />
+          </div>
+          <div className={active === "organized" ? "" : "hidden"}>
+            <Organized ticket={ticket} onUpdateTicket={onUpdateTicket} />
           </div>
           <div className={active === "expenses" ? "" : "hidden"}>
             <Expenses ticket={ticket} onUpdateTicket={onUpdateTicket} />

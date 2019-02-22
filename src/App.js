@@ -7,7 +7,7 @@ import Icon from "./Icon";
 
 class App extends Component {
   state = {
-    lastID: 7,
+    lastID: 8,
     tables: ["desire", "planned", "current", "finished"],
     tickets: [
       {
@@ -20,7 +20,6 @@ class App extends Component {
         ],
         from: "",
         to: "",
-        transports: [],
         resume: "un jour peut-être",
         forecasts: [
           { id: 1, title: "Pérou", status: "none", priority: 3 },
@@ -36,7 +35,19 @@ class App extends Component {
         places: [{ id: 90, country: "Japon" }],
         from: "21/05/2016",
         to: "10/06/2016",
-        transports: ["plane"],
+        transports: [
+          {
+            id: 1,
+            category: "plane",
+            label: "Avion",
+            from: "Lyon",
+            to: "Tokyo",
+            start: "21/05/2016 11h01",
+            end: "22/05/2016 8h34",
+            amount: 600,
+            currency: "EUR"
+          }
+        ],
         resume: "ZEeeeeeen !!!",
         rating: "grin-alt",
         forecasts: [
@@ -107,7 +118,6 @@ class App extends Component {
         places: [{ id: 170, country: "Sri Lanka" }],
         from: "",
         to: "",
-        transports: ["plane"],
         resume: "Bientôt !!!"
       },
       {
@@ -117,7 +127,6 @@ class App extends Component {
         places: [{ id: 131, country: "Norvège" }],
         from: "28/05/2017",
         to: "07/06/2017",
-        transports: ["plane"],
         resume: "Mouillé !!!",
         rating: "smile"
       },
@@ -128,7 +137,6 @@ class App extends Component {
         places: [{ id: 66, country: "France" }],
         from: "01/12/2018",
         to: "",
-        transports: ["hiking"],
         resume: ""
       },
       {
@@ -148,7 +156,6 @@ class App extends Component {
         ],
         from: "23/01/2018",
         to: "07/06/2018",
-        transports: ["plane"],
         resume: "Enorme !!!",
         rating: "grin-stars"
       },
@@ -163,7 +170,6 @@ class App extends Component {
         ],
         from: "",
         to: "",
-        transports: ["shuttle-van"],
         resume: "Tour d'Europe en van."
       }
     ]
@@ -196,7 +202,7 @@ class App extends Component {
     this.setState({ tickets });
   };
 
-  onSendTicket = (title, places, from, to, transports, status, resume) => {
+  onSendTicket = (title, places, from, to, status, resume) => {
     const tickets = this.state.tickets;
     let lastID = this.state.lastID;
     tickets.push({
@@ -205,7 +211,6 @@ class App extends Component {
       places,
       from,
       to,
-      transports,
       status,
       resume
     });

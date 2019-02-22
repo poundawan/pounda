@@ -51,7 +51,6 @@ class Ticket extends Component {
     let placesArray = [];
     let places = "";
     let ticketClass = status + " col-md-12";
-    let transportsLength = ticket.transports.length;
     if (this.state.detail) {
       if (ticket.places.length > 0) {
         places = ticket.places.map(place => {
@@ -79,45 +78,21 @@ class Ticket extends Component {
 
         <div>
           <span className={` title-ticket ${status}`}>{ticket.title}</span>
-          {ticket.transports.length > 0 && showTicket ? (
-            ticket.transports.length < 4 || this.state.detail ? (
-              <div className="transportsIcon">
-                {ticket.transports.map(transport => {
-                  return (
-                    <span>
-                      <Icon name={transport} className="iconTransport" />
-                    </span>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="transportsIcon">
-                <span>
-                  <Icon name={ticket.transports[0]} className="iconTransport" />
-                </span>
-                <span>
-                  <Icon name={ticket.transports[1]} className="iconTransport" />
-                </span>
-                <span className="iconTransport">(+{transportsLength - 2})</span>
-              </div>
-            )
-          ) : (
-            ""
-          )}
+
           {!this.state.detail ? (
             <div className="actionIcon">
               <span
                 aria-hidden="true"
-                title="edit"
+                title="Modifier"
                 className="action-icon"
                 onClick={e => this.showForm(e, ticket.id)}
               >
                 <Icon name="edit" />
               </span>
-              <span className="action-icon" title="See more informations">
+              <span className="action-icon" title="Voir plus d'informations">
                 <Icon name="info-circle" onClick={this.handleShow} />
               </span>
-              <span className="action-icon" title="See more informations">
+              <span className="action-icon" title="Supprimer le voyage">
                 <Icon
                   name="trash"
                   onClick={e => this.onDeleteTicket(e, ticket.id)}

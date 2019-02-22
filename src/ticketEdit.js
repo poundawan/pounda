@@ -8,8 +8,6 @@ import "./ticket.css";
 import { COUNTRIES } from "./countries.js";
 import { MultiSelect } from "react-sm-select";
 import "react-sm-select/dist/styles.css";
-import Icon from "./Icon";
-import { TRANSPORTS } from "./transports.js";
 
 class TicketEdit extends Component {
   getDate = date => {
@@ -37,7 +35,6 @@ class TicketEdit extends Component {
     places: this.getPlaces(this.props.ticket.places),
     from: this.getDate(this.props.ticket.from),
     to: this.getDate(this.props.ticket.to),
-    transports: this.props.ticket.transports,
     resume: this.props.ticket.resume,
     rating: this.props.ticket.rating
   };
@@ -70,9 +67,6 @@ class TicketEdit extends Component {
   onChangeStatus(e) {
     this.setState({ status: e.target.value });
   }
-  onChangeTransport(e) {
-    this.setState({ transports: e.target.value });
-  }
   onChangeResume(e) {
     this.setState({ resume: e.target.value.substring(0, 150) });
   }
@@ -85,7 +79,6 @@ class TicketEdit extends Component {
     let from = "";
     let to = "";
     let places = [];
-    let transports = [];
     if (this.state.title.length === 0) {
       return alert("Le titre est vide");
     }
@@ -100,20 +93,11 @@ class TicketEdit extends Component {
         });
       });
     }
-    if (this.state.transports.length > 0) {
-      this.state.transports.map(transport => {
-        TRANSPORTS.filter(vehicle => {
-          if (vehicle.value === transport) {
-            transports.push(transport);
-          }
-        });
-      });
-    }
+
     this.setState({
       id: "",
       title: "",
       places: [],
-      transports: [],
       from: null,
       to: null,
       resume: ""
@@ -121,24 +105,13 @@ class TicketEdit extends Component {
     this.props.onUpdateTicket({
       ...this.state,
       places,
-      transports,
       from,
       to
     });
   }
 
   render() {
-    const {
-      id,
-      status,
-      title,
-      places,
-      from,
-      to,
-      transports,
-      resume,
-      rating
-    } = this.state;
+    const { id, status, title, places, from, to, resume, rating } = this.state;
     const ticket = {
       id: id,
       status: status,
@@ -146,7 +119,6 @@ class TicketEdit extends Component {
       places: this.props.ticket.places,
       from: from,
       to: to,
-      transports: transports,
       resume: resume,
       rating: rating
     };
@@ -244,19 +216,7 @@ class TicketEdit extends Component {
               </select>
             </div>
           </div>
-          <div className="form-group">
-            <label className="col-sm-12 col-form-label">Transport </label>
-            <div className="col-sm-12">
-              <MultiSelect
-                options={TRANSPORTS}
-                mode="tags"
-                enableSearch={true}
-                resetable={true}
-                value={transports}
-                onChange={value => this.setState({ transports: value })}
-              />
-            </div>
-          </div>
+
           <div className="form-group">
             <label className="col-sm-12 col-form-label">Résumé</label>
             <div className="col-sm-12">

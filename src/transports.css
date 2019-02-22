@@ -1,0 +1,24 @@
+#formTransports .react-datepicker-wrapper {
+  width: 50%;
+}
+
+#formTransports .react-datepicker-wrapper .form-control {
+  width: 100%;
+}
+
+#formTransports .form-control {
+  margin-top: 10px;
+}
+
+.transports .onHover {
+  align-items: center;
+}
+
+.transports .onHover div {
+  display: flex;
+  flex-direction: column;
+}
+
+.transp-currencies {
+  max-width: 75px;
+}
