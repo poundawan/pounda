@@ -10,10 +10,11 @@
 }
 
 .label-form {
-  background-color: #323f4b;
+  background-color: #f5f7fa;
+  border-top: 3px solid #1f2933;
   text-transform: uppercase;
   text-align: center;
-  color: #fff;
+  color: #323f4b;
   margin-bottom: 10px;
   height: 30px;
   line-height: 30px;

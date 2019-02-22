@@ -200,6 +200,30 @@
   align-items: center;
 }
 
+.transportsIcon {
+  position: absolute;
+  width: 30px;
+  right: 35px;
+  top: 0;
+  height: 100%;
+  padding-right: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+}
+
+.details .transportsIcon {
+  right: 0px;
+  flex-wrap: wrap;
+}
+
+.details .transportsIcon .iconTransport {
+  line-height: 25px;
+  margin-right: 5px;
+}
+
 .transportIcon {
   float: right;
   position: absolute;
@@ -230,9 +254,6 @@
 
 .iconTransport {
   font-size: 15px;
-  float: right;
-  margin-right: 25px;
-  line-height: inherit;
   color: #9aa5b1;
 }
 

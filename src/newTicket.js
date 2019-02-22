@@ -6,6 +6,8 @@ import "./newTicket.css";
 import { COUNTRIES } from "./countries.js";
 import { MultiSelect } from "react-sm-select";
 import "react-sm-select/dist/styles.css";
+import Icon from "./Icon";
+import { TRANSPORTS } from "./transports.js";
 
 const today = new Date();
 
@@ -16,7 +18,7 @@ class NewTicket extends Component {
     places: [],
     from: today,
     to: today,
-    transport: "none",
+    transports: [],
     resume: "",
     showForm: "hide"
   };
@@ -35,7 +37,7 @@ class NewTicket extends Component {
       : this.setState({ to: date });
   };
   onChangeTransport(e) {
-    this.setState({ transport: e.target.value });
+    this.setState({ transports: e.target.value });
   }
   onChangeStatus(e) {
     this.setState({ status: e.target.value });
@@ -48,6 +50,7 @@ class NewTicket extends Component {
     let from = "";
     let to = "";
     let places = [];
+    let transports = [];
     if (this.state.title.length === 0) {
       return alert("Le titre est vide");
     }
@@ -62,9 +65,19 @@ class NewTicket extends Component {
         });
       });
     }
+    if (this.state.transports.length > 0) {
+      this.state.transports.map(transport => {
+        TRANSPORTS.filter(vehicle => {
+          if (vehicle.value === transport) {
+            transports.push(transport);
+          }
+        });
+      });
+    }
     this.setState({
       title: "",
       places: [],
+      transports: [],
       from: today,
       to: today,
       resume: ""
@@ -74,7 +87,7 @@ class NewTicket extends Component {
       places,
       from,
       to,
-      this.state.transport,
+      transports,
       this.state.status,
       this.state.resume
     );
@@ -92,7 +105,15 @@ class NewTicket extends Component {
     this.setState({ multiSelect: optionsList });
   }
   render() {
-    const { title, places, from, to, resume, showForm } = this.state;
+    const {
+      title,
+      places,
+      from,
+      to,
+      resume,
+      showForm,
+      transports
+    } = this.state;
     return (
       <div className="container-fluid">
         {showForm === "show" ? (
@@ -189,25 +210,24 @@ class NewTicket extends Component {
                 </select>
               </div>
               <label className="col-sm-2 col-form-label">
-                Moyen de transport
+                Transports
+                <span className="right">
+                  {transports.length > 0
+                    ? transports.map(transport => {
+                        return <Icon name={transport} />;
+                      })
+                    : ""}
+                </span>
               </label>
               <div className="col-sm-4">
-                <select
-                  className="form-control"
-                  onChange={e => this.onChangeTransport(e)}
-                >
-                  <option value="none">Inconnu</option>
-                  <option value="hiking">A pied</option>
-                  <option value="plane">Avion</option>
-                  <option value="ship">Bateau</option>
-                  <option value="bus">Bus</option>
-                  <option value="motorcycle">Moto</option>
-                  <option value="thumbs-up">Stop</option>
-                  <option value="train">Train</option>
-                  <option value="shuttle-van">Van</option>
-                  <option value="bicycle">Vélo</option>
-                  <option value="car">Voiture</option>
-                </select>
+                <MultiSelect
+                  options={TRANSPORTS}
+                  mode="tags"
+                  enableSearch={true}
+                  resetable={true}
+                  value={transports}
+                  onChange={value => this.setState({ transports: value })}
+                />
               </div>
             </div>
             <div className="form-group col-md-12">

@@ -20,7 +20,7 @@ class App extends Component {
         ],
         from: "",
         to: "",
-        transport: "",
+        transports: [],
         resume: "un jour peut-être",
         forecasts: [
           { id: 1, title: "Pérou", status: "none", priority: 3 },
@@ -36,7 +36,7 @@ class App extends Component {
         places: [{ id: 90, country: "Japon" }],
         from: "21/05/2016",
         to: "10/06/2016",
-        transport: "plane",
+        transports: ["plane"],
         resume: "ZEeeeeeen !!!",
         rating: "grin-alt",
         forecasts: [
@@ -107,7 +107,7 @@ class App extends Component {
         places: [{ id: 170, country: "Sri Lanka" }],
         from: "",
         to: "",
-        transport: "plane",
+        transports: ["plane"],
         resume: "Bientôt !!!"
       },
       {
@@ -117,7 +117,7 @@ class App extends Component {
         places: [{ id: 131, country: "Norvège" }],
         from: "28/05/2017",
         to: "07/06/2017",
-        transport: "plane",
+        transports: ["plane"],
         resume: "Mouillé !!!",
         rating: "smile"
       },
@@ -128,7 +128,7 @@ class App extends Component {
         places: [{ id: 66, country: "France" }],
         from: "01/12/2018",
         to: "",
-        transport: "hiking",
+        transports: ["hiking"],
         resume: ""
       },
       {
@@ -148,7 +148,7 @@ class App extends Component {
         ],
         from: "23/01/2018",
         to: "07/06/2018",
-        transport: "plane",
+        transports: ["plane"],
         resume: "Enorme !!!",
         rating: "grin-stars"
       },
@@ -163,7 +163,7 @@ class App extends Component {
         ],
         from: "",
         to: "",
-        transport: "shuttle-van",
+        transports: ["shuttle-van"],
         resume: "Tour d'Europe en van."
       }
     ]
@@ -196,7 +196,7 @@ class App extends Component {
     this.setState({ tickets });
   };
 
-  onSendTicket = (title, places, from, to, transport, status, resume) => {
+  onSendTicket = (title, places, from, to, transports, status, resume) => {
     const tickets = this.state.tickets;
     let lastID = this.state.lastID;
     tickets.push({
@@ -205,7 +205,7 @@ class App extends Component {
       places,
       from,
       to,
-      transport,
+      transports,
       status,
       resume
     });

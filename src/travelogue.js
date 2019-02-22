@@ -190,7 +190,7 @@ class Travelogue extends Component {
           <textarea
             className="form-control"
             value={resume}
-            placeholder="Parles nous de cette étape"
+            placeholder="Parlez nous de cette étape"
             onChange={e => this.onChangeResume(e)}
           />
         </div>

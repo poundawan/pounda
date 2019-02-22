@@ -382,7 +382,7 @@ class Expenses extends Component {
                   value={this.state.category}
                 >
                   <option value="transport">Transport</option>
-                  <option value="fooddrink">Nouriture {"&"} Boissons</option>
+                  <option value="fooddrink">Nourriture {"&"} Boissons</option>
                   <option value="accommodation">Logement</option>
                   <option value="gift">Souvenir</option>
                   <option value="activity">Activité</option>

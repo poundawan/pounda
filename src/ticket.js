@@ -51,6 +51,7 @@ class Ticket extends Component {
     let placesArray = [];
     let places = "";
     let ticketClass = status + " col-md-12";
+    let transportsLength = ticket.transports.length;
     if (this.state.detail) {
       if (ticket.places.length > 0) {
         places = ticket.places.map(place => {
@@ -78,10 +79,28 @@ class Ticket extends Component {
 
         <div>
           <span className={` title-ticket ${status}`}>{ticket.title}</span>
-          {ticket.transport.length > 0 &&
-          ticket.transport !== "none" &&
-          showTicket ? (
-            <Icon name={ticket.transport} className="iconTransport" />
+          {ticket.transports.length > 0 && showTicket ? (
+            ticket.transports.length < 4 || this.state.detail ? (
+              <div className="transportsIcon">
+                {ticket.transports.map(transport => {
+                  return (
+                    <span>
+                      <Icon name={transport} className="iconTransport" />
+                    </span>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="transportsIcon">
+                <span>
+                  <Icon name={ticket.transports[0]} className="iconTransport" />
+                </span>
+                <span>
+                  <Icon name={ticket.transports[1]} className="iconTransport" />
+                </span>
+                <span className="iconTransport">(+{transportsLength - 2})</span>
+              </div>
+            )
           ) : (
             ""
           )}

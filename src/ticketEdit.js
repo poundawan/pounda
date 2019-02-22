@@ -8,6 +8,8 @@ import "./ticket.css";
 import { COUNTRIES } from "./countries.js";
 import { MultiSelect } from "react-sm-select";
 import "react-sm-select/dist/styles.css";
+import Icon from "./Icon";
+import { TRANSPORTS } from "./transports.js";
 
 class TicketEdit extends Component {
   getDate = date => {
@@ -35,7 +37,7 @@ class TicketEdit extends Component {
     places: this.getPlaces(this.props.ticket.places),
     from: this.getDate(this.props.ticket.from),
     to: this.getDate(this.props.ticket.to),
-    transport: this.props.ticket.transport,
+    transports: this.props.ticket.transports,
     resume: this.props.ticket.resume,
     rating: this.props.ticket.rating
   };
@@ -69,7 +71,7 @@ class TicketEdit extends Component {
     this.setState({ status: e.target.value });
   }
   onChangeTransport(e) {
-    this.setState({ transport: e.target.value });
+    this.setState({ transports: e.target.value });
   }
   onChangeResume(e) {
     this.setState({ resume: e.target.value.substring(0, 150) });
@@ -83,6 +85,7 @@ class TicketEdit extends Component {
     let from = "";
     let to = "";
     let places = [];
+    let transports = [];
     if (this.state.title.length === 0) {
       return alert("Le titre est vide");
     }
@@ -97,10 +100,20 @@ class TicketEdit extends Component {
         });
       });
     }
+    if (this.state.transports.length > 0) {
+      this.state.transports.map(transport => {
+        TRANSPORTS.filter(vehicle => {
+          if (vehicle.value === transport) {
+            transports.push(transport);
+          }
+        });
+      });
+    }
     this.setState({
       id: "",
       title: "",
       places: [],
+      transports: [],
       from: null,
       to: null,
       resume: ""
@@ -108,6 +121,7 @@ class TicketEdit extends Component {
     this.props.onUpdateTicket({
       ...this.state,
       places,
+      transports,
       from,
       to
     });
@@ -121,7 +135,7 @@ class TicketEdit extends Component {
       places,
       from,
       to,
-      transport,
+      transports,
       resume,
       rating
     } = this.state;
@@ -132,7 +146,7 @@ class TicketEdit extends Component {
       places: this.props.ticket.places,
       from: from,
       to: to,
-      transport: transport,
+      transports: transports,
       resume: resume,
       rating: rating
     };
@@ -144,7 +158,7 @@ class TicketEdit extends Component {
           onSubmit={e => this.onSubmit(e)}
         >
           <div className="form-group">
-            <label className="col-sm-2 col-form-label">Titre</label>
+            <label className="col-sm-12 col-form-label">Titre</label>
             <div className="col-sm-12">
               <input
                 className="form-control"
@@ -157,7 +171,7 @@ class TicketEdit extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-2 col-form-label">Pays</label>
+            <label className="col-sm-12 col-form-label">Pays</label>
             <div className="col-sm-12">
               <MultiSelect
                 options={COUNTRIES}
@@ -170,7 +184,7 @@ class TicketEdit extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-1 col-form-label">Du:</label>
+            <label className="col-sm-12 col-form-label">Du:</label>
             <div className="col-md-12">
               <DatePicker
                 className="form-control"
@@ -192,7 +206,7 @@ class TicketEdit extends Component {
                 autoComplete="off"
               />
             </div>
-            <label className="col-sm-1 col-form-label">au: </label>
+            <label className="col-sm-12 col-form-label">au: </label>
             <div className="col-md-12">
               <DatePicker
                 autoComplete="off"
@@ -216,7 +230,7 @@ class TicketEdit extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-2 col-form-label">Status</label>
+            <label className="col-sm-12 col-form-label">Status</label>
             <div className="col-sm-12">
               <select
                 className="form-control"
@@ -231,28 +245,20 @@ class TicketEdit extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-2 col-form-label">Transport</label>
+            <label className="col-sm-12 col-form-label">Transport </label>
             <div className="col-sm-12">
-              <select
-                className="form-control"
-                onChange={e => this.onChangeTransport(e)}
-                value={transport}
-              >
-                <option value="none">Inconnu</option>
-                <option value="plane">Avion</option>
-                <option value="ship">Bateau</option>
-                <option value="bus">Bus</option>
-                <option value="motorcycle">Moto</option>
-                <option value="thumbs-up">Stop</option>
-                <option value="train">Train</option>
-                <option value="shuttle-van">Van</option>
-                <option value="bicycle">Vélo</option>
-                <option value="car">Voiture</option>
-              </select>
+              <MultiSelect
+                options={TRANSPORTS}
+                mode="tags"
+                enableSearch={true}
+                resetable={true}
+                value={transports}
+                onChange={value => this.setState({ transports: value })}
+              />
             </div>
           </div>
           <div className="form-group">
-            <label className="col-sm-3 col-form-label">Résumé</label>
+            <label className="col-sm-12 col-form-label">Résumé</label>
             <div className="col-sm-12">
               <textarea
                 className="form-control"

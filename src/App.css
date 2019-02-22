@@ -211,6 +211,10 @@ button.bg-dark:focus {
   padding-right: 0px;
 }
 
+label.col-form-label {
+  padding-top: 8px;
+}
+
 textarea {
   max-width: 100%;
   min-width: 100%;
@@ -344,6 +348,10 @@ textarea {
 .flex {
   display: flex;
   flex-wrap: wrap;
+}
+
+.selectTransport {
+  font-family: "Roboto", sans-serif;
 }
 
 .stack {
