@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./ticket.css";
 import { Tab, Row, Nav, NavItem, Col } from "react-bootstrap";
 import Transports from "./transports.js";
-//import Accommodations from "./accommodations.js";
+import Accommodations from "./accommodations";
 
 class Organized extends Component {
   render() {
@@ -26,7 +26,12 @@ class Organized extends Component {
                 <Tab.Pane eventKey="first">
                   <Transports ticket={ticket} onUpdateTicket={onUpdateTicket} />
                 </Tab.Pane>
-                <Tab.Pane eventKey="second" />
+                <Tab.Pane eventKey="second">
+                  <Accommodations
+                    ticket={ticket}
+                    onUpdateTicket={onUpdateTicket}
+                  />
+                </Tab.Pane>
               </Tab.Content>
             </Col>
           </Row>

@@ -34,7 +34,7 @@ class TicketDetails extends Component {
                 className={active === "general" ? "active" : ""}
                 onClick={e => this.changeActive(e, "general")}
               >
-                <Icon name="home" />
+                Général
               </NavItem>
               <NavItem
                 eventKey={2}
@@ -68,24 +68,8 @@ class TicketDetails extends Component {
               >
                 Dépenses
               </NavItem>
-              <NavItem
-                eventKey={6}
-                href={"#agenda" + ticket.id}
-                className={active === "agenda" ? "active" : ""}
-                onClick={e => this.changeActive(e, "agenda")}
-              >
-                Agenda
-              </NavItem>
-              <NavItem
-                eventKey={7}
-                href={"#photos" + ticket.id}
-                className={active === "photos" ? "active" : ""}
-                onClick={e => this.changeActive(e, "photos")}
-              >
-                Photos
-              </NavItem>
 
-              <li>
+              <li className="right">
                 <a className="close" aria-label="Close" onClick={onHide}>
                   <span aria-hidden="true">&times;</span>
                 </a>
@@ -116,10 +100,6 @@ class TicketDetails extends Component {
           </div>
           <div className={active === "carnet" ? "" : "hidden"}>
             <Travelogue ticket={ticket} onUpdateTicket={onUpdateTicket} />
-          </div>
-          <div className={active === "agenda" ? "" : "hidden"} />
-          <div className={active === "photos" ? "" : "hidden"}>
-            Ajoutez vos photos et vidéos
           </div>
         </div>
       </div>

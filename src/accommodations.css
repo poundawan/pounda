@@ -1,0 +1,25 @@
+#formAccommodations .react-datepicker-wrapper,
+#formAccommodations .form-control {
+  width: 50%;
+}
+
+#formAccommodations .react-datepicker-wrapper .form-control {
+  width: 100%;
+}
+
+#formAccommodations .form-control {
+  margin-top: 10px;
+}
+
+.accommodations .onHover {
+  align-items: center;
+}
+
+.accommodationss .onHover div {
+  display: flex;
+  flex-direction: column;
+}
+
+.transp-currencies {
+  max-width: 75px;
+}

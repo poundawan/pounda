@@ -1,15 +1,26 @@
 import React, { Component } from "react";
 import "./ticket.css";
-import "./transports.css";
+import "./accommodations.css";
 import DatePicker from "react-datepicker";
 import { format, compareAsc } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-sm-select/dist/styles.css";
 import Icon from "./Icon";
-import { TRANSPORTS } from "./transportsList.js";
 import { CURRENCIES } from "./currencies.js";
 
-class Transports extends Component {
+const AccommodationsList = [
+  { value: "airbnb", label: "Airbnb" },
+  { value: "hostel", label: "Auberge de Jeunesse" },
+  { value: "camping", label: "Camping" },
+  { value: "friend", label: "Chez des amis" },
+  { value: "local", label: "Chez l'habitant" },
+  { value: "couch", label: "CouchSurfing" },
+  { value: "hotel", label: "Hôtel" },
+  { value: "second", label: "Maison secondaire" },
+  { value: "vehicule", label: "Véhicule" }
+];
+
+class Accommodations extends Component {
   getDate = date => {
     let dateParts = date.split("/");
     let correctDate;
@@ -22,9 +33,8 @@ class Transports extends Component {
 
   state = {
     id: 0,
-    category: "plane",
-    from: "",
-    to: "",
+    category: "hotel",
+    place: "",
     start: null,
     end: null,
     amount: 0,
@@ -34,12 +44,12 @@ class Transports extends Component {
   maxDate = this.getDate(this.props.ticket.to);
   minDate = this.getDate(this.props.ticket.from);
 
-  getLastId = transports => {
-    let transport = "";
+  getLastId = accommodations => {
+    let accommodation = "";
     let id = 1;
-    if (transports && transports.length > 0) {
-      transport = transports[transports.length - 1];
-      id = parseInt(transport.id) + 1;
+    if (accommodations && accommodations.length > 0) {
+      accommodation = accommodations[accommodations.length - 1];
+      id = parseInt(accommodation.id) + 1;
     }
     return id;
   };
@@ -52,11 +62,8 @@ class Transports extends Component {
       ? alert("La date d'arrivée doit être supérieur à la date départ")
       : this.setState({ end: date });
   };
-  onChangeFrom(e) {
-    this.setState({ from: e.target.value });
-  }
-  onChangeTo(e) {
-    this.setState({ to: e.target.value });
+  onChangePlace(e) {
+    this.setState({ place: e.target.value });
   }
   onChangeCategory(e) {
     this.setState({ category: e.target.value });
@@ -64,49 +71,46 @@ class Transports extends Component {
   onChangeAmount(e) {
     this.setState({ amount: e.target.value });
   }
-
   onChangeCurrency(e) {
     this.setState({ currency: e.target.value.toUpperCase() });
   }
 
-  onDeleteTransport = (e, ticket, id) => {
+  onDeleteAccommodation = (e, ticket, id) => {
     e.preventDefault();
-    let index = ticket.transports.findIndex(x => x.id === id);
-    ticket.transports.splice(index, 1);
+    let index = ticket.accommodations.findIndex(x => x.id === id);
+    ticket.accommodations.splice(index, 1);
     this.props.onUpdateTicket(ticket);
   };
 
-  getLabelTransport = value => {
-    let index = TRANSPORTS.findIndex(x => x.value === value);
-    let label = TRANSPORTS[index].label;
+  getLabelAccommodations = value => {
+    let index = AccommodationsList.findIndex(x => x.value === value);
+    let label = AccommodationsList[index].label;
     return label;
   };
 
   onSubmit(e, ticket) {
     e.preventDefault();
-    if (this.state.from.length === 0) return alert("Départ vide");
-    if (this.state.to.length === 0) return alert("Arrivé vide");
-    if (this.state.start.length === 0) return alert("Date de départ vide");
-    if (this.state.end.length === 0) return alert("Date d'arrivée vide");
+    if (this.state.place.length === 0) return alert("Aucun lieu renseigné");
+    if (this.state.start.length === 0) return alert("Date d'arrivée vide");
+    if (this.state.end.length === 0) return alert("Date de départ vide");
     let id = 1;
     let idExp = 1;
     let start = "";
     let end = "";
-    let label = this.getLabelTransport(this.state.category);
-    let title = label + ": " + this.state.from + " -> " + this.state.to;
-    !ticket.transports
-      ? (ticket.transports = [])
-      : (id = this.getLastId(ticket.transports));
+    let label = this.getLabelAccommodations(this.state.category);
+    let title = label + ": " + this.state.place;
+    !ticket.accommodations
+      ? (ticket.accommodations = [])
+      : (id = this.getLastId(ticket.accommodations));
 
     if (this.state.start)
       start = format(this.state.start, "DD/MM/YYYY - HH:mm");
     if (this.state.end) end = format(this.state.end, "DD/MM/YYYY - HH:mm");
-    ticket.transports.push({
+    ticket.accommodations.push({
       id: id,
       category: this.state.category,
       label: label,
-      from: this.state.from,
-      to: this.state.to,
+      place: this.state.place,
       start: start,
       end: end,
       amount: this.state.amount,
@@ -118,45 +122,48 @@ class Transports extends Component {
       : (idExp = this.getLastId(ticket.expenses));
     ticket.expenses.push({
       id: idExp,
-      category: "transport",
+      category: "accommodation",
       title: title,
       amount: this.state.amount,
       currency: this.state.currency
     });
-    this.setState({ from: "", to: "", start: null, end: null, amount: 0 });
+    this.setState({ place: "", start: null, end: null, amount: 0 });
     this.props.onUpdateTicket(ticket);
   }
   render() {
     const { ticket } = this.props;
-    const { category, from, to, start, end, amount, currency } = this.state;
+    const { category, place, start, end, amount, currency } = this.state;
 
     return (
-      <div className="transports">
+      <div className="accommodations">
         <div className="col-md-12">
-          {ticket.transports && ticket.transports.length > 0 ? (
+          {ticket.accommodations && ticket.accommodations.length > 0 ? (
             <ul>
-              {ticket.transports.map(transport => (
+              {ticket.accommodations.map(accommodation => (
                 <li className="onHover ">
                   <div>
-                    <span>{transport.from}</span>
-                    <span className="very-small light italic">
-                      {transport.start}
-                    </span>
-                  </div>
-                  <div>
-                    <span>
-                      <Icon name={transport.category} title={transport.label} />
-                    </span>
-                  </div>
-                  <div>
-                    <span>{transport.to}</span>
-                    <span className="very-small light italic">
-                      {transport.end}
-                    </span>
+                    <div>
+                      <span>{accommodation.place}</span>
+                      <span className="small light margin-left">
+                        {accommodation.label}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="very-small light italic">
+                        {accommodation.start}
+                      </span>{" "}
+                      <Icon
+                        name="long-arrow-alt-right"
+                        className="very-small light italic"
+                      />{" "}
+                      <span className="very-small light italic">
+                        {accommodation.end}
+                      </span>
+                    </div>
                   </div>
                   <div>
                     <span className="small">
-                      {transport.amount + " " + transport.currency}
+                      {accommodation.amount + " " + accommodation.currency}
                     </span>
                   </div>
                   <span className="action-icon">
@@ -165,7 +172,7 @@ class Transports extends Component {
                       title="Supprimer"
                       className="theme-trash"
                       onClick={e =>
-                        this.onDeleteTransport(e, ticket, transport.id)
+                        this.onDeleteAccommodation(e, ticket, accommodation.id)
                       }
                     />
                   </span>
@@ -173,42 +180,33 @@ class Transports extends Component {
               ))}
             </ul>
           ) : (
-            <span>
-              Quels moyens de transports utilisez vous? Pour aller où? Quand?
-            </span>
+            <span>Où allez-vous dormir et comment ?</span>
           )}
         </div>
         <div className="col-md-12 detailForm">
-          <div id="formTransports">
+          <div id="formAccommodations">
             <form
               className=" form-inline"
               onSubmit={e => this.onSubmit(e, ticket)}
             >
               <div className="col-md-12 no-padding padding-top-10">
-                <div className="col-md-4 no-padding">
-                  <select
-                    className="form-control"
-                    onChange={e => this.onChangeCategory(e)}
-                    value={category}
-                  >
-                    {TRANSPORTS.map(transport => (
-                      <option value={transport.value}>{transport.label}</option>
-                    ))}
-                  </select>
-                </div>
+                <select
+                  className="form-control"
+                  value={category}
+                  onChange={e => this.onChangeCategory(e)}
+                >
+                  {AccommodationsList.map(accommodation => (
+                    <option value={accommodation.value}>
+                      {accommodation.label}
+                    </option>
+                  ))}
+                </select>
                 <input
-                  className="form-control input-33"
-                  value={from}
+                  className="form-control"
+                  value={place}
                   type="text"
-                  placeholder="Lieux de départ"
-                  onChange={e => this.onChangeFrom(e)}
-                />
-                <input
-                  className="form-control input-33"
-                  value={to}
-                  type="text"
-                  placeholder="Lieux d'arrivée"
-                  onChange={e => this.onChangeTo(e)}
+                  placeholder="Lieux"
+                  onChange={e => this.onChangePlace(e)}
                 />
 
                 <DatePicker
@@ -219,7 +217,7 @@ class Transports extends Component {
                   dateFormat="dd/MM/yyyy HH:mm"
                   timeCaption="time"
                   selectsStart
-                  placeholderText="Date / heure de départ"
+                  placeholderText="Date / heure de d'arrivée"
                   isClearable={true}
                   selected={start}
                   startDate={start}
@@ -238,7 +236,7 @@ class Transports extends Component {
                   timeIntervals={1}
                   dateFormat="dd/MM/yyyy HH:mm"
                   timeCaption="time"
-                  placeholderText="Date / heure d'arrivée"
+                  placeholderText="Date / heure de départ"
                   selectsEnd
                   selected={end}
                   startDate={start}
@@ -283,4 +281,4 @@ class Transports extends Component {
   }
 }
 
-export default Transports;
+export default Accommodations;
