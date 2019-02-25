@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "f060820175ebb7f45c46",
-    "url": "/pounda/static/css/main.594a777e.chunk.css"
+    "revision": "fb3efb76aaa8bca370e3",
+    "url": "/pounda/static/css/main.4514e2df.chunk.css"
   },
   {
-    "revision": "f060820175ebb7f45c46",
-    "url": "/pounda/static/js/main.f0608201.chunk.js"
+    "revision": "fb3efb76aaa8bca370e3",
+    "url": "/pounda/static/js/main.fb3efb76.chunk.js"
   },
   {
-    "revision": "bc06526f1174d629244a",
+    "revision": "e8ca8f8b0700fdef3966",
     "url": "/pounda/static/css/1.fc248d99.chunk.css"
   },
   {
-    "revision": "bc06526f1174d629244a",
-    "url": "/pounda/static/js/1.bc06526f.chunk.js"
+    "revision": "e8ca8f8b0700fdef3966",
+    "url": "/pounda/static/js/1.e8ca8f8b.chunk.js"
   },
   {
     "revision": "1ed8878d0d1a6d0f8dab",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/pounda/static/media/bg-2.1bbd8192.png"
   },
   {
-    "revision": "207317885a1b85831270822d1eb59dd2",
+    "revision": "adf7c6a8b45eff8b9ec609ab7112cdd1",
     "url": "/pounda/index.html"
   }
 ];
