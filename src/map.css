@@ -1,0 +1,24 @@
+#all-countries{
+    width: 100%;
+    height:  100%;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#detailMap
+{
+    width: 100%;
+    height:  100%;
+}
+#detailMap ul.google-visualization-tooltip-item-list
+{
+    margin-left:15px !important;
+    margin-top:-25px !important;
+}
+
+.google-visualization-tooltip-item:first-of-type span {
+    display: none;
+}

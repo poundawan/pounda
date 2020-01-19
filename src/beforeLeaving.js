@@ -13,7 +13,7 @@ class BeforeLeaving extends Component {
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row className="clearfix">
             <Col sm={3}>
-              <Nav bsStyle="pills" stacked>
+              <Nav bsStyle="pills" className="subNav" stacked>
                 <NavItem className="tab-detail" eventKey="first">
                   ToDo Liste
                 </NavItem>
@@ -25,7 +25,7 @@ class BeforeLeaving extends Component {
                 </NavItem>
               </Nav>
             </Col>
-            <Col sm={8} className={ticket.status}>
+            <Col sm={8} className={ticket.status+" detail-infos"}>
               <Tab.Content animation>
                 <Tab.Pane eventKey="first">
                   <ToDoListBL ticket={ticket} onUpdateTicket={onUpdateTicket} />

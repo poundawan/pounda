@@ -12,7 +12,7 @@ class Organized extends Component {
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row className="clearfix">
             <Col sm={3}>
-              <Nav bsStyle="pills" stacked>
+              <Nav bsStyle="pills" className="subNav" stacked>
                 <NavItem className="tab-detail" eventKey="first">
                   Transports
                 </NavItem>

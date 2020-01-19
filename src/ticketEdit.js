@@ -23,7 +23,7 @@ class TicketEdit extends Component {
     let places = [];
     if (placesObj.length > 0) {
       placesObj.map(place => {
-        places.push(place.id);
+        places.push(place);
       });
     }
     return places;
@@ -88,7 +88,7 @@ class TicketEdit extends Component {
       this.state.places.map(place => {
         COUNTRIES.filter(country => {
           if (country.value === place) {
-            places.push({ id: place, country: country.label });
+            places.push( place);
           }
         });
       });

@@ -270,7 +270,7 @@ class Travelogue extends Component {
         <Tab.Container defaultActiveKey="first">
           <Row className="clearfix">
             <Col sm={3}>
-              <Nav bsStyle="pills" stacked>
+              <Nav bsStyle="pills" className="subNav" stacked>
                 <NavItem
                   className="tab-detail"
                   eventKey="first"

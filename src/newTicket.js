@@ -54,7 +54,7 @@ class NewTicket extends Component {
       this.state.places.map(place => {
         COUNTRIES.filter(country => {
           if (country.value === place) {
-            places.push({ id: place, country: country.label });
+            places.push( place);
           }
         });
       });
@@ -98,7 +98,7 @@ class NewTicket extends Component {
             onSubmit={e => this.onSubmit(e)}
           >
             <div>
-              <span className="col-md-12 label-form">Nouveau ticket</span>
+              <span className="col-md-12 label-form">Nouveau voyage</span>
             </div>
             <div className="form-group col-md-12">
               <label className="col-sm-2 col-form-label">Titre</label>

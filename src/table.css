@@ -14,7 +14,7 @@
 }
 
 .table {
-  box-shadow: 2px 2px 4px 2px #9aa5b1;
+  box-shadow: 1px 1px 2px 1px #9aa5b1;
   background-color: #e4e7eb;
 }
 
@@ -37,4 +37,16 @@
   background-color: #e3f8ff;
   border-top: 3px solid #40c3f7;
   color: #127fbf;
+}
+
+@media (min-width: 768px) {
+  .travelsList{
+    max-height: 70vh;
+    padding-top:5px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  .travelsList::-webkit-scrollbar { 
+    display: none; 
+  } 
 }

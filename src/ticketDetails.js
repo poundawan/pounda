@@ -7,6 +7,7 @@ import Travelogue from "./travelogue.js";
 import "./ticketDetails.css";
 import Icon from "./Icon.js";
 import Organized from "./organized.js";
+import Map from "./map.js";
 
 class TicketDetails extends Component {
   state = {
@@ -20,6 +21,7 @@ class TicketDetails extends Component {
   render() {
     const { ticket, onUpdateTicket, onHide } = this.props;
     const active = this.state.active;
+    let map = [ticket];
     return (
       <div className="container-fluid detail">
         <Navbar className={"navbar navbar-dark bg-" + ticket.status}>
@@ -68,6 +70,14 @@ class TicketDetails extends Component {
               >
                 Dépenses
               </NavItem>
+              <NavItem
+                eventKey={6}
+                href={"#map" + ticket.id}
+                className={active === "map" ? "active" : ""}
+                onClick={e => this.changeActive(e, "map")}
+              >
+                Map
+              </NavItem>
 
               <li className="right">
                 <a className="close" aria-label="Close" onClick={onHide}>
@@ -100,6 +110,9 @@ class TicketDetails extends Component {
           </div>
           <div className={active === "carnet" ? "" : "hidden"}>
             <Travelogue ticket={ticket} onUpdateTicket={onUpdateTicket} />
+          </div>
+          <div className={active === "map" ? "" : "hidden"}>
+            <Map tickets={map} interactivity={true} mapName="detailMap"/>
           </div>
         </div>
       </div>

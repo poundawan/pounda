@@ -74,7 +74,7 @@ class Table extends Component {
           )}
         </div>
         {showTable === "show" ? (
-          <div className="col-md-12">
+          <div className="col-md-12 travelsList">
             {tickets.map(ticket =>
               this.state.editTicket === ticket.id ? (
                 <TicketEdit

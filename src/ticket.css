@@ -1,10 +1,14 @@
 .ticket {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   background: #f5f7fa;
   border-color: #7b8794;
   padding-bottom: 10px;
-  box-shadow: 2px 2px 4px 2px #9aa5b1;
 }
+
+.travelsList{
+  padding: 0px;
+}
+
 
 .ticket > div {
   padding: 15px 5px 10px 5px;

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
 import TicketDetails from "./ticketDetails.js";
 import "./ticket.css";
+import { getCountry } from "./countries";
 
 import Icon from "./Icon";
 
@@ -54,7 +55,7 @@ class Ticket extends Component {
     if (this.state.detail) {
       if (ticket.places.length > 0) {
         places = ticket.places.map(place => {
-          placesArray.push(place.country);
+          placesArray.push(getCountry(place).label_en);
         });
         places = placesArray.join(" • ");
       }

@@ -30,6 +30,12 @@
   font-weight: 500;
 }
 
+.detail-infos
+{
+  background-color: #f5f7fa;
+  padding: 0px 20px 20px 20px;
+}
+
 .table-total {
   margin-top: 10px;
 }
@@ -125,4 +131,24 @@ i.category {
 .steps {
   max-height: 450px;
   overflow-y: scroll;
+}
+
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header
+{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+@media (max-width: 768px) {
+  .subNav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav-pills > li.tab-detail.active > a, .nav-pills > li.tab-detail > a:hover, .nav-pills > li.active.tab-detail > a:hover, .nav-pills > li.active.tab-detail > a:focus
+  {
+    border-bottom: 3px solid #323f4b;
+    border-left: 0px;
+  }
 }

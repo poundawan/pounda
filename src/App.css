@@ -1,6 +1,5 @@
 body {
   color: #1f2933;
-  background-image: url("./bg-2.png");
   background-color: #f7f7f7;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -35,6 +34,23 @@ body {
 }
 .navbar {
   border-radius: 0 !important;
+  font-size: 20px;
+}
+
+nav li a{
+  color:#3ebd93;
+}
+
+nav li a:hover{
+  color:#27AB83;
+}
+
+nav.navbar.navbar-light .navbar-nav>li>a{
+  border-bottom: 5px solid transparent;
+}
+
+nav.navbar.navbar-light .navbar-nav>li>a:hover{
+  border-bottom: 5px solid #27AB83;
 }
 
 .navbar.navbar-dark {
@@ -397,6 +413,11 @@ textarea {
 }
 
 @media (min-width: 768px) {
+  .modal-dialog {
+    width: 700px;
+    margin: 30px auto;
+  }
+
   .navbar-collapse.collapse {
     padding: 0px;
   }
@@ -417,4 +438,22 @@ textarea {
 
 .MultiSelect .OptionList {
   background-color: #fff;
+}
+
+#gotomap ul {
+  float:right;
+}
+
+.navbar-header
+{
+  float:left;
+}
+
+@media (max-width:768px)
+{
+  #gotomap ul {
+    float:right;
+    margin:10px;
+  }
+  
 }
